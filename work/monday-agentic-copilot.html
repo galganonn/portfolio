@@ -65,11 +65,11 @@
   </div>
 
   <!-- fixed 1440px composition, scaled down to fit narrower viewports (see JS) -->
-  <div id="hero-fit" style="position: relative; width: 100%; height: 940px; overflow: hidden;">
-    <div id="hero-stage" style="position: absolute; left: 50%; top: 0; width: 1440px; height: 940px; margin-left: -720px; transform-origin: top center;">
+  <div id="hero-fit" style="position: relative; width: 100%; height: 1200px; overflow: hidden;">
+    <div id="hero-stage" style="position: absolute; left: 50%; top: 0; width: 1440px; height: 1200px; margin-left: -720px; transform-origin: top center;">
 
       <!-- background plate + blurred glow -->
-      <div style="position: absolute; left: 0; top: 0; width: 1440px; height: 940px; background: #FFFFFF;"></div>
+      <div style="position: absolute; left: 0; top: 0; width: 1440px; height: 1200px; background: #FFFFFF;"></div>
       <img src="../uploads/cs-hero-glow.svg" alt="" aria-hidden="true" style="position: absolute; left: -195.5px; top: -49.5px; width: 1735px; height: 1342px; pointer-events: none;">
 
       <!-- header -->
@@ -130,12 +130,15 @@
       <!-- floating card: Build pipeline nudge -->
       <img class="float-card" src="../uploads/cs-build-pipeline.png" alt="Build pipeline suggestion: 6 accounts are showing buying signals this week" style="position: absolute; left: 970.4px; top: 675.8px; width: 254px; height: 76.43px; object-fit: cover; transform: rotate(-4deg); filter: drop-shadow(0 13px 12px rgba(0,0,0,0.10)) drop-shadow(0 22px 26px rgba(0,0,0,0.10));">
 
+      <!-- gradient fade: pink glow → pure white -->
+      <div style="position: absolute; bottom: 0; left: 0; width: 1440px; height: 500px; background: linear-gradient(to bottom, transparent 0%, #FFFFFF 100%); pointer-events: none; z-index: 10;"></div>
+
     </div>
   </div>
 </section>
 
 <!-- PROJECT OVERVIEW -->
-<section id="overview" style="background: linear-gradient(to bottom, rgba(222,177,190,0.22) 0%, #FFFFFF 200px); padding: 180px 120px 80px;">
+<section id="overview" style="background: #FFFFFF; padding: 80px 120px 80px;">
   <div class="overview-grid" style="max-width: 1200px; margin: 0 auto; display: flex; align-items: flex-start; gap: 80px;">
 
     <div style="flex: 1 0 0; min-width: 0; display: flex; flex-direction: column; gap: 20px; color: #323338;">
@@ -193,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Scale the fixed 1440px hero composition down on narrower viewports
   var stage = document.getElementById('hero-stage');
   var fit = document.getElementById('hero-fit');
-  var STAGE_W = 1440, STAGE_H = 940;
+  var STAGE_W = 1440, STAGE_H = 1200;
   function fitStage() {
     if (!stage || !fit) return;
     // On phones the floating cards are hidden and we crop to the product screen,
