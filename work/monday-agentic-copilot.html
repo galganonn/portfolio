@@ -34,6 +34,9 @@
     .hero-header-mobile { display: block !important; }
     .hero-header-desktop { display: none !important; }
     .float-card { display: none !important; }
+    #overview { padding: 64px 24px 48px !important; }
+    .overview-grid { flex-direction: column !important; gap: 40px !important; }
+    .overview-cards { width: 100% !important; }
     #contact-inner, #contact-bar { padding: 0 32px !important; }
   }
 </style>
@@ -128,6 +131,29 @@
       <img class="float-card" src="../uploads/cs-build-pipeline.png" alt="Build pipeline suggestion: 6 accounts are showing buying signals this week" style="position: absolute; left: 970.4px; top: 675.8px; width: 254px; height: 76.43px; object-fit: cover; transform: rotate(-4deg); box-shadow: 0 20px 38.5px 12px rgba(0,0,0,0.12);">
 
     </div>
+  </div>
+</section>
+
+<!-- PROJECT OVERVIEW -->
+<section id="overview" style="background: #FFFFFF; padding: 180px 120px 80px;">
+  <div class="overview-grid" style="max-width: 1200px; margin: 0 auto; display: flex; align-items: flex-start; gap: 80px;">
+
+    <div style="flex: 1 0 0; min-width: 0; display: flex; flex-direction: column; gap: 20px; color: #323338;">
+      <h2 style="font-family: 'Crimson Pro', Georgia, serif; font-weight: 300; font-style: italic; font-size: 50px; line-height: normal;">Project Overview</h2>
+      <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px;"><strong style="font-weight: 700;">Scaling revenue</strong> requires reps to manage more clients, often leading to <strong style="font-weight: 700;">lost oversight</strong>, <strong style="font-weight: 700;">missed opportunities</strong>, and unnoticed <strong style="font-weight: 700;">at-risk accounts</strong>. Oz is an AI agent that eliminates this by <strong style="font-weight: 700;">automating</strong> administrative busywork and algorithmically <strong style="font-weight: 700;">prioritizing daily tasks</strong>. This empowers reps to step away from the CRM and focus purely on <strong style="font-weight: 700;">building relationships</strong>.</p>
+    </div>
+
+    <div class="overview-cards" style="flex-shrink: 0; width: 360px; display: flex; flex-direction: column; gap: 16px; font-size: 18px;">
+      <div style="display: flex; flex-direction: column; gap: 6px; padding: 16px 24px; border: 1px solid #D12E8B; border-radius: 12px; color: #D12E8B;">
+        <p style="font-family: 'Poppins', sans-serif; font-weight: 600; line-height: 28px;">Team</p>
+        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; line-height: 32px;">1 Designer • 5 Eng • PM</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px; padding: 16px 24px; border: 1px solid #0056F5; border-radius: 12px; color: #0056F5;">
+        <p style="font-family: 'Poppins', sans-serif; font-weight: 600; line-height: 28px;">Timeline</p>
+        <p style="font-family: 'Poppins', sans-serif; font-weight: 400; line-height: 32px;">5 Weeks</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
