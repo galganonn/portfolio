@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>monday Agentic co-pilot — Gal Ganon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@1,200;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=array@400,700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: #FAF8F4; color: #323338; font-family: 'Poppins', system-ui, sans-serif; font-size: 17px; line-height: 1.5; overflow-x: hidden; }
+  ::selection { background: #F2652A; color: #FBF6E9; }
+  a { color: inherit; }
+  button { font: inherit; cursor: pointer; }
+  .nav-link { text-decoration: none; position: relative; padding: 8px 0; color: #141414; }
+  .nav-link::after { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: #F2652A; transform: scaleX(0); transform-origin: right; transition: transform 250ms cubic-bezier(0.16,1,0.3,1); }
+  .nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
+  header.scrolled { border-bottom-color: rgba(20,20,20,0.14) !important; }
+  @keyframes cursor-bounce {
+    0%,100% { transform: translate(0,0) rotate(-10deg); }
+    40% { transform: translate(6px,8px) rotate(-10deg); }
+  }
+  #footer-cursor { animation: cursor-bounce 1.4s ease-in-out infinite; }
+  #copy-toast { display:none; position:absolute; left:50%; transform:translateX(-50%); top:calc(100% + 10px); white-space:nowrap; background:#141414; color:#FBF6E9; font-family:'Poppins',sans-serif; font-size:13px; font-weight:500; padding:8px 20px; border-radius:9999px; pointer-events:none; z-index:9999; opacity:0; transition: opacity 0.3s ease; box-shadow:0 4px 16px rgba(0,0,0,0.18); }
+  /* Hero floating cards — subtle entrance + hover lift */
+  .float-card { transition: transform 400ms cubic-bezier(0.34,1.56,0.64,1); }
+  @media (max-width: 900px) {
+    .nav-links-list { display: none !important; }
+    .hero-header-mobile { display: block !important; }
+    .hero-header-desktop { display: none !important; }
+    .float-card { display: none !important; }
+    #contact-inner, #contact-bar { padding: 0 32px !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header id="top" style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; backdrop-filter: blur(12px); border-bottom: 1px solid transparent; transition: border-color 250ms cubic-bezier(0.16,1,0.3,1); background-color: #FFFCF2E0">
+  <nav style="display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; max-width: 1500px; margin: 0 auto; letter-spacing: 0.08em;" aria-label="Main">
+    <a href="../index.html" class="nav-link" style="font-weight: 400; font-family: Poppins; font-size: 14px; text-transform: uppercase; text-decoration: none;">Gal Ganon</a>
+    <ul class="nav-links-list" style="display: flex; gap: 32px; list-style: none;">
+      <li><a href="../index.html#about" class="nav-link" style="font-weight: 300; font-family: Poppins; font-size: 14px; text-transform: uppercase;">About</a></li>
+      <li><a href="../index.html#work" class="nav-link" style="font-weight: 300; font-family: Poppins; font-size: 14px; text-transform: uppercase;">Work</a></li>
+      <li><a href="../index.html#contact" class="nav-link" style="font-weight: 300; font-family: Poppins; font-size: 14px; text-transform: uppercase;">Contact</a></li>
+    </ul>
+    <a href="https://www.linkedin.com/in/gal-ganon/" target="_blank" rel="noopener" class="nav-link" style="font-weight: 400; font-family: Poppins; font-size: 14px; text-decoration: none;">LinkedIn</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="hero" style="position: relative; background: #FAF8F4; overflow: hidden;">
+  <!-- header, mobile only: on narrow screens the scaled stage text becomes unreadable -->
+  <div class="hero-header-mobile" style="display: none; padding: 120px 24px 8px; text-align: center;">
+    <h1 style="font-family: 'Crimson Pro', Georgia, serif; font-weight: 300; font-style: italic; font-size: clamp(34px,9vw,64px); line-height: 1.1; color: #323338;">monday Agentic co-pilot</h1>
+    <p style="margin: 16px auto 0; max-width: 560px; font-family: 'Poppins', sans-serif; font-weight: 400; font-size: clamp(15px,3.6vw,20px); line-height: 1.6; color: #323338;">Scaling Sales Revenue by Letting AI Handle the Admin, and Humans Handle the Relationships</p>
+  </div>
+
+  <!-- fixed 1440px composition, scaled down to fit narrower viewports (see JS) -->
+  <div id="hero-fit" style="position: relative; width: 100%; height: 940px; overflow: hidden;">
+    <div id="hero-stage" style="position: absolute; left: 50%; top: 0; width: 1440px; height: 940px; margin-left: -720px; transform-origin: top center;">
+
+      <!-- background plate + blurred glow -->
+      <div style="position: absolute; left: 0; top: 0; width: 1440px; height: 940px; background: #FFFFFF;"></div>
+      <img src="../uploads/cs-hero-glow.svg" alt="" aria-hidden="true" style="position: absolute; left: -195.5px; top: -49.5px; width: 1735px; height: 1342px; pointer-events: none;">
+
+      <!-- header -->
+      <div class="hero-header-desktop" style="position: absolute; left: 0; top: 131.25px; width: 1440px; display: flex; flex-direction: column; align-items: center; gap: 24px;">
+        <h1 style="font-family: 'Crimson Pro', Georgia, serif; font-weight: 300; font-style: italic; font-size: 70px; line-height: normal; color: #323338; white-space: nowrap;">monday Agentic co-pilot</h1>
+        <p style="width: 718px; text-align: center; font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 24px; line-height: 38px; color: #323338;">Scaling Sales Revenue by Letting AI Handle the Admin, and Humans Handle the Relationships</p>
+      </div>
+
+      <!-- floating card: Salesforce opportunity update -->
+      <img class="float-card" src="../uploads/cs-salesforce-update.png" alt="Salesforce opportunity update card drafted by the agent" style="position: absolute; left: 82.9px; top: 412.7px; width: 271.05px; height: 133.14px; object-fit: cover; transform: rotate(-12deg); box-shadow: 0 28.38px 53.93px 17.03px rgba(0,0,0,0.12);">
+
+      <!-- floating card: Meeting recap draft -->
+      <img class="float-card" src="../uploads/cs-meeting-recap-draft.png" alt="Meeting recap draft document" style="position: absolute; left: 162.8px; top: 673.4px; width: 191px; height: 201px; object-fit: cover; transform: rotate(4deg); box-shadow: 0 20px 38px 12px rgba(0,0,0,0.12);">
+
+      <!-- product screen -->
+      <img src="../uploads/cs-dashboard.png" alt="monday Agentic co-pilot workspace" style="position: absolute; left: 411px; top: 382px; width: 600px; height: 360.69px; object-fit: cover; border-radius: 8px; box-shadow: 0 37px 60.7px -14px rgba(18,18,18,0.2);">
+
+      <!-- My Pipeline widget (live markup, sits on top of the screen) -->
+      <div style="position: absolute; left: 380px; top: 395px; width: 662px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16.05px; padding: 16.05px 21.4px; border: 0.669px solid #E7E9EF; border-radius: 16px; background: linear-gradient(180deg, rgba(236,239,248,0.5) 4.19%, rgba(255,255,255,0.5) 32.44%); backdrop-filter: blur(8.02px); box-shadow: 0 13.37px 33.43px 0 rgba(1,116,235,0.1);">
+        <div style="display: flex; flex-direction: column; gap: 16.05px; width: 100%;">
+          <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+            <p style="font-family: 'Poppins',sans-serif; font-size: 12.04px; line-height: 16.05px; letter-spacing: -0.1px; white-space: nowrap;"><span style="font-weight: 600; color: #323338;">My Pipeline</span><span style="font-weight: 400; font-size: 14px; color: #676879;">&nbsp; /&nbsp; Jul, 2026</span></p>
+            <div style="display: flex; align-items: center; gap: 2.675px; font-size: 12.04px; line-height: 16.05px;">
+              <span style="font-family: 'Poppins',sans-serif; font-weight: 600; color: #01A0A0; letter-spacing: -0.1px;">$91K</span>
+              <span style="font-family: 'Poppins',sans-serif; font-weight: 500; color: #C3C6D4; letter-spacing: -0.06px;">/</span>
+              <span style="font-family: 'Poppins',sans-serif; font-weight: 500; color: #676879; letter-spacing: -0.06px;">$100K</span>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 16.05px; width: 100%;">
+            <div style="display: flex; align-items: center; gap: 2.006px; flex: 1 0 0; min-width: 0; height: 44.13px; padding: 2.006px 0; background: #E7E9EF; border: 1.337px solid #FFFFFF; border-radius: 5.349px;">
+              <!-- closed -->
+              <div style="display: flex; flex-direction: column; justify-content: center; width: 158.26px; height: 44.13px; padding: 0 10.7px; background: #00C875; border: 1.337px solid #FFFFFF; border-radius: 8px;">
+                <span style="font-family: 'Poppins',sans-serif; font-weight: 600; font-size: 9.36px; line-height: 13.37px; color: #FFFFFF;">Closed</span>
+                <span style="font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 16.05px; line-height: 20.06px; letter-spacing: -0.1px; color: #FFFFFF;">$30K</span>
+              </div>
+              <!-- pipeline (striped) -->
+              <div style="position: relative; width: 343.04px; height: 44.13px; background: #E8E8EC; border: 1.337px solid #FFFFFF; border-radius: 8px; overflow: hidden;">
+                <div style="position: absolute; left: 0; top: 0; width: 321.64px; height: 100%; background: repeating-linear-gradient(45deg, #FFFFFF 0 2.675px, #E8E8EC 2.675px 9.36px);"></div>
+                <div style="position: absolute; left: 0; top: 5.35px; display: flex; flex-direction: column; width: 321.64px; padding: 0 10.7px;">
+                  <span style="font-family: 'Poppins',sans-serif; font-weight: 600; font-size: 9.36px; line-height: 13.37px; color: #323338;">Pipeline</span>
+                  <span style="font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 16.05px; line-height: 20.06px; letter-spacing: -0.1px; color: #323338;">$61K</span>
+                </div>
+              </div>
+            </div>
+            <!-- % of target -->
+            <div style="display: flex; flex-direction: column; width: 62.86px; height: 40.12px; text-align: right;">
+              <span style="flex: 1 0 0; font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 21.4px; letter-spacing: -1px; color: #323338;">91%</span>
+              <span style="font-family: 'Poppins',sans-serif; font-weight: 400; font-size: 9.36px; line-height: 13.37px; color: #676879;">of target</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- floating card: Opportunity draft -->
+      <img class="float-card" src="../uploads/cs-opportunity-draft.png" alt="Opportunity draft created by the agent" style="position: absolute; left: 1107.8px; top: 394.5px; width: 191px; height: 168.66px; object-fit: cover; transform: rotate(8deg); box-shadow: 0 20px 38px 12px rgba(0,0,0,0.12);">
+
+      <!-- floating card: Build pipeline nudge -->
+      <img class="float-card" src="../uploads/cs-build-pipeline.png" alt="Build pipeline suggestion: 6 accounts are showing buying signals this week" style="position: absolute; left: 970.4px; top: 675.8px; width: 254px; height: 76.43px; object-fit: cover; transform: rotate(-4deg); box-shadow: 0 20px 38.5px 12px rgba(0,0,0,0.12);">
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<footer id="contact" style="color: #141414; padding: 120px 0 0; position: relative; z-index: 1; line-height: 31.35px; background-color: #FFFCF2">
+  <div id="contact-inner" style="max-width: 1400px; margin: 0 auto; padding: 0 120px; text-align: center;">
+    <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: clamp(48px,7vw,110px); line-height: 1.0; text-transform: uppercase; letter-spacing: -0.02em; color: #141414; margin: 0">
+      Interested in <br>Working Together? <img src="../uploads/pasted-1785615352201-0.png" alt="✌" style="display:inline-block;height:0.85em;width:auto;vertical-align:-0.1em;margin:0 0.06em;"></h2>
+
+    <div style="position: relative; display: inline-block; margin-top: 48px;">
+      <p style="font-family: 'Poppins',sans-serif; font-size: 15px; font-weight: 400; color: rgba(20,20,20,0.5); margin-bottom: 8px; letter-spacing: 0.04em;">Contact me:</p>
+      <button id="email-copy-btn" style="background: none; border: none; padding: 0; cursor: pointer; font-family: 'Poppins',sans-serif; font-size: 18px; font-weight: 500; color: #141414; text-decoration-line: none; text-underline-offset: 4px; text-decoration-color: rgba(20,20,20,0.25); transition: text-decoration-color 200ms">galganonn@gmail.com</button>
+
+      <svg id="footer-cursor" style="position: absolute; right: -64px; bottom: -12px; width: 48px; height: 48px; pointer-events: none;" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 4L8 36L16 28L22 42L27 40L21 26L33 26Z" fill="#141414" stroke="#FBF6E9" stroke-width="2" stroke-linejoin="round"></path>
+      </svg>
+
+      <div id="copy-toast">Email copied! ✓</div>
+    </div>
+  </div>
+
+  <div id="contact-bar" style="max-width: 1400px; margin: 96px auto 0; padding: 0 120px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; font-size: 14px; color: rgba(20,20,20,0.45); border-top: 1px solid rgba(20,20,20,0.12); padding: 28px 0 40px;">
+      <span style="font-family:'Poppins',sans-serif;">© 2026 Gal Ganon — All Rights Reserved</span>
+      <button id="back-top-btn" style="background: none; border: 1px solid rgba(20,20,20,0.25); color: #141414; border-radius: 9999px; padding: 10px 22px; font-size: 13px; font-family:'Poppins',sans-serif; letter-spacing: 0.08em; cursor: pointer; transition: background 200ms, color 200ms;">Back to top ↑</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var header = document.querySelector('header');
+  var onScroll = function() { if (header) header.classList.toggle('scrolled', window.scrollY > 10); };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Scale the fixed 1440px hero composition down on narrower viewports
+  var stage = document.getElementById('hero-stage');
+  var fit = document.getElementById('hero-fit');
+  var STAGE_W = 1440, STAGE_H = 940;
+  function fitStage() {
+    if (!stage || !fit) return;
+    // On phones the floating cards are hidden and we crop to the product screen,
+    // so it stays readable instead of shrinking the whole 1440px collage.
+    var mobile = window.innerWidth <= 900;
+    var scale = mobile ? Math.min(1, (window.innerWidth - 32) / 700) : Math.min(1, window.innerWidth / STAGE_W);
+    var cropTop = mobile ? 350 : 0;
+    var visible = mobile ? 440 : STAGE_H;
+    stage.style.marginLeft = '0';
+    stage.style.transform = 'translateX(' + (-STAGE_W / 2) + 'px) translateY(' + (-cropTop * scale) + 'px) scale(' + scale + ')';
+    fit.style.height = (visible * scale) + 'px';
+  }
+  fitStage();
+  window.addEventListener('resize', fitStage);
+
+  // Hover lift on the floating cards (keeps each card's own rotation)
+  Array.prototype.forEach.call(document.querySelectorAll('.float-card'), function(card) {
+    var base = card.style.transform;
+    card.addEventListener('mouseenter', function() { card.style.transform = base + ' translateY(-8px)'; });
+    card.addEventListener('mouseleave', function() { card.style.transform = base; });
+  });
+
+  var backTop = document.getElementById('back-top-btn');
+  if (backTop) backTop.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  var emailBtn = document.getElementById('email-copy-btn');
+  if (emailBtn) {
+    emailBtn.addEventListener('click', function() {
+      var email = 'galganonn@gmail.com';
+      var toast = document.getElementById('copy-toast');
+      function showToast() {
+        if (!toast) return;
+        toast.style.display = 'block';
+        setTimeout(function() { toast.style.opacity = '1'; }, 10);
+        setTimeout(function() { toast.style.opacity = '0'; }, 3000);
+        setTimeout(function() { toast.style.display = 'none'; }, 3400);
+      }
+      function copyViaExecCommand() {
+        var ta = document.createElement('textarea');
+        ta.value = email;
+        ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        try { document.execCommand('copy'); } catch(e) {}
+        document.body.removeChild(ta);
+        showToast();
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(showToast, copyViaExecCommand);
+      } else {
+        copyViaExecCommand();
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>
