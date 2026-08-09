@@ -30,62 +30,63 @@
   /* Hero floating cards — subtle entrance + hover lift */
   .float-card { transition: transform 400ms cubic-bezier(0.34,1.56,0.64,1); }
 
-  /* OUR PROCESS illustration — relationships → revenue, ported from the Figma Make React/motion prototype */
+  /* OUR PROCESS illustration — 4-stage design process, ported from the Figma Make React/motion prototype */
   #process-fit { position: relative; width: 100%; }
-  .rr-stage { width: 390px; height: 285px; margin: 0 auto; position: relative; transform-origin: top center; }
-  .rr-dot { position: absolute; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%; opacity: 0; }
-  .rr-dot-1, .rr-dot-3, .rr-dot-5 { background: #6B8FFF; box-shadow: 0 0 6px 2px rgba(107,143,255,0.5); }
-  .rr-dot-2, .rr-dot-4 { background: #FF73CF; box-shadow: 0 0 6px 2px rgba(255,115,207,0.5); }
-  .rr-badge, .rr-avatar, .rr-hub { opacity: 0; }
+  .p-stage { width: 700px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; transform-origin: top center; }
+  .p-row { display: flex; align-items: stretch; }
+  .p-card { width: 148px; border-radius: 20px; background: #fff; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06); overflow: hidden; display: flex; flex-direction: column; opacity: 0; }
+  .p-card-bar { height: 3px; background: var(--accent); flex-shrink: 0; }
+  .p-card-body { padding: 14px 16px 18px; display: flex; flex-direction: column; gap: 2px; flex: 1; }
+  .p-num { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent); opacity: 0.7; }
+  .p-label { font-weight: 700; font-size: 14.5px; color: #0F172A; letter-spacing: -0.02em; line-height: 1.25; }
+  .p-icon { margin-top: 14px; width: 52px; height: 52px; border-radius: 14px; background: var(--accent-bg); color: var(--accent); display: flex; align-items: center; justify-content: center; }
+  .p-arrow { position: relative; width: 36px; height: 16px; flex-shrink: 0; align-self: center; transform-origin: left center; opacity: 0; }
+  .p-arrow-line { position: absolute; top: 50%; left: 0; width: calc(100% - 8px); height: 1.5px; background: var(--accent); opacity: var(--line-op); transform: translateY(-50%); }
+  .p-arrow-head { position: absolute; right: 0; top: 50%; transform: translateY(-50%); color: var(--accent); opacity: var(--head-op); }
+  .p-arrow-dot { position: absolute; top: 50%; left: 0; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 6px 2px var(--accent-glow); transform: translateY(-50%); opacity: 0; }
+  .p-loop { align-self: flex-end; width: 340px; margin-top: -4px; position: relative; height: 60px; }
+  .p-loop svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .p-arc { stroke-dasharray: 5 4; opacity: 0; }
+  .p-arc-head { opacity: 0; }
+  .p-arc-dot { position: absolute; top: 0; left: 0; width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%; background: #D4508A; box-shadow: 0 0 8px 3px rgba(212,80,138,0.4); opacity: 0; }
+  .p-caption { position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); font-size: 10.5px; font-weight: 600; color: #D4508A; opacity: 0; white-space: nowrap; letter-spacing: 0.04em; }
 
-  .rr-stage.is-visible .rr-dot-1 { animation: rr-dot1 4s linear infinite; }
-  .rr-stage.is-visible .rr-dot-2 { animation: rr-dot2 4s linear infinite; }
-  .rr-stage.is-visible .rr-dot-3 { animation: rr-dot3 4s linear infinite; }
-  .rr-stage.is-visible .rr-dot-4 { animation: rr-dot4 4s linear infinite; }
-  .rr-stage.is-visible .rr-dot-5 { animation: rr-dot5 4s linear infinite; }
-  .rr-stage.is-visible .rr-badge, .rr-stage.is-visible .rr-avatar, .rr-stage.is-visible .rr-hub { animation: rr-fade-in 0.5s cubic-bezier(0.34,1.2,0.64,1) both; animation-delay: calc(var(--i) * 0.08s); }
+  .p-stage.is-visible .p-card { animation: p-card-in 0.5s cubic-bezier(0.34,1.2,0.64,1) both; animation-delay: calc(var(--i) * 0.12s); }
+  .p-stage.is-visible .p-arrow { animation: p-arrow-in 0.25s ease-out both; animation-delay: calc(0.1s + var(--i) * 0.12s); }
+  .p-stage.is-visible .p-arrow-dot { animation: p-dot-travel 3.5s ease-in-out infinite both; animation-delay: calc(0.65s + var(--i) * 0.28s); }
+  .p-stage.is-visible .p-arc { animation: p-fade-in 0.9s ease-out 0.9s both, p-march 1.6s linear 0.9s infinite; }
+  .p-stage.is-visible .p-arc-head { animation: p-fade-in 0.4s ease-out 1.75s both; }
+  .p-stage.is-visible .p-caption { animation: p-caption-in 0.5s ease-out 1.9s both; }
+  .p-stage.is-visible .p-arc-dot { animation: p-arc-travel 2.7s ease-in-out 1.1s infinite both; }
 
-  @keyframes rr-fade-in { from { opacity: 0; transform: translateY(10px) scale(0.94); } to { opacity: 1; transform: none; } }
-  @keyframes rr-dot1 {
-    0%   { left: 24.51%; top: 32.92%; opacity: 0; }
-    2%   { opacity: 1; }
-    51%  { left: 42.67%; top: 47.20%; opacity: 1; }
-    55%  { opacity: 0; }
-    100% { left: 42.67%; top: 47.20%; opacity: 0; }
+  @keyframes p-card-in { from { opacity: 0; transform: translateY(18px) scale(0.94); } to { opacity: 1; transform: none; } }
+  @keyframes p-arrow-in { from { opacity: 0; transform: scaleX(0); } to { opacity: 1; transform: scaleX(1); } }
+  @keyframes p-fade-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes p-caption-in { from { opacity: 0; } to { opacity: 0.6; } }
+  @keyframes p-march { to { stroke-dashoffset: -9; } }
+  @keyframes p-dot-travel {
+    0% { left: 0; opacity: 0; }
+    2.6% { opacity: 1; }
+    22.6% { opacity: 1; }
+    25.7% { left: 84%; opacity: 0; }
+    100% { left: 84%; opacity: 0; }
   }
-  @keyframes rr-dot2 {
-    0%   { left: 75.35%; top: 31.06%; opacity: 0; }
-    10%  { left: 75.35%; top: 31.06%; opacity: 0; }
-    12%  { opacity: 1; }
-    73%  { left: 57.19%; top: 47.21%; opacity: 1; }
-    75%  { opacity: 0; }
-    100% { left: 57.19%; top: 47.21%; opacity: 0; }
-  }
-  @keyframes rr-dot3 {
-    0%   { left: 20.42%; top: 71.43%; opacity: 0; }
-    20%  { left: 20.42%; top: 71.43%; opacity: 0; }
-    22%  { opacity: 1; }
-    78%  { left: 42.67%; top: 55.28%; opacity: 1; }
-    80%  { opacity: 0; }
-    100% { left: 42.67%; top: 55.28%; opacity: 0; }
-  }
-  @keyframes rr-dot4 {
-    0%   { left: 79.43%; top: 70.19%; opacity: 0; }
-    30%  { left: 79.43%; top: 70.19%; opacity: 0; }
-    32%  { opacity: 1; }
-    98%  { left: 57.19%; top: 55.28%; opacity: 1; }
-    100% { opacity: 0; }
-  }
-  @keyframes rr-dot5 {
-    0%   { left: 49.93%; top: 18.01%; opacity: 0; }
-    15%  { left: 49.93%; top: 18.01%; opacity: 0; }
-    17%  { opacity: 1; }
-    63%  { left: 49.93%; top: 42.55%; opacity: 1; }
-    65%  { opacity: 0; }
-    100% { left: 49.93%; top: 42.55%; opacity: 0; }
+  @keyframes p-arc-travel {
+    0%    { left: 94.12%; top: 10%;    opacity: 0; }
+    3.9%  { opacity: 1; }
+    6.9%  { left: 90.32%; top: 34.07%; }
+    13.9% { left: 80.33%; top: 51.23%; }
+    20.8% { left: 66.19%; top: 61.55%; }
+    27.8% { left: 50%;    top: 65%; }
+    34.7% { left: 33.81%; top: 61.55%; }
+    41.7% { left: 19.67%; top: 51.23%; }
+    48.6% { left: 9.68%;  top: 34.07%; }
+    51%   { opacity: 1; }
+    55.5% { left: 5.88%;  top: 10%;    opacity: 0; }
+    100%  { left: 5.88%;  top: 10%;    opacity: 0; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .rr-stage.is-visible .rr-dot-1, .rr-stage.is-visible .rr-dot-2, .rr-stage.is-visible .rr-dot-3, .rr-stage.is-visible .rr-dot-4, .rr-stage.is-visible .rr-dot-5 { animation-iteration-count: 1 !important; }
+    .p-stage.is-visible .p-arrow-dot, .p-stage.is-visible .p-arc-dot, .p-stage.is-visible .p-arc { animation-iteration-count: 1 !important; }
   }
   @media (max-width: 900px) {
     .nav-links-list { display: none !important; }
@@ -225,73 +226,121 @@
   <h2 style="font-family: 'Crimson Pro', Georgia, serif; font-weight: 300; font-style: italic; font-size: 50px; line-height: normal; color: #323338; text-align: center; margin-bottom: 56px;">Our Process</h2>
 
   <div id="process-fit">
-    <div class="rr-stage" id="process-stage">
+    <div class="p-stage" id="process-stage">
 
-      <!-- background glow -->
-      <div style="position: absolute; left: 124px; top: 86px; width: 142px; height: 120px; border-radius: 50%; background: #C8D8FA; opacity: 0.18; filter: blur(3px);"></div>
+      <div class="p-row">
+        <!-- 01 Research -->
+        <div class="p-card" style="--accent: #5B8CFF; --accent-bg: #EFF4FF; --i: 0;">
+          <div class="p-card-bar"></div>
+          <div class="p-card-body">
+            <span class="p-num">01</span>
+            <span class="p-label">Research</span>
+            <div class="p-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m8 11 2 2 4-4"></path>
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.3-4.3"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
 
-      <!-- static connector lines -->
-      <svg width="390" height="285" viewBox="0 0 390 285" style="position: absolute; left: 0; top: 0; overflow: visible;">
-        <path d="M95.59,93.82 C119.19,105.62 142.79,119.19 166.40,134.53" stroke="#C0D2FF" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.7"></path>
-        <path d="M293.85,88.51 C270.25,102.67 246.65,118.01 223.05,134.53" stroke="#C0D2FF" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.7"></path>
-        <path d="M79.66,203.57 C109.16,189.41 138.07,174.07 166.40,157.55" stroke="#C0D2FF" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.7"></path>
-        <path d="M309.78,200.03 C280.27,187.05 251.36,172.89 223.04,157.55" stroke="#C0D2FF" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.7"></path>
-        <path d="M194.72,51.34 L194.72,121.26" stroke="#C0D2FF" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.7"></path>
-      </svg>
+        <div class="p-arrow" style="--accent: #94A3B8; --accent-glow: rgba(148,163,184,0.4); --line-op: 0.35; --head-op: 0.4; --i: 0;">
+          <div class="p-arrow-line"></div>
+          <svg class="p-arrow-head" width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1 1.5L7.5 4.5L1 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <div class="p-arrow-dot"></div>
+        </div>
 
-      <!-- traveling dots -->
-      <div class="rr-dot rr-dot-1"></div>
-      <div class="rr-dot rr-dot-2"></div>
-      <div class="rr-dot rr-dot-3"></div>
-      <div class="rr-dot rr-dot-4"></div>
-      <div class="rr-dot rr-dot-5"></div>
+        <!-- 02 Concepts -->
+        <div class="p-card" style="--accent: #7C6FD4; --accent-bg: #F2F0FB; --i: 1;">
+          <div class="p-card-bar"></div>
+          <div class="p-card-body">
+            <span class="p-num">02</span>
+            <span class="p-label">Concepts</span>
+            <div class="p-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 3H8"></path>
+                <path d="m15.007 5.008 3.987 3.986"></path>
+                <path d="M20 15v4"></path>
+                <path d="M21.174 6.813a2.82 2.82 0 0 0-3.986-3.987L3.842 16.175a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"></path>
+                <path d="M22 17h-4"></path>
+                <path d="M4 5v4"></path>
+                <path d="M6 7H2"></path>
+                <path d="M9 2v2"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
 
-      <!-- avatar A -->
-      <div class="rr-avatar" style="position: absolute; left: 39px; top: 48px; width: 60px; height: 60px; filter: blur(5.3px); --i: 0;">
-        <div style="position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(135deg,#7BA7FF,#4A70E8);"></div>
-        <div style="position: absolute; inset: -2px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3);"></div>
-        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;"><span style="font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 17.7px; color: #fff;">A</span></div>
+        <div class="p-arrow" style="--accent: #94A3B8; --accent-glow: rgba(148,163,184,0.4); --line-op: 0.35; --head-op: 0.4; --i: 1;">
+          <div class="p-arrow-line"></div>
+          <svg class="p-arrow-head" width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1 1.5L7.5 4.5L1 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <div class="p-arrow-dot"></div>
+        </div>
+
+        <!-- 03 User testing -->
+        <div class="p-card" style="--accent: #9B6FD4; --accent-bg: #F5F0FB; --i: 2;">
+          <div class="p-card-bar"></div>
+          <div class="p-card-body">
+            <span class="p-num">03</span>
+            <span class="p-label">User testing</span>
+            <div class="p-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                <path d="M16 3.128a4 4 0 0 1 0 7.744"></path>
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-arrow" style="--accent: #D4508A; --accent-glow: rgba(212,80,138,0.4); --line-op: 0.6; --head-op: 0.7; --i: 2;">
+          <div class="p-arrow-line"></div>
+          <svg class="p-arrow-head" width="9" height="9" viewBox="0 0 9 9" fill="none"><path d="M1 1.5L7.5 4.5L1 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <div class="p-arrow-dot"></div>
+        </div>
+
+        <!-- 04 Iterations -->
+        <div class="p-card" style="--accent: #D4508A; --accent-bg: #FDF0F5; --i: 3;">
+          <div class="p-card-bar"></div>
+          <div class="p-card-body">
+            <span class="p-num">04</span>
+            <span class="p-label">Iterations</span>
+            <div class="p-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 2v2"></path>
+                <path d="M12 3h-2"></path>
+                <path d="M13.5 10.5 22 2"></path>
+                <path d="M14.734 13.841a2 2 0 00-.314-2.42L12.58 9.58a2 2 0 00-2.421-.314l-7.657 4.461A1 1 0 002.3 15.3l6.403 6.403a1 1 0 001.571-.204z"></path>
+                <path d="M20 15v4"></path>
+                <path d="M22 17h-4"></path>
+                <path d="M4 4v4"></path>
+                <path d="m5 18 2-2"></path>
+                <path d="M6 6H2"></path>
+                <path d="m7.699 10.7 5.602 5.601"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- avatar J -->
-      <div class="rr-avatar" style="position: absolute; left: 291px; top: 42px; width: 60px; height: 60px; filter: blur(5.3px); --i: 1;">
-        <div style="position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(135deg,#FF8ED4,#FF4EB8);"></div>
-        <div style="position: absolute; inset: -2px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3);"></div>
-        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;"><span style="font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 17.7px; color: #fff;">J</span></div>
+      <!-- loop arc: spans the last two cards, points back to User testing -->
+      <div class="p-loop">
+        <svg viewBox="0 0 340 60" fill="none" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="p-arc-grad" x1="340" y1="0" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#D4508A"></stop>
+              <stop offset="0.5" stop-color="#9B6FD4"></stop>
+              <stop offset="1" stop-color="#D4508A"></stop>
+            </linearGradient>
+          </defs>
+          <path class="p-arc" d="M 320 6 C 320 50 20 50 20 6" stroke="url(#p-arc-grad)" stroke-width="1.5" stroke-linecap="round" fill="none"></path>
+          <path class="p-arc-head" d="M 20 6 L 14 13 M 20 6 L 27 13" stroke="#D4508A" stroke-width="1.6" stroke-linecap="round"></path>
+        </svg>
+        <div class="p-arc-dot"></div>
+        <p class="p-caption">repeats until ready to ship</p>
       </div>
-
-      <!-- avatar M -->
-      <div class="rr-avatar" style="position: absolute; left: 30px; top: 195px; width: 50px; height: 50px; filter: blur(5.3px); --i: 2;">
-        <div style="position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(135deg,#A8C2FF,#7BA7FF);"></div>
-        <div style="position: absolute; inset: -1.5px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.3);"></div>
-        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;"><span style="font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 14.2px; color: #fff;">M</span></div>
-      </div>
-
-      <!-- avatar S -->
-      <div class="rr-avatar" style="position: absolute; left: 310px; top: 191px; width: 50px; height: 50px; filter: blur(5.3px); --i: 3;">
-        <div style="position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(135deg,#FFB8E8,#FF8ED4);"></div>
-        <div style="position: absolute; inset: -1.5px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.3);"></div>
-        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;"><span style="font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 14.2px; color: #fff;">S</span></div>
-      </div>
-
-      <!-- avatar K (crisp, no blur) -->
-      <div class="rr-avatar" style="position: absolute; left: 177px; top: 14px; width: 35px; height: 35px; --i: 1;">
-        <div style="position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(135deg,#7BA7FF,#4A70E8); box-shadow: 0 4px 10px rgba(74,112,232,0.25);"></div>
-        <div style="position: absolute; inset: -1.5px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.3);"></div>
-        <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;"><span style="font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 11.5px; color: #fff;">K</span></div>
-      </div>
-
-      <!-- revenue hub -->
-      <div class="rr-hub" style="position: absolute; left: 135px; top: 107px; width: 120px; height: 80px; border-radius: 16px; background: linear-gradient(180deg,#FFFFFF,#F0F5FF); border: 1px solid #C8D8FA; box-shadow: 0 8px 24px rgba(74,112,232,0.12); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; --i: 2;">
-        <span style="font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 22px; color: #3A5AC8;">$2.4M</span>
-        <span style="font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 9px; letter-spacing: 0.08em; color: #8BAAF5;">REVENUE</span>
-        <span style="margin-top: 4px; padding: 3px 10px; border-radius: 9999px; background: #E8EFFF; font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 9px; color: #4A70E8;">↑ 128%</span>
-      </div>
-
-      <!-- badges -->
-      <div class="rr-badge" style="position: absolute; left: 115px; top: 39px; padding: 5px 14px; border-radius: 9999px; background: #fff; border: 1.5px solid #FFB8E8; box-shadow: 0 4px 10px rgba(255,78,184,0.08); font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 10.6px; color: #FF4EB8; white-space: nowrap; --i: 3;">+84 Deals 🤝</div>
-      <div class="rr-badge" style="position: absolute; left: 252px; top: 170px; padding: 5px 14px; border-radius: 9999px; background: #fff; border: 1.5px solid #C0D2FF; box-shadow: 0 4px 10px rgba(74,112,232,0.08); font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 10.6px; color: #4A70E8; white-space: nowrap; --i: 4;">×3 LTV ✦</div>
-      <div class="rr-badge" style="position: absolute; left: 128px; top: 228px; padding: 5px 14px; border-radius: 9999px; background: #fff; border: 1.5px solid #C0D2FF; box-shadow: 0 4px 10px rgba(74,112,232,0.08); font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 10.6px; color: #4A70E8; white-space: nowrap; --i: 5;">12 Referrals 💬</div>
 
     </div>
   </div>
@@ -353,10 +402,10 @@ document.addEventListener('DOMContentLoaded', function() {
   // content column. On phones it keeps natural size and scrolls sideways.
   var pStage = document.getElementById('process-stage');
   var pFit = document.getElementById('process-fit');
-  var P_W = 390;
+  var P_W = 700;
   function fitProcess() {
     if (!pStage || !pFit) return;
-    var scale = Math.max(1, Math.min(2, pFit.clientWidth / P_W));
+    var scale = Math.max(1, Math.min(1.4, pFit.clientWidth / P_W));
     pStage.style.transform = 'scale(' + scale + ')';
     pFit.style.height = (pStage.offsetHeight * scale) + 'px';
   }
