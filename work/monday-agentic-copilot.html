@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@1,200;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@1,200;1,300;1,400;1,900&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=array@400,700&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -181,6 +181,68 @@
   .jtbd-dot::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #D0D4E4; transition: width 150ms ease, height 150ms ease, background 150ms ease; }
   .jtbd-dot.active::before { width: 8px; height: 8px; background: #0073EA; }
 
+  /* KEY UX DECISIONS — 3-slide horizontal carousel (Figma Frame 2147240454) */
+  .kux-track { display: flex; gap: 50px; transition: transform 600ms cubic-bezier(0.4,0,0.2,1); will-change: transform; }
+  .kux-slide { flex: 0 0 100%; }
+  .kux-dot { width: 8px; height: 8px; display: flex; align-items: center; justify-content: center; padding: 0; border: 0; background: none; cursor: pointer; }
+  .kux-dot::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #D0D4E4; transition: width 150ms ease, height 150ms ease, background 150ms ease; }
+  .kux-dot.active::before { width: 8px; height: 8px; background: #0073EA; }
+
+  /* Slide 01 visual — circular card carousel, ported from the Figma Make prototype */
+  #kc-slot { position: relative; width: 470px; height: 413px; flex-shrink: 0; overflow: hidden; background: radial-gradient(ellipse at 50% 46%, #F2F5FD 0%, rgba(255,255,255,0) 70%); }
+  #kc-stage { position: absolute; left: 50%; top: calc(50% + 12px); width: 0; height: 0; transform: scale(0.68); }
+  .kc-wrap { position: absolute; transform-origin: center center; will-change: transform, opacity, filter; }
+  .kc-card { width: 460px; height: 340px; background: #fff; border-radius: 16px; border: 1px solid #E7E9EF; overflow: hidden; display: flex; flex-direction: column; }
+  .kc-head { display: flex; align-items: center; gap: 10px; padding: 13px 15px 13px 18px; border-bottom: 1px solid #E7E9EF; flex-shrink: 0; }
+  .kc-body { flex: 1; overflow: hidden; position: relative; min-height: 0; }
+  .kc-foot { border-top: 1px solid #E7E9EF; padding: 10px 15px; flex-shrink: 0; display: flex; justify-content: flex-end; gap: 8px; align-items: center; }
+  .kc-ibox { width: 32px; height: 32px; border-radius: 8px; background: #F6F7FB; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 15px; }
+  .kc-htitle { flex: 1; min-width: 0; }
+  .kc-htitle b { display: block; font-size: 14px; font-weight: 600; color: #323338; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .kc-htitle small { font-size: 11px; color: #676879; }
+  .kc-ibtn { width: 32px; height: 32px; border-radius: 4px; border: none; background: transparent; font-size: 14px; color: #676879; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .kc-obtn { height: 30px; padding: 0 10px; border-radius: 4px; border: 1px solid #C3C6D4; font-size: 13px; color: #323338; background: #fff; white-space: nowrap; }
+  .kc-fade { position: absolute; bottom: 0; left: 0; right: 0; height: 48px; background: linear-gradient(transparent, #fff); pointer-events: none; }
+  .kc-pad { padding: 16px 20px; font-size: 13px; color: #323338; line-height: 1.65; }
+  .kc-pad h2 { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
+  .kc-pad ul { padding-left: 18px; margin-bottom: 9px; }
+  .kc-slidebg { height: 100%; background: #F6F7FB; display: flex; align-items: center; justify-content: center; padding: 16px; position: relative; }
+  .kc-deck { width: 100%; height: 100%; border-radius: 10px; background: linear-gradient(135deg,#1A1F4E 0%,#2D3A8C 50%,#1A3060 100%); box-shadow: 0 4px 16px rgba(0,0,0,0.22); padding: 20px 26px; overflow: hidden; position: relative; display: flex; flex-direction: column; justify-content: center; }
+  .kc-sc { position: absolute; border-radius: 50%; background: rgba(255,255,255,0.05); }
+  .kc-sey { font-size: 9px; color: rgba(255,255,255,0.5); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 5px; }
+  .kc-sh { font-size: 16px; font-weight: 700; color: #fff; line-height: 1.3; max-width: 250px; }
+  .kc-ss { font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 6px; }
+  .kc-bars { display: flex; gap: 4px; align-items: flex-end; margin-top: 12px; }
+  .kc-bar { width: 11px; border-radius: 3px; background: rgba(255,255,255,0.25); }
+  .kc-bar.hi { background: #6EE7B7; }
+  .kc-pbadge { position: absolute; bottom: 20px; right: 20px; background: #E7E9EF; border-radius: 4px; padding: 2px 7px; font-size: 11px; color: #323338; }
+  .kc-pdfbg { height: 100%; background: #F6F7FB; display: flex; align-items: center; justify-content: center; padding: 16px; }
+  .kc-pdfp { width: 100%; height: 100%; border-radius: 10px; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.09); overflow: hidden; display: flex; flex-direction: column; }
+  .kc-pdfstripe { height: 5px; background: #D83A52; flex-shrink: 0; }
+  .kc-pdfin { padding: 12px 16px; }
+  .kc-pdfin h3 { font-size: 13px; font-weight: 700; color: #323338; margin-bottom: 9px; }
+  .kc-prow { display: flex; gap: 7px; align-items: flex-start; margin-bottom: 6px; }
+  .kc-pnum { width: 17px; height: 17px; border-radius: 50%; background: #FDE8EB; color: #D83A52; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .kc-ptxt { font-size: 12px; color: #323338; line-height: 1.5; }
+  .kc-efield { padding: 8px 20px; border-bottom: 1px solid #D0D4E4; display: flex; gap: 8px; align-items: center; font-size: 13px; }
+  .kc-elabel { color: #676879; flex-shrink: 0; }
+  .kc-echip { background: #E7E9EF; border-radius: 4px; padding: 2px 8px; font-size: 12px; color: #323338; }
+  .kc-ebody { padding: 10px 20px; font-size: 13px; color: #323338; line-height: 1.65; }
+  .kc-ebody a { color: #1F76C2; }
+  .kc-ebody ul { padding-left: 18px; margin-top: 3px; }
+  .kc-mopt { display: flex; align-items: center; gap: 10px; padding: 7px 8px; border-bottom: 0.5px solid #C3C6D4; }
+  .kc-mnum { width: 30px; height: 30px; border-radius: 8px; background: #F6F7FB; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #676879; flex-shrink: 0; }
+  .kc-mlbl { font-size: 13px; color: #323338; }
+  .kc-mcust { display: flex; align-items: center; gap: 10px; padding: 7px 8px; background: rgba(103,104,121,0.08); border-radius: 8px; margin: 5px 8px 0; }
+  .kc-oppbg { height: 100%; background: #F6F7FB; display: flex; align-items: center; justify-content: center; padding: 16px; }
+  .kc-oppc { width: 100%; height: 100%; border-radius: 10px; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.08); padding: 14px 17px; overflow: hidden; }
+  .kc-oey { font-size: 10px; color: #676879; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 7px; }
+  .kc-otit { font-size: 15px; font-weight: 700; color: #323338; margin-bottom: 11px; }
+  .kc-ogrid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px 14px; }
+  .kc-ofl { font-size: 10px; color: #676879; margin-bottom: 1px; }
+  .kc-ofv { font-size: 13px; color: #323338; }
+  .kc-oalert { margin-top: 11px; padding: 6px 10px; background: #FEF9EC; border-radius: 6px; font-size: 12px; color: #8A6100; border-left: 3px solid #F5C518; }
+
   /* INFORMATION ARCHITECTURE — schematic pillar diagram */
   #ia-fit { position: relative; width: 100%; }
   .ia-stage { width: 1200px; margin: 0 auto; transform-origin: top center; }
@@ -191,6 +253,17 @@
   .ia-header { width: 100%; background: #fff; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; }
   .ia-card { width: 100%; background: #fff; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 3px 7px rgba(15,23,42,0.04); }
   .ia-card-title-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; }
+
+  /* Main screens: vertical tab list + screenshot panel */
+  .ms-item { width: 100%; text-align: left; padding: 18px 24px; border: none; background: none; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879; border-radius: 8px; transition: background 150ms ease, color 150ms ease; }
+  .ms-item:hover { background: #F7FAFF; color: #323338; }
+  .ms-item.active { background: #F3F8FF; color: #1F57E7; font-weight: 700; box-shadow: inset 0 -2px 0 #1F57E7; }
+  .ms-panel { display: none; opacity: 0; transition: opacity 200ms ease; flex-direction: column; gap: 24px; width: 100%; }
+  .ms-panel.active { display: flex; opacity: 1; }
+  .ms-shot { position: relative; width: 100%; max-width: 860px; }
+  /* the tilted plate that peeks out from behind the screenshot */
+  .ms-shot::before { content: ''; position: absolute; left: 35.3%; top: 4%; width: 71.2%; height: 92%; background: #F3F3F3; border-radius: 8px; transform: rotate(4.12deg); z-index: 0; }
+  .ms-shot img { position: relative; z-index: 1; display: block; width: 100%; height: auto; border: 1px solid #E7E9EF; border-radius: 8px; }
 
   @media (max-width: 900px) {
     .nav-links-list { display: none !important; }
@@ -210,16 +283,28 @@
     #jobs { padding: 48px 24px 72px !important; }
     #architecture { padding: 48px 24px 64px !important; }
     #ia-fit { overflow-x: auto; }
+    #key-ux { padding: 48px 24px 64px !important; }
+    .kux-body { flex-direction: column !important; gap: 32px !important; padding: 28px !important; height: auto !important; min-height: 0 !important; }
+    .kux-text { width: 100% !important; max-width: none !important; }
+    .kux-visual { width: 100% !important; max-width: 100% !important; }
+    /* the animation keeps its fixed stage, scaled to whatever width is left */
+    #kc-slot { width: 100% !important; height: 320px !important; }
+    #kc-stage { transform: scale(0.52); }
     /* stack the card over the list, and move the arrows down beside the dots */
     #jobs > div { position: relative; padding-bottom: 12px; }
     .jtbd-slide.active { flex-direction: column !important; align-items: center !important; gap: 32px !important; }
     .jtbd-card-wrap { transform: scale(0.86); transform-origin: top center; margin-bottom: -48px; }
     .jtbd-list { width: 100% !important; padding: 0 !important; }
     .jtbd-callout-wrap { padding: 0 !important; }
-    .jtbd-nav { position: absolute; bottom: 0; z-index: 2; width: 32px !important; height: 32px !important; }
-    .jtbd-nav[data-dir="left"] { left: calc(50% - 76px); }
-    .jtbd-nav[data-dir="right"] { right: calc(50% - 76px); }
-    .jtbd-nav svg { width: 28px; height: 28px; }
+    #jobs .jtbd-nav { position: absolute; bottom: 0; z-index: 2; width: 32px !important; height: 32px !important; }
+    #jobs .jtbd-nav[data-dir="left"] { left: calc(50% - 76px); }
+    #jobs .jtbd-nav[data-dir="right"] { right: calc(50% - 76px); }
+    #jobs .jtbd-nav svg { width: 28px; height: 28px; }
+    #main-screens { padding: 48px 24px 64px !important; }
+    .ms-row { flex-direction: column !important; gap: 24px !important; }
+    .ms-side { width: 100% !important; padding: 0 !important; }
+    .ms-main { padding: 0 !important; }
+    .ms-shot::before { display: none; }
     #contact-inner, #contact-bar { padding: 0 32px !important; }
   }
 </style>
@@ -1023,6 +1108,307 @@
   </div>
 </section>
 
+<!-- BEHIND THE MAGIC: KEY UX DECISIONS -->
+<section id="key-ux" style="background: #FFFFFF; padding: 40px 120px 96px; overflow: hidden;">
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 56px;">
+
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; width: 100%;">
+      <h2 style="font-family: 'Crimson Pro', Georgia, serif; font-size: 50px; line-height: normal; color: #323338;"><span style="font-weight: 300; font-style: italic;">Behind the Magic:</span> <span style="font-weight: 900; font-style: italic;">Key UX Decisions</span></h2>
+      <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #676879; max-width: 940px;">To realize the full potential of an autonomous agent, we had to rethink mental models and UI paradigms.</p>
+    </div>
+
+    <!-- viewport stays within the section's own overflow:hidden edge, so the next card peeks in from the right -->
+    <div id="kux-viewport" style="width: 100%;">
+      <div class="kux-track" id="kux-track">
+
+        <!-- 01 — Unlocking AI with Gen-UI -->
+        <div class="kux-slide">
+          <div style="border-radius: 8px; border-right: 5px solid #FFC3FB; border-bottom: 5px solid #FFC3FB;">
+            <div class="kux-body" style="background: #fff; border: 1px solid #0056F5; border-radius: 8px; padding: 40px; display: flex; align-items: flex-start; justify-content: space-between; gap: 48px; height: 493px;">
+              <div class="kux-text" style="flex: 1 1 auto; max-width: 607px; display: flex; flex-direction: column; gap: 16px;">
+                <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 36px; line-height: 40px; color: #323338;">01</p>
+                <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px; color: #323338;">Unlocking AI with Gen-UI</p>
+                <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #323338;">To harness the full brainpower of the agent, <strong style="font-weight: 700;">standard text responses weren't enough.</strong> I collaborated closely with engineering to implement <strong style="font-weight: 700;">Generative UI</strong> - rendering dynamic, context-specific components on the fly directly within the chat stream.</p>
+              </div>
+
+              <!-- circular carousel of agent-generated surfaces -->
+              <div class="kux-visual" id="kc-slot">
+                <div id="kc-stage">
+
+                  <div class="kc-wrap" data-i="0">
+                    <div class="kc-card">
+                      <div class="kc-head">
+                        <div class="kc-ibox">📄</div>
+                        <div class="kc-htitle"><b>Meeting recap draft</b><small>DOC</small></div>
+                        <span class="kc-ibtn">↗</span>
+                      </div>
+                      <div class="kc-body">
+                        <div class="kc-pad">
+                          <h2>Meeting recap</h2>
+                          <ul>
+                            <li><strong>Facilitator:</strong> Demi Green</li>
+                            <li><strong>Attendees:</strong> Dana Levi, Teddy Mor, Demi Green</li>
+                            <li><strong>Topic:</strong> Improving Team Communication</li>
+                          </ul>
+                          <p><strong>📝 Meeting Summary</strong></p>
+                          <p style="margin-top: 5px;">The team met to discuss ongoing communication challenges and identify ways to improve collaboration and clarity across projects. Common pain points like unclear Slack threads and missed updates were highlighted.</p>
+                        </div>
+                        <div class="kc-fade"></div>
+                      </div>
+                      <div class="kc-foot">
+                        <span class="kc-ibtn">⧉</span>
+                        <span class="kc-obtn" style="display: inline-flex; align-items: center;">Save as Doc</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="kc-wrap" data-i="1">
+                    <div class="kc-card">
+                      <div class="kc-head">
+                        <div class="kc-ibox">📊</div>
+                        <div class="kc-htitle"><b>Q4 North America Sales Pipeline Presentation</b></div>
+                        <span class="kc-ibtn">⬇</span>
+                        <span class="kc-ibtn">↗</span>
+                      </div>
+                      <div class="kc-body">
+                        <div class="kc-slidebg">
+                          <div class="kc-deck">
+                            <div class="kc-sc" style="width: 120px; height: 120px; right: -25px; top: -25px;"></div>
+                            <div class="kc-sc" style="width: 80px; height: 80px; right: 45px; bottom: -30px;"></div>
+                            <div class="kc-sey">Q4 2025</div>
+                            <div class="kc-sh">North America Sales Pipeline</div>
+                            <div class="kc-ss">Revenue Forecast · Growth Strategy · Key Accounts</div>
+                            <div class="kc-bars">
+                              <div class="kc-bar" style="height: 26px;"></div>
+                              <div class="kc-bar" style="height: 36px;"></div>
+                              <div class="kc-bar" style="height: 22px;"></div>
+                              <div class="kc-bar hi" style="height: 48px;"></div>
+                              <div class="kc-bar" style="height: 31px;"></div>
+                              <div class="kc-bar hi" style="height: 54px;"></div>
+                              <div class="kc-bar" style="height: 40px;"></div>
+                            </div>
+                          </div>
+                          <div class="kc-pbadge">Page 1 / 7</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="kc-wrap" data-i="2">
+                    <div class="kc-card">
+                      <div class="kc-head">
+                        <div class="kc-ibox" style="background: #D83A52; color: #fff; font-size: 11px; font-weight: 700;">PDF</div>
+                        <div class="kc-htitle"><b>Sidekick-Quick-Wins.pdf</b><small>PDF</small></div>
+                        <span class="kc-ibtn">⬇</span>
+                        <span class="kc-ibtn">↗</span>
+                      </div>
+                      <div class="kc-body">
+                        <div class="kc-pdfbg">
+                          <div class="kc-pdfp">
+                            <div class="kc-pdfstripe"></div>
+                            <div class="kc-pdfin">
+                              <h3>Sidekick Quick Wins</h3>
+                              <div class="kc-prow"><div class="kc-pnum">1</div><div class="kc-ptxt">Automate repetitive updates with AI summaries</div></div>
+                              <div class="kc-prow"><div class="kc-pnum">2</div><div class="kc-ptxt">Use smart notifications to reduce Slack noise</div></div>
+                              <div class="kc-prow"><div class="kc-pnum">3</div><div class="kc-ptxt">Set weekly digest emails for stakeholder updates</div></div>
+                              <div class="kc-prow"><div class="kc-pnum">4</div><div class="kc-ptxt">Create templates for recurring project types</div></div>
+                              <div class="kc-prow"><div class="kc-pnum">5</div><div class="kc-ptxt">Link docs to board items for full context</div></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="kc-wrap" data-i="3">
+                    <div class="kc-card">
+                      <div class="kc-head">
+                        <div class="kc-ibox">
+                          <svg width="20" height="15" viewBox="0 0 20 15" fill="none" aria-hidden="true">
+                            <rect x=".8" y=".8" width="18.4" height="13.4" rx="2" stroke="#4285F4" stroke-width="1.5" fill="none"></rect>
+                            <polyline points="1,1 10,8 19,1" fill="none" stroke="#EA4335" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></polyline>
+                          </svg>
+                        </div>
+                        <div class="kc-htitle"><b>Gmail</b></div>
+                        <span style="font-size: 13px; color: #676879; white-space: nowrap; flex-shrink: 0;">Send email</span>
+                        <span class="kc-ibtn">↗</span>
+                      </div>
+                      <div class="kc-body">
+                        <div class="kc-efield"><span class="kc-elabel">To</span><span class="kc-echip">Almogro@monday.com ×</span></div>
+                        <div class="kc-efield"><span class="kc-elabel">Subject</span><span style="color: #323338;">Whaterer</span></div>
+                        <div class="kc-ebody">
+                          <p style="margin-bottom: 7px;">Hi Almog, something popped up regarding <a href="#" onclick="return false;">Sony deal</a>, I want make sure we're dealing with it.</p>
+                          <p style="margin-bottom: 7px;">We sent <strong>a proposal 9 days ago</strong> with no response. Do you need help drafting a follow-up?</p>
+                          <strong>Here is a couple of things we can do:</strong>
+                          <ul>
+                            <li>Check with our champion there.</li>
+                            <li>Verify what offer they got from competitor</li>
+                            <li>Schedule a phone call to talk on terms</li>
+                          </ul>
+                        </div>
+                        <div class="kc-fade"></div>
+                      </div>
+                      <div class="kc-foot">
+                        <span class="kc-ibtn">⧉</span>
+                        <span class="kc-obtn" style="display: inline-flex; align-items: center;">Send email</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="kc-wrap" data-i="4">
+                    <div class="kc-card">
+                      <div class="kc-head">
+                        <div class="kc-htitle"><b>What should the message include?</b></div>
+                        <span style="font-size: 12px; color: #676879; flex-shrink: 0;">‹ 2 of 3 ›</span>
+                        <span class="kc-obtn" style="display: inline-flex; align-items: center;">Skip</span>
+                      </div>
+                      <div class="kc-body" style="padding: 4px 8px;">
+                        <div class="kc-mopt"><div class="kc-mnum">1</div><div class="kc-mlbl">Use Kris's summary</div></div>
+                        <div class="kc-mopt"><div class="kc-mnum">2</div><div class="kc-mlbl">Summary + source links</div></div>
+                        <div class="kc-mopt"><div class="kc-mnum">3</div><div class="kc-mlbl">Summary + what's new</div></div>
+                        <div class="kc-mopt" style="border-bottom: none;"><div class="kc-mnum">4</div><div class="kc-mlbl">All of the above</div></div>
+                        <div class="kc-mcust"><div class="kc-mnum">✏️</div><div class="kc-mlbl" style="color: #676879;">Something else</div></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="kc-wrap" data-i="5">
+                    <div class="kc-card">
+                      <div class="kc-head">
+                        <div class="kc-ibox">📄</div>
+                        <div class="kc-htitle"><b>Opportunity draft</b><small>Created now</small></div>
+                        <span class="kc-ibtn">↗</span>
+                      </div>
+                      <div class="kc-body">
+                        <div class="kc-oppbg">
+                          <div class="kc-oppc">
+                            <div class="kc-oey">CRM · Opportunity</div>
+                            <div class="kc-otit">Sony Enterprise Deal</div>
+                            <div class="kc-ogrid">
+                              <div><div class="kc-ofl">Stage</div><div class="kc-ofv">Proposal Sent</div></div>
+                              <div><div class="kc-ofl">Value</div><div class="kc-ofv">$240,000</div></div>
+                              <div><div class="kc-ofl">Close Date</div><div class="kc-ofv">Aug 30, 2026</div></div>
+                              <div><div class="kc-ofl">Owner</div><div class="kc-ofv">Demi Green</div></div>
+                              <div><div class="kc-ofl">Account</div><div class="kc-ofv">Sony Corp</div></div>
+                              <div><div class="kc-ofl">Days Stale</div><div class="kc-ofv" style="font-weight: 700;">9 days</div></div>
+                            </div>
+                            <div class="kc-oalert">⚠️ No response in 9 days — follow-up recommended</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 02 — Chat on the right -->
+        <div class="kux-slide">
+          <div style="border-radius: 8px; border-right: 5px solid #FFC3FB; border-bottom: 5px solid #FFC3FB;">
+            <div class="kux-body" style="background: #fff; border: 1px solid #0056F5; border-radius: 8px; padding: 40px; display: flex; align-items: flex-start; justify-content: space-between; gap: 64px; height: 493px;">
+              <div class="kux-text" style="flex: 1 1 auto; max-width: 369px; display: flex; flex-direction: column; gap: 16px;">
+                <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 36px; line-height: 40px; color: #323338;">02</p>
+                <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px; color: #323338;">Chat on the right</p>
+                <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #323338;">We intentionally placed the chat on the right.<br><br>User mental models dictate that left-aligned panels act as “Builders” (structural changes), while right-aligned panels act as “Assistants” (support and contextual actions).</p>
+              </div>
+              <img class="kux-visual" src="../uploads/cs-kux-chat-right.png" alt="The agent chat panel docked to the right-hand side of the workspace" style="flex-shrink: 0; width: 687px; max-width: 100%; height: auto; border-radius: 8px;">
+            </div>
+          </div>
+        </div>
+
+        <!-- 03 — AI Drafts, Humans Approve -->
+        <div class="kux-slide">
+          <div style="border-radius: 8px; border-right: 5px solid #FFC3FB; border-bottom: 5px solid #FFC3FB;">
+            <div class="kux-body" style="background: #fff; border: 1px solid #0056F5; border-radius: 8px; padding: 40px; display: flex; align-items: flex-start; justify-content: space-between; gap: 64px; height: 493px;">
+              <div class="kux-text" style="flex: 1 1 auto; max-width: 369px; display: flex; flex-direction: column; gap: 16px;">
+                <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 36px; line-height: 40px; color: #323338;">03</p>
+                <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px; color: #323338;">AI Drafts, Humans Approve</p>
+                <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #323338;">Users aren't ready to let AI independently contact clients. The V1 strategy revolves around “Drafting” — the agent does the heavy lifting, but the human must ratify every action. Full automation is our North Star, to be unlocked only after trust is solidified.</p>
+              </div>
+              <img class="kux-visual" src="../uploads/cs-kux-drafts-approve.png" alt="An agent-drafted message awaiting the rep's approval before it is sent" style="flex-shrink: 0; width: 687px; max-width: 100%; height: auto; border-radius: 8px;">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 8px;" role="tablist" aria-label="Key UX decisions">
+      <button type="button" class="kux-dot active" data-slide="0" role="tab" aria-selected="true" aria-label="Unlocking AI with Gen-UI"></button>
+      <button type="button" class="kux-dot" data-slide="1" role="tab" aria-selected="false" aria-label="Chat on the right"></button>
+      <button type="button" class="kux-dot" data-slide="2" role="tab" aria-selected="false" aria-label="AI Drafts, Humans Approve"></button>
+    </div>
+
+  </div>
+</section>
+
+<!-- MAIN SCREENS -->
+<section id="main-screens" style="background: #FFFFFF; padding: 40px 120px 96px;">
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px;">
+    <h2 style="font-family: 'Crimson Pro', Georgia, serif; font-weight: 300; font-style: italic; font-size: 50px; line-height: normal; color: #323338; text-align: center;">Main screens</h2>
+
+    <div class="ms-row" style="display: flex; align-items: flex-start; gap: 0;">
+
+      <div class="ms-side" style="flex-shrink: 0; width: 260px; padding: 40px 0;">
+        <div style="display: flex; flex-direction: column; gap: 8px; border: 1px solid #E8F1FF; border-radius: 8px;" role="tablist" aria-label="Main screens">
+          <button type="button" class="ms-item active" data-screen="catchup" role="tab" aria-selected="true">Catch Up</button>
+          <button type="button" class="ms-item" data-screen="email" role="tab" aria-selected="false">Send Email</button>
+          <button type="button" class="ms-item" data-screen="portfolio" role="tab" aria-selected="false">Portfolio</button>
+          <button type="button" class="ms-item" data-screen="create-opp" role="tab" aria-selected="false">Create opportunity</button>
+          <button type="button" class="ms-item" data-screen="update-opp" role="tab" aria-selected="false">Update opportunity</button>
+        </div>
+      </div>
+
+      <div class="ms-main" style="flex: 1 1 0; min-width: 0; padding: 40px;">
+
+        <div class="ms-panel active" data-panel="catchup">
+          <div style="display: flex; flex-direction: column; gap: 8px; color: #323338;">
+            <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px;">Catch Up</p>
+            <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px;">Acting as a <strong style="font-weight: 700;">daily command center</strong>, this screen surfaces a scannable feed of <strong style="font-weight: 700;">prioritized signals</strong> and <strong style="font-weight: 700;">AI-drafted tasks</strong>. It enables a frictionless <strong style="font-weight: 700;">&quot;review and approve&quot;</strong> flow, instantly freeing reps to <strong style="font-weight: 700;">focus on actual selling</strong>.</p>
+          </div>
+          <div class="ms-shot"><img src="../uploads/cs-screen-catchup.png" alt="The Catch Up screen: a prioritized feed of AI-drafted next best actions beside the agent chat"></div>
+        </div>
+
+        <div class="ms-panel" data-panel="email">
+          <div style="display: flex; flex-direction: column; gap: 8px; color: #323338;">
+            <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px;">Send Email</p>
+            <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px;">The agent leverages <strong style="font-weight: 700;">deep relationship context</strong> and <strong style="font-weight: 700;">real-time sentiment</strong> to draft the exact right message at the perfect time. Reps are simply required to <strong style="font-weight: 700;">review and approve</strong>, ensuring highly <strong style="font-weight: 700;">personalized</strong> outreach with <strong style="font-weight: 700;">zero manual writing</strong>.</p>
+          </div>
+          <div class="ms-shot"><img src="../uploads/cs-screen-email.png" alt="The Send Email screen: an agent-drafted email awaiting the rep's review"></div>
+        </div>
+
+        <div class="ms-panel" data-panel="portfolio">
+          <div style="display: flex; flex-direction: column; gap: 8px; color: #323338;">
+            <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px;">Portfolio</p>
+            <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px;">Rep&rsquo;s portfolio moves beyond static lists by surfacing <strong style="font-weight: 700;">real-time relationship health</strong> and <strong style="font-weight: 700;">actionable insights</strong> across <strong style="font-weight: 700;">hundreds</strong> of accounts. It empowers reps to manage a massive portfolio confidently, providing <strong style="font-weight: 700;">instant visibility</strong> into where their <strong style="font-weight: 700;">strategic focus is needed most</strong>.</p>
+          </div>
+          <div class="ms-shot"><img src="../uploads/cs-screen-portfolio.png" alt="The Portfolio screen: account health and insights across hundreds of accounts"></div>
+        </div>
+
+        <div class="ms-panel" data-panel="create-opp">
+          <div style="display: flex; flex-direction: column; gap: 8px; color: #323338;">
+            <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px;">Create opportunity</p>
+            <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px;">By <strong style="font-weight: 700;">analyzing client conversations</strong>, the agent <strong style="font-weight: 700;">autonomously generates</strong> and populates new CRM opportunities. This eliminates a <strong style="font-weight: 700;">major Sisyphean pain point</strong>, transforming <strong style="font-weight: 700;">tedious post-call data entry</strong> into a <strong style="font-weight: 700;">zero-effort</strong>, <strong style="font-weight: 700;">automated workflow</strong>.</p>
+          </div>
+          <div class="ms-shot"><img src="../uploads/cs-screen-create-opp.png" alt="The Create opportunity screen: a CRM opportunity generated from a client conversation"></div>
+        </div>
+
+        <div class="ms-panel" data-panel="update-opp">
+          <div style="display: flex; flex-direction: column; gap: 8px; color: #323338;">
+            <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px;">Update opportunity</p>
+            <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px;">Instead of manually logging deal progress after every touchpoint, <strong style="font-weight: 700;">the agent auto-drafts opportunity updates</strong> based on the <strong style="font-weight: 700;">latest conversational insights</strong>. This <strong style="font-weight: 700;">transforms ongoing CRM maintenance</strong> into a frictionless <strong style="font-weight: 700;">&quot;review and approve&quot; workflow</strong>.</p>
+          </div>
+          <div class="ms-shot"><img src="../uploads/cs-screen-update-opp.png" alt="The Update opportunity screen: an agent-drafted CRM update awaiting approval"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <footer id="contact" style="color: #141414; padding: 120px 0 0; position: relative; z-index: 1; line-height: 31.35px; background-color: #FFFCF2">
   <div id="contact-inner" style="max-width: 1400px; margin: 0 auto; padding: 0 120px; text-align: center;">
@@ -1106,6 +1492,68 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  // Key UX Decisions: 3 full-width slides on one track. The next slide peeks
+  // in from the right — clicking it (or a dot) advances the track.
+  var kuxTrack = document.getElementById('kux-track');
+  var kuxViewport = document.getElementById('kux-viewport');
+  var kuxSlides = document.querySelectorAll('.kux-slide');
+  var kuxDots = document.querySelectorAll('.kux-dot');
+  var kuxIndex = 0;
+  var KUX_GAP = 50;
+  function showKux(i) {
+    if (!kuxTrack || !kuxViewport) return;
+    kuxIndex = Math.max(0, Math.min(kuxDots.length - 1, i));
+    kuxTrack.style.transform = 'translateX(' + (-kuxIndex * (kuxViewport.clientWidth + KUX_GAP)) + 'px)';
+    Array.prototype.forEach.call(kuxDots, function(d) {
+      var on = Number(d.dataset.slide) === kuxIndex;
+      d.classList.toggle('active', on);
+      d.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    Array.prototype.forEach.call(kuxSlides, function(s, i) {
+      s.style.cursor = i === kuxIndex ? 'default' : 'pointer';
+    });
+  }
+  Array.prototype.forEach.call(kuxDots, function(d) {
+    d.addEventListener('click', function() { showKux(Number(d.dataset.slide)); });
+  });
+  Array.prototype.forEach.call(kuxSlides, function(s, i) {
+    s.addEventListener('click', function() { if (i !== kuxIndex) showKux(i); });
+  });
+  showKux(0);
+  window.addEventListener('resize', function() { showKux(kuxIndex); });
+
+  // Slide 01 visual: six agent-generated cards orbiting a circle, one in focus
+  // at the top. Ported from the Figma Make prototype.
+  var kcWraps = document.querySelectorAll('.kc-wrap');
+  if (kcWraps.length) {
+    var KC_N = kcWraps.length, KC_RADIUS = 200, KC_FOCUS = -Math.PI / 2;
+    var kcStep = 0;
+    function placeKc(instant) {
+      var active = kcStep % KC_N;
+      Array.prototype.forEach.call(kcWraps, function(el, i) {
+        var angle = (i - kcStep) * (2 * Math.PI / KC_N) + KC_FOCUS;
+        var focused = i === active;
+        var scale = focused ? 0.80 : 0.41;
+        el.style.transition = instant ? 'none'
+          : 'transform 0.95s cubic-bezier(0.4,0,0.2,1), opacity 0.95s ease, filter 0.95s ease, box-shadow 0.95s ease';
+        el.style.transform = 'translate(calc(-50% + ' + (KC_RADIUS * Math.cos(angle)) + 'px), calc(-50% + ' + (KC_RADIUS * Math.sin(angle)) + 'px)) scale(' + scale + ')';
+        el.style.opacity = focused ? 1 : 0.5;
+        el.style.filter = 'brightness(' + (focused ? 1 : 0.78) + ')';
+        el.style.zIndex = focused ? 20 : 1;
+        el.style.boxShadow = focused
+          ? '0 24px 64px rgba(50,70,180,0.20), 0 4px 16px rgba(50,70,180,0.10)'
+          : '0 4px 12px rgba(50,70,180,0.07)';
+      });
+    }
+    placeKc(true);
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() { placeKc(false); });
+    });
+    if (!window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setInterval(function() { kcStep++; placeKc(false); }, 3200);
+    }
+  }
+
   // Information Architecture: built at its natural 1200px, scaled up to fill
   // the content column. On phones it keeps natural size and scrolls sideways.
   var iaStage = document.getElementById('ia-stage');
@@ -1147,11 +1595,38 @@ document.addEventListener('DOMContentLoaded', function() {
     c.addEventListener('click', function() { showTab(c.dataset.tab); });
   });
 
+  // Main screens: vertical tab list swaps the screenshot panel with the same crossfade
+  var msItems = document.querySelectorAll('.ms-item');
+  function showScreen(name) {
+    msItems.forEach(function(b) {
+      var active = b.dataset.screen === name;
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    var current = document.querySelector('.ms-panel.active');
+    var next = document.querySelector('.ms-panel[data-panel="' + name + '"]');
+    if (!next || next === current) return;
+    if (!current) { next.classList.add('active'); return; }
+    current.style.opacity = '0';
+    setTimeout(function() {
+      current.classList.remove('active');
+      current.style.opacity = '';
+      next.style.opacity = '0';
+      next.classList.add('active');
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() { next.style.opacity = '1'; });
+      });
+    }, 200);
+  }
+  msItems.forEach(function(b) {
+    b.addEventListener('click', function() { showScreen(b.dataset.screen); });
+  });
+
   // Jobs to be done: 3-slide carousel driven by the arrows and the dots
   var jSlides = document.querySelectorAll('.jtbd-slide');
   var jCallouts = document.querySelectorAll('.jtbd-callout');
   var jDots = document.querySelectorAll('.jtbd-dot');
-  var jNavs = document.querySelectorAll('.jtbd-nav');
+  var jNavs = document.querySelectorAll('#jobs .jtbd-nav');
   var jIndex = 0;
   function showJob(i) {
     if (!jSlides.length) return;
