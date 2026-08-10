@@ -32,19 +32,19 @@
 
   /* OUR PROCESS illustration — 4-stage design process, ported from the Figma Make React/motion prototype */
   #process-fit { position: relative; width: 100%; }
-  .p-stage { width: 700px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; transform-origin: top center; }
+  .p-stage { width: 1028px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; transform-origin: top center; }
   .p-row { display: flex; align-items: stretch; }
-  .p-card { width: 148px; border-radius: 20px; background: #fff; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06); overflow: hidden; display: flex; flex-direction: column; opacity: 0; }
+  .p-card { width: 230px; border-radius: 20px; background: #fff; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06); overflow: hidden; display: flex; flex-direction: column; opacity: 0; }
   .p-card-bar { height: 3px; background: var(--accent); flex-shrink: 0; }
   .p-card-body { padding: 14px 16px 18px; display: flex; flex-direction: column; gap: 2px; flex: 1; }
   .p-num { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent); opacity: 0.7; }
-  .p-label { font-weight: 700; font-size: 14.5px; color: #0F172A; letter-spacing: -0.02em; line-height: 1.25; }
+  .p-label { font-weight: 600; font-size: 14.5px; color: #0F172A; letter-spacing: -0.02em; line-height: 1.25; white-space: nowrap; }
   .p-icon { margin-top: 14px; width: 52px; height: 52px; border-radius: 14px; background: var(--accent-bg); color: var(--accent); display: flex; align-items: center; justify-content: center; }
   .p-arrow { position: relative; width: 36px; height: 16px; flex-shrink: 0; align-self: center; transform-origin: left center; opacity: 0; }
   .p-arrow-line { position: absolute; top: 50%; left: 0; width: calc(100% - 8px); height: 1.5px; background: var(--accent); opacity: var(--line-op); transform: translateY(-50%); }
   .p-arrow-head { position: absolute; right: 0; top: 50%; transform: translateY(-50%); color: var(--accent); opacity: var(--head-op); }
   .p-arrow-dot { position: absolute; top: 50%; left: 0; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 6px 2px var(--accent-glow); transform: translateY(-50%); opacity: 0; }
-  .p-loop { align-self: flex-end; width: 340px; margin-top: -4px; position: relative; height: 60px; }
+  .p-loop { align-self: flex-end; width: 496px; margin-top: -4px; position: relative; height: 60px; }
   .p-loop svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
   .p-arc { stroke-dasharray: 5 4; opacity: 0; }
   .p-arc-head { opacity: 0; }
@@ -320,15 +320,15 @@
 
       <!-- loop arc: spans the last two cards, points back to User testing -->
       <div class="p-loop">
-        <svg viewBox="0 0 340 60" fill="none" preserveAspectRatio="none">
+        <svg viewBox="0 0 496 60" fill="none" preserveAspectRatio="none">
           <defs>
-            <linearGradient id="p-arc-grad" x1="340" y1="0" x2="0" y2="0" gradientUnits="userSpaceOnUse">
+            <linearGradient id="p-arc-grad" x1="496" y1="0" x2="0" y2="0" gradientUnits="userSpaceOnUse">
               <stop stop-color="#D4508A"></stop>
               <stop offset="0.5" stop-color="#9B6FD4"></stop>
               <stop offset="1" stop-color="#D4508A"></stop>
             </linearGradient>
           </defs>
-          <path class="p-arc" d="M 320 6 C 320 50 20 50 20 6" stroke="url(#p-arc-grad)" stroke-width="1.5" stroke-linecap="round" fill="none"></path>
+          <path class="p-arc" d="M 476 6 C 476 50 20 50 20 6" stroke="url(#p-arc-grad)" stroke-width="1.5" stroke-linecap="round" fill="none"></path>
           <path class="p-arc-head" d="M 20 6 L 14 13 M 20 6 L 27 13" stroke="#D4508A" stroke-width="1.6" stroke-linecap="round"></path>
         </svg>
         <div class="p-arc-dot"></div>
@@ -395,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // content column. On phones it keeps natural size and scrolls sideways.
   var pStage = document.getElementById('process-stage');
   var pFit = document.getElementById('process-fit');
-  var P_W = 700;
+  var P_W = 1028;
   function fitProcess() {
     if (!pStage || !pFit) return;
     var scale = Math.max(1, Math.min(1.4, pFit.clientWidth / P_W));
