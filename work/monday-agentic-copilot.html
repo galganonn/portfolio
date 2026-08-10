@@ -170,6 +170,17 @@
     100% { transform: scale(1.28); opacity: 0; }
   }
 
+  /* JOBS TO BE DONE — 3-slide carousel (Figma component set, one variant per slide) */
+  .jtbd-slide, .jtbd-callout { display: none; }
+  .jtbd-slide.active { display: flex; gap: 64px; align-items: flex-start; width: 100%; }
+  .jtbd-callout.active { display: block; }
+  .jtbd-nav { width: 48px; height: 48px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 0; border: 0; border-radius: 4px; background: none; color: #676879; cursor: pointer; transition: color 150ms ease, background 150ms ease; }
+  .jtbd-nav:hover:not(:disabled) { background: rgba(103,104,121,0.1); }
+  .jtbd-nav:disabled { color: rgba(50,51,56,0.38); cursor: default; }
+  .jtbd-dot { width: 8px; height: 8px; display: flex; align-items: center; justify-content: center; padding: 0; border: 0; background: none; cursor: pointer; }
+  .jtbd-dot::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #D0D4E4; transition: width 150ms ease, height 150ms ease, background 150ms ease; }
+  .jtbd-dot.active::before { width: 8px; height: 8px; background: #0073EA; }
+
   @media (max-width: 900px) {
     .nav-links-list { display: none !important; }
     .hero-header-mobile { display: block !important; }
@@ -185,6 +196,17 @@
     .tab-panel.active { flex-direction: column !important; align-items: center !important; text-align: center; }
     .tab-text { width: 100% !important; }
     .sp-box { transform: scale(0.82); transform-origin: top center; margin: 0 auto -45px; }
+    #jobs { padding: 48px 24px 72px !important; }
+    /* stack the card over the list, and move the arrows down beside the dots */
+    #jobs > div { position: relative; padding-bottom: 12px; }
+    .jtbd-slide.active { flex-direction: column !important; align-items: center !important; gap: 32px !important; }
+    .jtbd-card-wrap { transform: scale(0.86); transform-origin: top center; margin-bottom: -48px; }
+    .jtbd-list { width: 100% !important; padding: 0 !important; }
+    .jtbd-callout-wrap { padding: 0 !important; }
+    .jtbd-nav { position: absolute; bottom: 0; z-index: 2; width: 32px !important; height: 32px !important; }
+    .jtbd-nav[data-dir="left"] { left: calc(50% - 76px); }
+    .jtbd-nav[data-dir="right"] { right: calc(50% - 76px); }
+    .jtbd-nav svg { width: 28px; height: 28px; }
     #contact-inner, #contact-bar { padding: 0 32px !important; }
   }
 </style>
@@ -660,6 +682,172 @@
   </div>
 </section>
 
+<!-- JOBS TO BE DONE -->
+<section id="jobs" style="background: #FFFFFF; padding: 80px 120px;">
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 56px;">
+
+    <h2 style="font-family: 'Crimson Pro', Georgia, serif; font-weight: 300; font-style: italic; font-size: 50px; line-height: normal; color: #323338; text-align: center; width: 100%;">Jobs to be done</h2>
+
+    <div style="display: flex; flex-direction: column; gap: 40px; width: 100%;">
+
+      <div style="display: flex; gap: 24px; align-items: center; width: 100%;">
+        <button type="button" class="jtbd-nav" data-dir="left" aria-label="Previous job" disabled><svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true" style="display: block; transform: rotate(90deg);"><path d="M18.8835 25.5206C19.5001 26.1597 20.4999 26.1597 21.1165 25.5206L29.5375 16.7934C30.1542 16.1543 30.1542 15.1182 29.5375 14.4792C28.9209 13.8402 27.9212 13.8402 27.3046 14.4792L20 22.0494L12.6954 14.4792C12.0788 13.8402 11.0791 13.8402 10.4625 14.4792C9.84585 15.1182 9.84585 16.1543 10.4625 16.7934L18.8835 25.5206Z" fill="currentColor"></path></svg></button>
+        <div style="flex: 1 0 0; min-width: 0;">
+
+          <div class="jtbd-slide active" data-slide="0">
+            <div class="jtbd-card-wrap" style="position: relative; width: 374px; flex-shrink: 0; padding-top: 26px;">
+              <div style="position: relative; height: 317px; background: #fff; border: 1.619px solid #D12E8B; border-radius: 8.634px; box-shadow: 0 12.951px 25.902px rgba(209,46,139,0.1); display: flex; align-items: center; justify-content: center; padding: 34.536px 30.219px;">
+                <div style="background: #FDF2FA; border: 1.079px solid #D12E8B; border-radius: 107.925px; padding: 6.475px 17.268px;">
+                  <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px; color: #D12E8B; white-space: nowrap;">Smart Prioritization</p>
+                </div>
+                <svg width="12.9509" height="24.301" viewBox="0 0 12.9509 24.301" fill="none" aria-hidden="true" style="position: absolute; left: calc(100% + 1.619px); top: 50%; transform: translateY(-50%); display: block;"><path d="M0 0L12.9509 12.1505L0 24.301Z" fill="#D12E8B"></path></svg>
+              </div>
+              <div style="position: absolute; left: 160.81px; top: 0; width: 53.336px; height: 51.798px;">
+                <img src="../uploads/jtbd-starburst.svg" alt="" style="display: block; width: 100%; height: 100%;">
+                <span style="position: absolute; left: 25.85px; top: 26.61px; transform: translate(-50%,-50%); font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 15.109px; line-height: normal; color: #fff;">01</span>
+              </div>
+            </div>
+
+            <div class="jtbd-list" style="flex: 1 0 0; min-width: 0; display: flex; flex-direction: column; gap: 40px; padding: 32px 16px; border-radius: 8px;">
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px; color: #D12E8B;">As a Sales rep, I’d like to...</p>
+              <div style="display: flex; flex-direction: column; gap: 40px;">
+                <div style="display: flex; flex-direction: column; gap: 24px;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #676879;">Know exactly who to focus on right now</p>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" style="display: block; flex-shrink: 0;"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
+                  </div>
+                  <div style="height: 1px; background: #D0D4E4;"></div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 24px;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #676879;">Catch warning signs before accounts slip away</p>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" style="display: block; flex-shrink: 0;"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
+                  </div>
+                  <div style="height: 1px; background: #D0D4E4;"></div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 24px;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #676879;">Stay in control across a massive portfolio</p>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" style="display: block; flex-shrink: 0;"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
+                  </div>
+                  <div style="height: 1px; background: #D0D4E4;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="jtbd-slide" data-slide="1">
+            <div class="jtbd-card-wrap" style="position: relative; width: 374px; flex-shrink: 0; padding-top: 26px;">
+              <div style="position: relative; height: 233px; background: #fff; border: 1.619px solid #D12E8B; border-radius: 8.634px; box-shadow: 0 12.951px 25.902px rgba(209,46,139,0.1); display: flex; align-items: center; justify-content: center; padding: 34.536px 30.219px;">
+                <div style="background: #FDF2FA; border: 1.079px solid #D12E8B; border-radius: 107.925px; padding: 6.475px 17.268px;">
+                  <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px; color: #D12E8B; white-space: nowrap;">Automating Admin</p>
+                </div>
+                <svg width="12.9509" height="24.301" viewBox="0 0 12.9509 24.301" fill="none" aria-hidden="true" style="position: absolute; left: calc(100% + 1.619px); top: 50%; transform: translateY(-50%); display: block;"><path d="M0 0L12.9509 12.1505L0 24.301Z" fill="#D12E8B"></path></svg>
+              </div>
+              <div style="position: absolute; left: 160.81px; top: 0; width: 53.336px; height: 51.798px;">
+                <img src="../uploads/jtbd-starburst.svg" alt="" style="display: block; width: 100%; height: 100%;">
+                <span style="position: absolute; left: 25.85px; top: 26.61px; transform: translate(-50%,-50%); font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 15.109px; line-height: normal; color: #fff;">02</span>
+              </div>
+            </div>
+
+            <div class="jtbd-list" style="flex: 1 0 0; min-width: 0; display: flex; flex-direction: column; gap: 40px; padding: 32px 16px; border-radius: 8px;">
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px; color: #D12E8B;">As a Sales rep, I’d like to...</p>
+              <div style="display: flex; flex-direction: column; gap: 40px;">
+                <div style="display: flex; flex-direction: column; gap: 24px;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #676879;">Automated Follow-ups &amp; Quotes</p>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" style="display: block; flex-shrink: 0;"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
+                  </div>
+                  <div style="height: 1px; background: #D0D4E4;"></div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 24px;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #676879;">One-Click Salesforce Updates</p>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" style="display: block; flex-shrink: 0;"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
+                  </div>
+                  <div style="height: 1px; background: #D0D4E4;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="jtbd-slide" data-slide="2">
+            <div class="jtbd-card-wrap" style="position: relative; width: 374px; flex-shrink: 0; padding-top: 26px;">
+              <div style="position: relative; height: 233px; background: #fff; border: 1.619px solid #D12E8B; border-radius: 8.634px; box-shadow: 0 12.951px 25.902px rgba(209,46,139,0.1); display: flex; align-items: center; justify-content: center; padding: 34.536px 30.219px;">
+                <div style="background: #FDF2FA; border: 1.079px solid #D12E8B; border-radius: 107.925px; padding: 6.475px 17.268px;">
+                  <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px; color: #D12E8B; white-space: nowrap;">Scaling Relationships</p>
+                </div>
+                <svg width="12.9509" height="24.301" viewBox="0 0 12.9509 24.301" fill="none" aria-hidden="true" style="position: absolute; left: calc(100% + 1.619px); top: 50%; transform: translateY(-50%); display: block;"><path d="M0 0L12.9509 12.1505L0 24.301Z" fill="#D12E8B"></path></svg>
+              </div>
+              <div style="position: absolute; left: 160.81px; top: 0; width: 53.336px; height: 51.798px;">
+                <img src="../uploads/jtbd-starburst.svg" alt="" style="display: block; width: 100%; height: 100%;">
+                <span style="position: absolute; left: 25.85px; top: 26.61px; transform: translate(-50%,-50%); font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 15.109px; line-height: normal; color: #fff;">03</span>
+              </div>
+            </div>
+
+            <div class="jtbd-list" style="flex: 1 0 0; min-width: 0; display: flex; flex-direction: column; gap: 40px; padding: 32px 16px; border-radius: 8px;">
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px; color: #D12E8B;">As a Sales rep, I’d like to...</p>
+              <div style="display: flex; flex-direction: column; gap: 40px;">
+                <div style="display: flex; flex-direction: column; gap: 24px;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #676879;">Handle a larger portfolio without losing touch</p>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" style="display: block; flex-shrink: 0;"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
+                  </div>
+                  <div style="height: 1px; background: #D0D4E4;"></div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 24px;">
+                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #676879;">Focus on human connections instead of admin</p>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" style="display: block; flex-shrink: 0;"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
+                  </div>
+                  <div style="height: 1px; background: #D0D4E4;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <button type="button" class="jtbd-nav" data-dir="right" aria-label="Next job"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true" style="display: block; transform: rotate(-90deg);"><path d="M18.8835 25.5206C19.5001 26.1597 20.4999 26.1597 21.1165 25.5206L29.5375 16.7934C30.1542 16.1543 30.1542 15.1182 29.5375 14.4792C28.9209 13.8402 27.9212 13.8402 27.3046 14.4792L20 22.0494L12.6954 14.4792C12.0788 13.8402 11.0791 13.8402 10.4625 14.4792C9.84585 15.1182 9.84585 16.1543 10.4625 16.7934L18.8835 25.5206Z" fill="currentColor"></path></svg></button>
+      </div>
+
+      <div class="jtbd-callout-wrap" style="padding: 0 72px; width: 100%;">
+        <div class="jtbd-callout active" data-slide="0">
+          <div style="border-radius: 8px; border-right: 5px solid #FFC3FB; border-bottom: 5px solid #FFC3FB;">
+            <div style="background: #F3F8FF; border: 1px solid #0056F5; border-radius: 8px; padding: 16px; display: flex; align-items: center; gap: 16px;">
+              <div style="background: #2B1A98; border-radius: 8px; padding: 8px 12px; flex-shrink: 0;"><p style="font-family: 'Figtree', 'Poppins', sans-serif; font-weight: 400; font-size: 14px; line-height: normal; color: #fff; white-space: nowrap;">Productivity</p></div>
+              <p style="flex: 1 0 0; min-width: 0; font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #323338;">Help reps know what to do when, to drive more sales</p>
+            </div>
+          </div>
+        </div>
+        <div class="jtbd-callout" data-slide="1">
+          <div style="border-radius: 8px; border-right: 5px solid #FFC3FB; border-bottom: 5px solid #FFC3FB;">
+            <div style="background: #F3F8FF; border: 1px solid #0056F5; border-radius: 8px; padding: 16px; display: flex; align-items: center; gap: 16px;">
+              <div style="background: #2B1A98; border-radius: 8px; padding: 8px 12px; flex-shrink: 0;"><p style="font-family: 'Figtree', 'Poppins', sans-serif; font-weight: 400; font-size: 14px; line-height: normal; color: #fff; white-space: nowrap;">Efficiency</p></div>
+              <p style="flex: 1 0 0; min-width: 0; font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #323338;">Increase the time percentage Reps are on actual sales calls</p>
+            </div>
+          </div>
+        </div>
+        <div class="jtbd-callout" data-slide="2">
+          <div style="border-radius: 8px; border-right: 5px solid #FFC3FB; border-bottom: 5px solid #FFC3FB;">
+            <div style="background: #F3F8FF; border: 1px solid #0056F5; border-radius: 8px; padding: 16px; display: flex; align-items: center; gap: 16px;">
+              <div style="background: #2B1A98; border-radius: 8px; padding: 8px 12px; flex-shrink: 0;"><p style="font-family: 'Figtree', 'Poppins', sans-serif; font-weight: 400; font-size: 14px; line-height: normal; color: #fff; white-space: nowrap;">Growth</p></div>
+              <p style="flex: 1 0 0; min-width: 0; font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #323338;">Increase the time percentage Reps spend on actual sales calls</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 8px;" role="tablist" aria-label="Job slides">
+      <button type="button" class="jtbd-dot active" data-slide="0" role="tab" aria-selected="true" aria-label="Smart Prioritization"></button>
+      <button type="button" class="jtbd-dot" data-slide="1" role="tab" aria-selected="false" aria-label="Automating Admin"></button>
+      <button type="button" class="jtbd-dot" data-slide="2" role="tab" aria-selected="false" aria-label="Scaling Relationships"></button>
+    </div>
+
+  </div>
+</section>
+
 <!-- CONTACT -->
 <footer id="contact" style="color: #141414; padding: 120px 0 0; position: relative; z-index: 1; line-height: 31.35px; background-color: #FFFCF2">
   <div id="contact-inner" style="max-width: 1400px; margin: 0 auto; padding: 0 120px; text-align: center;">
@@ -769,6 +957,38 @@ document.addEventListener('DOMContentLoaded', function() {
   chips.forEach(function(c) {
     c.addEventListener('click', function() { showTab(c.dataset.tab); });
   });
+
+  // Jobs to be done: 3-slide carousel driven by the arrows and the dots
+  var jSlides = document.querySelectorAll('.jtbd-slide');
+  var jCallouts = document.querySelectorAll('.jtbd-callout');
+  var jDots = document.querySelectorAll('.jtbd-dot');
+  var jNavs = document.querySelectorAll('.jtbd-nav');
+  var jIndex = 0;
+  function showJob(i) {
+    if (!jSlides.length) return;
+    jIndex = Math.max(0, Math.min(jSlides.length - 1, i));
+    [jSlides, jCallouts].forEach(function(group) {
+      Array.prototype.forEach.call(group, function(el) {
+        el.classList.toggle('active', Number(el.dataset.slide) === jIndex);
+      });
+    });
+    Array.prototype.forEach.call(jDots, function(d) {
+      var on = Number(d.dataset.slide) === jIndex;
+      d.classList.toggle('active', on);
+      d.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    // arrows disable at the ends, matching the Figma variants
+    Array.prototype.forEach.call(jNavs, function(n) {
+      n.disabled = n.dataset.dir === 'left' ? jIndex === 0 : jIndex === jSlides.length - 1;
+    });
+  }
+  Array.prototype.forEach.call(jNavs, function(n) {
+    n.addEventListener('click', function() { showJob(jIndex + (n.dataset.dir === 'left' ? -1 : 1)); });
+  });
+  Array.prototype.forEach.call(jDots, function(d) {
+    d.addEventListener('click', function() { showJob(Number(d.dataset.slide)); });
+  });
+  showJob(0);
 
   // Hover lift on the floating cards (keeps each card's own rotation)
   Array.prototype.forEach.call(document.querySelectorAll('.float-card'), function(card) {
