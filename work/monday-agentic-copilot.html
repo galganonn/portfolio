@@ -190,8 +190,8 @@
 
   /* Slide 01 visual — circular card carousel, ported from the Figma Make prototype */
   #kc-slot { position: relative; width: 470px; height: 413px; flex-shrink: 0; overflow: hidden; background: radial-gradient(ellipse at 50% 46%, #F2F5FD 0%, rgba(255,255,255,0) 70%); }
-  #kc-stage { position: absolute; left: 50%; top: calc(50% + 12px); width: 0; height: 0; transform: scale(0.68); }
-  .kc-wrap { position: absolute; transform-origin: center center; will-change: transform, opacity, filter; }
+  #kc-stage { position: absolute; left: 50%; top: calc(50% + 23px); width: 0; height: 0; transform: scale(0.68); }
+  .kc-wrap { position: absolute; transform-origin: center center; will-change: transform, opacity, filter; border-radius: 16px; }
   .kc-card { width: 460px; height: 340px; background: #fff; border-radius: 16px; border: 1px solid #E7E9EF; overflow: hidden; display: flex; flex-direction: column; }
   .kc-head { display: flex; align-items: center; gap: 10px; padding: 13px 15px 13px 18px; border-bottom: 1px solid #E7E9EF; flex-shrink: 0; }
   .kc-body { flex: 1; overflow: hidden; position: relative; min-height: 0; }
@@ -255,9 +255,19 @@
   .ia-card-title-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; }
 
   /* Main screens: vertical tab list + screenshot panel */
-  .ms-item { width: 100%; text-align: left; padding: 18px 24px; border: none; background: none; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879; border-radius: 8px; transition: background 150ms ease, color 150ms ease; }
+  .ms-item { position: relative; overflow: hidden; width: 100%; text-align: left; padding: 18px 24px; border: none; background: none; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879; border-radius: 8px; transition: background 150ms ease, color 150ms ease; }
   .ms-item:hover { background: #F7FAFF; color: #323338; }
-  .ms-item.active { background: #F3F8FF; color: #1F57E7; font-weight: 700; box-shadow: inset 0 -2px 0 #1F57E7; }
+  .ms-item.active { background: #F3F8FF; color: #1F57E7; font-weight: 700; }
+  /* the underline doubles as the timer for the auto-advance */
+  .ms-item::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: #1F57E7; transform: scaleX(0); transform-origin: left center; }
+  .ms-item.active::after { animation: ms-progress var(--ms-dur, 7s) linear forwards; }
+  .ms-row:hover .ms-item.active::after,
+  #main-screens.ms-paused .ms-item.active::after { animation-play-state: paused; }
+  @keyframes ms-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  @media (prefers-reduced-motion: reduce) {
+    /* no timer, no auto-advance — the underline just marks the active screen */
+    .ms-item.active::after { animation: none; transform: scaleX(1); }
+  }
   .ms-panel { display: none; opacity: 0; transition: opacity 200ms ease; flex-direction: column; gap: 24px; width: 100%; }
   .ms-panel.active { display: flex; opacity: 1; }
   .ms-shot { position: relative; width: 100%; max-width: 860px; }
@@ -1346,7 +1356,7 @@
 </section>
 
 <!-- MAIN SCREENS -->
-<section id="main-screens" style="background: #FFFFFF; padding: 40px 120px 96px;">
+<section id="main-screens" class="ms-paused" style="background: #FFFFFF; padding: 40px 120px 96px;">
   <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px;">
     <h2 style="font-family: 'Crimson Pro', Georgia, serif; font-weight: 300; font-style: italic; font-size: 50px; line-height: normal; color: #323338; text-align: center;">Main screens</h2>
 
@@ -1526,7 +1536,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // at the top. Ported from the Figma Make prototype.
   var kcWraps = document.querySelectorAll('.kc-wrap');
   if (kcWraps.length) {
-    var KC_N = kcWraps.length, KC_RADIUS = 200, KC_FOCUS = -Math.PI / 2;
+    var KC_N = kcWraps.length, KC_RADIUS = 180, KC_FOCUS = -Math.PI / 2;
     var kcStep = 0;
     function placeKc(instant) {
       var active = kcStep % KC_N;
@@ -1621,6 +1631,34 @@ document.addEventListener('DOMContentLoaded', function() {
   msItems.forEach(function(b) {
     b.addEventListener('click', function() { showScreen(b.dataset.screen); });
   });
+
+  // …and it cycles on its own: when the underline finishes filling, move to the next screen
+  var msSection = document.getElementById('main-screens');
+  if (msSection && msItems.length) {
+    msSection.addEventListener('animationend', function(e) {
+      if (e.animationName !== 'ms-progress') return;
+      var order = Array.prototype.map.call(msItems, function(b) { return b.dataset.screen; });
+      var i = order.indexOf(e.target.dataset.screen);
+      if (i === -1) return;
+      showScreen(order[(i + 1) % order.length]);
+    });
+
+    // the timer only runs while the section is on screen and the tab is in front
+    var msVisible = false;
+    function msSync() {
+      msSection.classList.toggle('ms-paused', !msVisible || document.hidden);
+    }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function(entries) {
+        msVisible = entries[0].isIntersecting;
+        msSync();
+      }, { threshold: 0.25 }).observe(msSection);
+    } else {
+      msVisible = true;
+      msSync();
+    }
+    document.addEventListener('visibilitychange', msSync);
+  }
 
   // Jobs to be done: 3-slide carousel driven by the arrows and the dots
   var jSlides = document.querySelectorAll('.jtbd-slide');
