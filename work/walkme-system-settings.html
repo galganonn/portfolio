@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WalkMe System's Settings — Gal Ganon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@1,200;1,300;1,400;1,600;1,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=array@400,700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: #FFFFFF; color: #323338; font-family: 'Figtree', 'Poppins', system-ui, sans-serif; font-size: 17px; line-height: 1.5; overflow-x: hidden; }
+  ::selection { background: #7F56D9; color: #FFFFFF; }
+  a { color: inherit; }
+  button { font: inherit; cursor: pointer; }
+  img { display: block; max-width: 100%; }
+
+  .nav-link { text-decoration: none; position: relative; padding: 8px 0; color: #141414; }
+  .nav-link::after { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: #7F56D9; transform: scaleX(0); transform-origin: right; transition: transform 250ms cubic-bezier(0.16,1,0.3,1); }
+  .nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
+  header.scrolled { border-bottom-color: rgba(20,20,20,0.14) !important; }
+
+  /* ---- WalkMe case study type scale (Figma: Crimson Pro italic headings + Figtree body) ---- */
+  .cs-wrap { max-width: 1440px; margin: 0 auto; padding-left: clamp(24px, 8.33vw, 120px); padding-right: clamp(24px, 8.33vw, 120px); }
+  .cs-h1 { font-family: 'Crimson Pro', Georgia, serif; font-weight: 300; font-style: italic; font-size: clamp(38px, 6.4vw, 70px); line-height: 1.12; color: #323338; }
+  .cs-h2 { font-family: 'Crimson Pro', Georgia, serif; font-weight: 300; font-style: italic; font-size: clamp(34px, 4.6vw, 50px); line-height: 1.2; color: #323338; }
+  .cs-h3 { font-family: 'Crimson Pro', Georgia, serif; font-weight: 300; font-style: italic; font-size: clamp(23px, 2.6vw, 28px); line-height: 40px; letter-spacing: -0.14px; color: #323338; }
+  .cs-h4 { font-family: 'Crimson Pro', Georgia, serif; font-weight: 300; font-style: italic; font-size: clamp(26px, 3vw, 32px); line-height: 1.2; color: #323338; }
+  .cs-label { font-family: 'Crimson Pro', Georgia, serif; font-weight: 600; font-style: italic; font-size: 18px; color: #323338; }
+  .cs-body { font-size: 18px; line-height: 28px; color: #323338; }
+  .cs-body-muted { font-size: 18px; line-height: 28px; color: #676879; }
+  .cs-body b, .cs-body strong { font-weight: 700; }
+
+  /* section rhythm */
+  .cs-section { padding-top: clamp(56px, 6vw, 80px); padding-bottom: clamp(56px, 6vw, 80px); position: relative; }
+
+  /* soft gradient blob backdrops exported from Figma */
+  .cs-blobs { position: absolute; left: 0; right: 0; pointer-events: none; z-index: 0; }
+  .cs-blobs img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* cards */
+  .cs-card-soft { border-radius: 24px; padding: clamp(24px, 2.6vw, 32px); }
+  .cs-card-white { background: #FFFFFF; border: 1px solid #E2E4EB; border-radius: 24px; padding: clamp(24px, 2.6vw, 32px); filter: drop-shadow(0 8px 12px rgba(0,0,0,0.02)); }
+
+  .cs-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: stretch; }
+  .cs-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; align-items: stretch; }
+
+  /* pain points + video row */
+  .cs-pain-row { display: grid; grid-template-columns: 507fr 647fr; gap: 45px; align-items: center; }
+  .cs-pain-col { display: flex; flex-direction: column; gap: 24px; }
+
+  /* findings numbered cards */
+  .cs-finding { background: rgba(255,255,255,0.7); border: 1px solid #FFFFFF; border-radius: 24px; padding: clamp(28px, 3vw, 40px); box-shadow: 0 4px 20px rgba(0,0,0,0.02); display: flex; flex-direction: column; gap: 24px; }
+  .cs-finding-num { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 40px; line-height: 1; color: #1E2024; }
+  .cs-finding-title { font-family: 'Crimson Pro', Georgia, serif; font-weight: 300; font-style: italic; font-size: 24px; line-height: 30px; letter-spacing: -0.12px; color: #323338; }
+  .cs-finding-body { font-size: 16px; line-height: 28px; color: #676879; }
+
+  /* before / after blocks */
+  .cs-block-head { display: flex; flex-direction: column; gap: 5px; max-width: 692px; }
+  .cs-block-num { font-size: 14px; line-height: 20px; color: #777777; }
+  .cs-block-sub { font-size: 16px; line-height: 28px; color: #7F56D9; }
+  .cs-ba { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+  .cs-ba-col { display: flex; flex-direction: column; gap: 10px; }
+  .cs-ba-text { font-size: 16px; line-height: 28px; color: #323338; }
+  .cs-ba-shot { width: 100%; height: auto; border-radius: 8px; }
+
+  /* 04 — diagonal overlap composition (Figma: 1165 x 510 box) */
+  .cs-overlap { position: relative; width: 100%; padding-bottom: 43.8%; }
+  .cs-overlap > * { position: absolute; }
+  .cs-overlap .ov-a { left: 0; top: 0; width: 47.21%; }
+  .cs-overlap .ov-b { left: 50.47%; top: 23.44%; width: 47.21%; }
+  .cs-overlap .ov-arrow { left: 37.04%; top: 71.3%; width: 19.09%; transform: rotate(-122deg); transform-origin: center; opacity: 0.85; }
+
+  /* IA browser-style card */
+  .cs-ia-card { background: #FFFFFF; border: 1px solid #E8EAED; border-radius: 20px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,0.04), 0 4px 24px rgba(0,0,0,0.08); }
+  .cs-ia-head { display: flex; align-items: center; gap: 12px; padding: 28px clamp(20px, 2.5vw, 36px); border-bottom: 1px solid #F0F2F5; }
+  .cs-ia-icon { width: 36px; height: 36px; flex-shrink: 0; border-radius: 10px; background: #EBF2FF; display: flex; align-items: center; justify-content: center; }
+  .cs-ia-icon img { width: 18px; height: 18px; }
+  .cs-ia-title { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 18px; letter-spacing: -0.3px; color: #111827; }
+  .cs-ia-sub { font-family: 'Inter', sans-serif; font-weight: 400; font-size: 13px; color: #9CA3AF; margin-top: 3px; }
+  .cs-ia-body { background: #F9FAFB; padding: 28px clamp(20px, 2.5vw, 36px) 32px; }
+  .cs-ia-img { border: 1px solid #E5E7EB; border-radius: 12px; overflow: hidden; position: relative; }
+  .cs-ia-img img { width: 100%; height: auto; }
+  .cs-ia-img::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 2px 8px rgba(0,0,0,0.04); pointer-events: none; }
+
+  /* card sorting panel */
+  .cs-panel { background: #F6F7FB; border: 1px solid #D0D4E4; border-radius: 32px; padding: clamp(24px, 3.3vw, 48px); display: flex; justify-content: center; }
+  .cs-panel img { width: 100%; max-width: 723px; height: auto; border: 0.75px solid #E2E4EB; border-radius: 18px; }
+
+  /* video / recording card */
+  .cs-video { background: #EBE8FF; border: 1px solid #E2E4EB; border-radius: 18px; overflow: hidden; }
+  .cs-video img { width: 100%; height: auto; }
+  .cs-video-bar { background: #F8F8F8; height: 68px; display: flex; align-items: center; justify-content: center; font-size: 16px; line-height: 28px; color: #323338; }
+
+  /* key takeaways */
+  .cs-takeaways { background: rgba(255,255,255,0.6); border-radius: 32px; padding: 60px clamp(24px, 8.33vw, 120px); display: flex; flex-direction: column; gap: 60px; align-items: center; position: relative; overflow: hidden; }
+  .cs-takeaway { background: rgba(255,255,255,0.6); border-radius: 24px; padding: 32px; width: 100%; }
+
+  /* reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 700ms cubic-bezier(0.16,1,0.3,1), transform 700ms cubic-bezier(0.16,1,0.3,1); }
+  .reveal.is-in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  @keyframes cursor-bounce {
+    0%,100% { transform: translate(0,0) rotate(-10deg); }
+    40% { transform: translate(6px,8px) rotate(-10deg); }
+  }
+  #footer-cursor { animation: cursor-bounce 1.4s ease-in-out infinite; }
+  #copy-toast { display:none; position:absolute; left:50%; transform:translateX(-50%); top:calc(100% + 10px); white-space:nowrap; background:#141414; color:#FBF6E9; font-family:'Poppins',sans-serif; font-size:13px; font-weight:500; padding:8px 20px; border-radius:9999px; pointer-events:none; z-index:9999; opacity:0; transition: opacity 0.3s ease; box-shadow:0 4px 16px rgba(0,0,0,0.18); }
+
+  /* same breakpoint as the other case study — the nav links crowd the wordmark below this */
+  @media (max-width: 900px) {
+    .nav-links-list { display: none !important; }
+  }
+
+  @media (max-width: 1000px) {
+    .cs-pain-row { grid-template-columns: 1fr; gap: 32px; }
+    .cs-grid-3 { grid-template-columns: 1fr; }
+    .cs-ba { grid-template-columns: 1fr; gap: 40px; }
+    /* the diagonal 04 composition stacks — the arrow only reads in the side-by-side layout */
+    .cs-overlap { padding-bottom: 0; display: flex; flex-direction: column; gap: 24px; }
+    .cs-overlap > * { position: static; }
+    .cs-overlap .ov-a, .cs-overlap .ov-b { width: 100%; }
+    .cs-overlap .ov-arrow { display: none; }
+  }
+  @media (max-width: 720px) {
+    .cs-grid-2 { grid-template-columns: 1fr; }
+    .cs-h3 { line-height: 34px; }
+    .cs-takeaways { padding: 40px 24px; gap: 40px; }
+    .cs-takeaway { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header id="top" style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; backdrop-filter: blur(12px); border-bottom: 1px solid transparent; transition: border-color 250ms cubic-bezier(0.16,1,0.3,1); background-color: #FFFFFFE0">
+  <nav style="display: flex; align-items: center; justify-content: space-between; padding: 20px 32px; max-width: 1500px; margin: 0 auto; letter-spacing: 0.08em;" aria-label="Main">
+    <a href="../index.html" class="nav-link" style="font-weight: 400; font-family: Poppins; font-size: 14px; text-transform: uppercase; text-decoration: none;">Gal Ganon</a>
+    <ul class="nav-links-list" style="display: flex; gap: 32px; list-style: none;">
+      <li><a href="../index.html#about" class="nav-link" style="font-weight: 300; font-family: Poppins; font-size: 14px; text-transform: uppercase;">About</a></li>
+      <li><a href="../index.html#work" class="nav-link" style="font-weight: 300; font-family: Poppins; font-size: 14px; text-transform: uppercase;">Work</a></li>
+      <li><a href="../index.html#contact" class="nav-link" style="font-weight: 300; font-family: Poppins; font-size: 14px; text-transform: uppercase;">Contact</a></li>
+    </ul>
+    <a href="https://www.linkedin.com/in/gal-ganon/" target="_blank" rel="noopener" class="nav-link" style="font-weight: 400; font-family: Poppins; font-size: 14px; text-decoration: none;">LinkedIn</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="hero" style="position: relative; background: #FFFFFF; overflow: hidden; padding: clamp(150px, 17vw, 240px) 0 clamp(60px, 8vw, 120px);">
+  <div class="cs-blobs" style="top: 20%; height: 90%;" aria-hidden="true">
+    <img src="../uploads/wm-blobs-hero.svg" alt="" decoding="async">
+  </div>
+  <div class="cs-wrap" style="position: relative; z-index: 1; text-align: center;">
+    <h1 class="cs-h1">WalkMe System&rsquo;s Settings</h1>
+    <p style="margin: 24px auto 0; max-width: 910px; font-family: 'Poppins', sans-serif; font-weight: 300; font-size: clamp(17px, 2vw, 24px); line-height: 1.58; color: #323338;">
+      Streamlined the settings menu to improve navigation, enabling users to find features faster
+    </p>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section class="cs-section" style="padding-top: clamp(24px, 4vw, 40px);">
+  <div class="cs-wrap reveal">
+    <h2 class="cs-h2">Project Overview</h2>
+    <p class="cs-body" style="margin-top: 24px; max-width: 918px;">
+      As our product evolved, new features were continuously added to the settings menu <b>without a structured organization</b>. This led to a <b>cluttered</b> and <b>inefficient navigation system</b>, making it <b>difficult for users to find what they needed</b>. To address this, I led a <b>redesign</b> to streamline the settings navigation and usability.
+    </p>
+  </div>
+</section>
+
+<!-- WHY REDESIGN -->
+<section class="cs-section">
+  <div class="cs-wrap reveal">
+    <h2 class="cs-h2">Why redesign the current Setting page?</h2>
+    <div class="cs-grid-2" style="margin-top: 24px;">
+      <div class="cs-card-soft" style="background: rgba(248,228,255,0.4);">
+        <h3 class="cs-h3">Business goal</h3>
+        <p class="cs-body" style="margin-top: 4px;">Moving all system operations to the console <b>required a single area</b> to manage all settings.</p>
+      </div>
+      <div class="cs-card-soft" style="background: rgba(107,24,254,0.1);">
+        <h3 class="cs-h3">Fixing navigation issues</h3>
+        <p class="cs-body" style="margin-top: 4px;">Establish a <b>clear user flow</b> and an <b>intuitive experience</b>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN POINTS -->
+<section class="cs-section">
+  <div class="cs-wrap">
+    <div class="reveal">
+      <h2 class="cs-h2">What is not working today?</h2>
+      <p class="cs-body-muted" style="margin-top: 16px; line-height: 32px; font-family: 'Poppins', sans-serif; font-weight: 400;">
+        I gathered feedback from a range of users who had trouble locating certain settings. The primary pain points identified were:
+      </p>
+    </div>
+
+    <div class="cs-pain-row reveal" style="margin-top: 48px;">
+      <div class="cs-pain-col">
+        <div class="cs-card-white">
+          <h3 class="cs-h3">Lack of visibility</h3>
+          <p class="cs-body-muted" style="margin-top: 8px;">Important settings were hidden within subcategories, making them difficult to access.</p>
+        </div>
+        <div class="cs-card-white">
+          <h3 class="cs-h3">Cumbersome navigation</h3>
+          <p class="cs-body-muted" style="margin-top: 8px;">Frequent need to navigate back and forth between multiple pages to find the correct settings.</p>
+        </div>
+        <div class="cs-card-white">
+          <h3 class="cs-h3">Inaccurate copy</h3>
+          <p class="cs-body-muted" style="margin-top: 8px;">Some settings were placed in categories that did not match users&rsquo; expectations.</p>
+        </div>
+      </div>
+
+      <figure class="cs-video">
+        <img src="../uploads/wm-video-poster.png" alt="The existing WalkMe settings screen — a long left-hand list of categories with the workstation preview on the right" decoding="async">
+        <figcaption class="cs-video-bar">The settings menu before the redesign</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- USER RESEARCH -->
+<section class="cs-section">
+  <div class="cs-wrap">
+    <div class="reveal">
+      <h2 class="cs-h2">User Research</h2>
+      <h3 class="cs-h3" style="margin-top: 24px;">Card Sorting</h3>
+      <p class="cs-body-muted" style="margin-top: 8px; max-width: 1043px;">
+        We conducted a Card Sorting workshop to map users&rsquo; mental models and intuitively restructure the navigation.
+      </p>
+    </div>
+
+    <div class="cs-panel reveal" style="margin-top: 24px;">
+      <img src="../uploads/wm-card-sorting.png" alt="Information Architecture Sort board — participants grouping settings cards into categories such as Brand customization, Application logic and Enterprise Search" decoding="async">
+    </div>
+
+    <div class="reveal" style="margin-top: 40px;">
+      <h3 class="cs-h3">Information Architecture</h3>
+      <p class="cs-body-muted" style="margin-top: 8px;">
+        After understanding how users perceive information, we created an information architecture that reflects the new navigation structure.
+      </p>
+    </div>
+
+    <div class="cs-ia-card reveal" style="margin-top: 24px;">
+      <div class="cs-ia-head">
+        <span class="cs-ia-icon"><img src="../uploads/wm-icon-settings.svg" alt="" decoding="async"></span>
+        <div>
+          <p class="cs-ia-title">General Settings Overview</p>
+          <p class="cs-ia-sub">Visual map of all configurable settings and their hierarchy</p>
+        </div>
+      </div>
+      <div class="cs-ia-body">
+        <div class="cs-ia-img">
+          <img src="../uploads/wm-ia-map.png" alt="Tree diagram of the new settings information architecture, branching from General Settings into System appearance, Screen configurations and UR management" decoding="async">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH FINDINGS -->
+<section class="cs-section" style="overflow: hidden;">
+  <div class="cs-blobs" style="top: -10%; height: 120%;" aria-hidden="true">
+    <img src="../uploads/wm-blobs-findings.svg" alt="" decoding="async">
+  </div>
+  <div class="cs-wrap reveal" style="position: relative; z-index: 1;">
+    <h2 class="cs-h2">Research findings</h2>
+    <div class="cs-grid-3" style="margin-top: 24px;">
+      <div class="cs-finding">
+        <p class="cs-finding-num">01</p>
+        <p class="cs-finding-title">Reducing the number of clicks needed to access various sections</p>
+        <p class="cs-finding-body">Instead of actions hidden in a drop-down menu, we made them visible for easier access.</p>
+      </div>
+      <div class="cs-finding">
+        <p class="cs-finding-num">02</p>
+        <p class="cs-finding-title">Grouping similar settings under one category</p>
+        <p class="cs-finding-body">We re-mapped all the information using Card Sorting Method by users.</p>
+      </div>
+      <div class="cs-finding">
+        <p class="cs-finding-num">03</p>
+        <p class="cs-finding-title">Adjusting navigation according to the flow the user goes through</p>
+        <p class="cs-finding-body">We traced the users&rsquo; mental model and rearranged the categories accordingly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN SCREENS -->
+<section class="cs-section">
+  <div class="cs-wrap">
+    <h2 class="cs-h2 reveal">Main Screens</h2>
+
+    <!-- 01 — Side Menu -->
+    <div class="reveal" style="margin-top: 88px;">
+      <div class="cs-block-head">
+        <p class="cs-block-num">01</p>
+        <h3 class="cs-h4">Side Menu</h3>
+        <p class="cs-block-sub">Rearranging and adding categories</p>
+      </div>
+      <div class="cs-ba" style="margin-top: 24px;">
+        <div class="cs-ba-col">
+          <p class="cs-label">Before</p>
+          <p class="cs-ba-text">In the previous menu structure, a limited number of categories resulted in new features being added inconsistently over time, leading to navigation challenges and misalignment with user expectations.</p>
+          <img class="cs-ba-shot" src="../uploads/wm-01-before.png" alt="The old settings side menu with only a handful of flat categories" loading="lazy" decoding="async">
+        </div>
+        <div class="cs-ba-col">
+          <p class="cs-label">After</p>
+          <p class="cs-ba-text">The redesigned menu introduces a more structured categorization, ensuring logical grouping of features that enhance discoverability and streamline the user experience.</p>
+          <img class="cs-ba-shot" src="../uploads/wm-01-after.png" alt="The redesigned side menu grouped into System appearance, Screen configurations and UR management" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 — Dropdowns to tabs -->
+    <div class="reveal" style="margin-top: 88px;">
+      <div class="cs-block-head">
+        <p class="cs-block-num">02</p>
+        <h3 class="cs-h4">Dropdowns to Tab Navigation Transformation</h3>
+        <p class="cs-block-sub">From Hidden to Visible</p>
+      </div>
+      <div class="cs-ba" style="margin-top: 24px;">
+        <div class="cs-ba-col">
+          <p class="cs-label">Before</p>
+          <p class="cs-ba-text">The previous design relied on dropdown menus that obscured important components, requiring multiple clicks and hampering both visibility and accessibility.</p>
+          <img class="cs-ba-shot" src="../uploads/wm-02-before.png" alt="The welcome screen settings with options collapsed behind dropdown menus" loading="lazy" decoding="async">
+        </div>
+        <div class="cs-ba-col">
+          <p class="cs-label">After</p>
+          <p class="cs-ba-text">Our redesign replaced these dropdowns with a tab menu, implementing a flat information hierarchy that displays options at a glance. This transformation significantly reduced the number of clicks needed, enhanced information scannability, and provided immediate visibility of available options, ultimately creating a more efficient and user-friendly experience.</p>
+          <img class="cs-ba-shot" src="../uploads/wm-02-after.png" alt="The same settings surfaced as a flat tab menu with every option visible" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 — Eliminating hidden elements -->
+    <div class="reveal" style="margin-top: 88px;">
+      <div class="cs-block-head">
+        <p class="cs-block-num">03</p>
+        <h3 class="cs-h4">Eliminating Hidden Elements</h3>
+        <p class="cs-block-sub">From Hidden to Visible</p>
+      </div>
+      <div class="cs-ba" style="margin-top: 24px;">
+        <div class="cs-ba-col">
+          <p class="cs-label">Before</p>
+          <p class="cs-ba-text">The previous design required users to scroll within dropdown components, hiding crucial elements and creating a cumbersome navigation experience.</p>
+          <img class="cs-ba-shot" src="../uploads/wm-03-before.png" alt="A tall dropdown component that forced users to scroll inside it to reach settings" loading="lazy" decoding="async">
+        </div>
+        <div class="cs-ba-col">
+          <p class="cs-label">After</p>
+          <p class="cs-ba-text">The redesign reorganized the navigation menu and eliminated scrolling, making all components instantly visible. This new structure promotes better hierarchy and reduces cognitive load.</p>
+          <img class="cs-ba-shot" src="../uploads/wm-03-after.png" alt="The reorganized panel showing every component at once with no internal scrolling" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 — Design tips -->
+    <div class="reveal" style="margin-top: 88px;">
+      <div class="cs-block-head">
+        <p class="cs-block-num">04</p>
+        <h3 class="cs-h4">Helping Users Create a Refined Interface</h3>
+        <p class="cs-block-sub">Design Tips for Users&rsquo; Pain Points</p>
+      </div>
+      <p class="cs-ba-text" style="margin-top: 24px;">
+        We identified that many users struggle with understanding the best practices for setting up their internal interface. To support them, we introduced a new screen with practical design tips&mdash;covering aspects like optimal logo format, size, and color matching&mdash;ensuring a professional and cohesive look for every user.
+      </p>
+      <div class="cs-overlap" style="margin-top: 40px;">
+        <img class="ov-a" src="../uploads/wm-04-tips.png" alt="The new design tips screen explaining recommended logo format and sizing" loading="lazy" decoding="async">
+        <img class="ov-arrow" src="../uploads/wm-arrow.svg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <img class="ov-b" src="../uploads/wm-04-color-logo.png" alt="The colour and logo picker users reach from the design tips screen" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEY TAKEAWAYS -->
+<section class="cs-section" style="padding-bottom: clamp(80px, 10vw, 135px);">
+  <div class="cs-wrap reveal">
+    <div class="cs-takeaways">
+      <div class="cs-blobs" style="top: 37%; height: 51%;" aria-hidden="true">
+        <img src="../uploads/wm-blob-takeaways.svg" alt="" decoding="async">
+      </div>
+      <h2 class="cs-h2" style="position: relative; z-index: 1; text-align: center;">Key Takeaways from the Process</h2>
+      <div style="position: relative; z-index: 1; width: 100%; display: flex; flex-direction: column; gap: 24px;">
+        <div class="cs-takeaway">
+          <h3 class="cs-h3">Users appreciate being involved</h3>
+          <p class="cs-body" style="margin-top: 4px;">Engaging users in decision-making and seeking their input f<b>osters trust and increases satisfaction</b>.</p>
+        </div>
+        <div class="cs-takeaway">
+          <h3 class="cs-h3">User buy-in leads to better outcomes</h3>
+          <p class="cs-body" style="margin-top: 4px;">Understanding users&rsquo; <b>mental models</b> and aligning the design with their expectations results in a more effective and well-received solution.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<footer id="contact" style="color: #141414; padding: 120px 0 0; position: relative; z-index: 1; line-height: 31.35px; background-color: #FFFCF2">
+  <div id="contact-inner" style="max-width: 1400px; margin: 0 auto; padding: 0 clamp(24px, 8.33vw, 120px); text-align: center;">
+    <h2 style="font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: clamp(48px,7vw,110px); line-height: 1.0; text-transform: uppercase; letter-spacing: -0.02em; color: #141414; margin: 0">
+      Interested in <br>Working Together? <img src="../uploads/pasted-1785615352201-0.png" alt="✌" style="display:inline-block;height:0.85em;width:auto;vertical-align:-0.1em;margin:0 0.06em;"></h2>
+
+    <div style="position: relative; display: inline-block; margin-top: 48px;">
+      <p style="font-family: 'Poppins',sans-serif; font-size: 15px; font-weight: 400; color: rgba(20,20,20,0.5); margin-bottom: 8px; letter-spacing: 0.04em;">Contact me:</p>
+      <button id="email-copy-btn" style="background: none; border: none; padding: 0; cursor: pointer; font-family: 'Poppins',sans-serif; font-size: 18px; font-weight: 500; color: #141414; text-decoration-line: none; text-underline-offset: 4px; text-decoration-color: rgba(20,20,20,0.25); transition: text-decoration-color 200ms">galganonn@gmail.com</button>
+
+      <svg id="footer-cursor" style="position: absolute; right: -64px; bottom: -12px; width: 48px; height: 48px; pointer-events: none;" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 4L8 36L16 28L22 42L27 40L21 26L33 26Z" fill="#141414" stroke="#FBF6E9" stroke-width="2" stroke-linejoin="round"></path>
+      </svg>
+
+      <div id="copy-toast">Email copied! ✓</div>
+    </div>
+  </div>
+
+  <div id="contact-bar" style="max-width: 1400px; margin: 96px auto 0; padding: 0 clamp(24px, 8.33vw, 120px);">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; font-size: 14px; color: rgba(20,20,20,0.45); border-top: 1px solid rgba(20,20,20,0.12); padding: 28px 0 40px;">
+      <span style="font-family:'Poppins',sans-serif;">© 2026 Gal Ganon — All Rights Reserved</span>
+      <button id="back-top-btn" style="background: none; border: 1px solid rgba(20,20,20,0.25); color: #141414; border-radius: 9999px; padding: 10px 22px; font-size: 13px; font-family:'Poppins',sans-serif; letter-spacing: 0.08em; cursor: pointer; transition: background 200ms, color 200ms;">Back to top ↑</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var header = document.querySelector('header');
+  var onScroll = function() { if (header) header.classList.toggle('scrolled', window.scrollY > 10); };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Reveal sections as they enter the viewport
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('is-in'); io.unobserve(entry.target); }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+    reveals.forEach(function(el) { io.observe(el); });
+  } else {
+    reveals.forEach(function(el) { el.classList.add('is-in'); });
+  }
+
+  var backTop = document.getElementById('back-top-btn');
+  if (backTop) backTop.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+  var emailBtn = document.getElementById('email-copy-btn');
+  if (emailBtn) {
+    emailBtn.addEventListener('click', function() {
+      var email = 'galganonn@gmail.com';
+      var toast = document.getElementById('copy-toast');
+      function showToast() {
+        if (!toast) return;
+        toast.style.display = 'block';
+        setTimeout(function() { toast.style.opacity = '1'; }, 10);
+        setTimeout(function() { toast.style.opacity = '0'; }, 3000);
+        setTimeout(function() { toast.style.display = 'none'; }, 3400);
+      }
+      function copyViaExecCommand() {
+        var ta = document.createElement('textarea');
+        ta.value = email;
+        ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        try { document.execCommand('copy'); } catch(e) {}
+        document.body.removeChild(ta);
+        showToast();
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(showToast, copyViaExecCommand);
+      } else {
+        copyViaExecCommand();
+      }
+    });
+  }
+});
+</script>
+</body>
+</html>
