@@ -24,6 +24,16 @@
   .toggle-btn[aria-pressed="true"] .toggle-knob { transform: translateX(0.75em) !important; }
   .case-vis-dots::after { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(20,20,20,0.12) 1.5px, transparent 1.5px); background-size: 22px 22px; pointer-events: none; }
   .marquee-anim { display: inline-flex; animation: marquee 30s linear infinite; }
+  .cover-carousel { position: relative; overflow: hidden; background: #141414; }
+  .cover-slide { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; opacity: 0; transform: scale(1.05); transition: opacity 900ms cubic-bezier(0.4,0,0.2,1), transform 0ms linear 900ms; will-change: opacity, transform; }
+  .cover-slide.is-active { opacity: 1; transform: scale(1); transition: opacity 900ms cubic-bezier(0.4,0,0.2,1), transform 5200ms cubic-bezier(0.16,1,0.3,1); }
+  .cover-bars { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); display: flex; gap: 8px; padding: 8px 12px; border-radius: 9999px; background: rgba(20,20,20,0.42); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 2; }
+  .cover-bar { position: relative; width: 34px; height: 3px; border-radius: 9999px; background: rgba(255,255,255,0.32); border: 0; padding: 0; overflow: hidden; transition: width 400ms cubic-bezier(0.16,1,0.3,1); }
+  .cover-bar.is-active { width: 52px; }
+  .cover-bar span { position: absolute; inset: 0; transform-origin: left; transform: scaleX(0); background: #FBF6E9; border-radius: 9999px; }
+  .cover-bar.is-active span { animation: cover-fill 4200ms linear forwards; }
+  .cover-bar.is-done span { transform: scaleX(1); }
+  @keyframes cover-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
   .star-spin { display: block; width: 100%; height: 100%; animation: spin-cw 12s linear infinite; }
   header.scrolled { border-bottom-color: rgba(20,20,20,0.14) !important; }
   @keyframes spin-cw { to { transform: rotate(360deg); } }
@@ -52,8 +62,13 @@
   @media (max-width: 600px) {
     #work h2 { font-size: 40px !important; letter-spacing: 0.04em !important; }
     .case-vis-dots { height: 260px !important; }
+    .cover-carousel { height: 260px !important; }
   }
-  @media (prefers-reduced-motion: reduce) { .marquee-anim, .star-spin { animation: none !important; } }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-anim, .star-spin { animation: none !important; }
+    .cover-slide, .cover-slide.is-active { transition: opacity 200ms linear !important; transform: none !important; }
+    .cover-bar.is-active span { animation: none !important; transform: scaleX(1); }
+  }
 </style>
 </head>
 <body>
@@ -145,8 +160,15 @@
       <div style="border-bottom: 1px solid rgba(20,20,20,0.14); overflow: hidden; white-space: nowrap; padding: 8px 0; font-size: 13px; letter-spacing: 0.12em; color: rgba(20,20,20,0.55);" aria-hidden="true">
         <div class="marquee-anim"><span style="padding: 0 24px;">✦ undefined min read</span><span style="padding: 0 24px;">✦ undefined min read</span><span style="padding: 0 24px;">✦ undefined min read</span><span style="padding: 0 24px;">✦ undefined min read</span><span style="padding: 0 24px;">✦ undefined min read</span><span style="padding: 0 24px;">✦ undefined min read</span><span style="padding: 0 24px;">✦ undefined min read</span><span style="padding: 0 24px;">✦ undefined min read</span><span style="padding: 0 24px;">✦ undefined min read</span><span style="padding: 0 24px;">✦ undefined min read</span></div>
       </div>
-      <div class="case-vis-dots" style="height: 480px; display: flex; align-items: center; justify-content: center; font-size: 13px; letter-spacing: 0.15em; color: rgba(20,20,20,0.55); position: relative; overflow: hidden;">
-        <span style="position: relative; z-index: 1; background: #FBF6E9; padding: 8px 20px; border-radius: 9999px; font-family: 'Poppins',sans-serif;">Your project image</span>
+      <div class="cover-carousel" id="cover-carousel-01" style="height: 480px;">
+        <img class="cover-slide is-active" src="uploads/cover-01-pipeline.jpg" alt="Agent OZ pipeline dashboard with next best actions and the agent side panel" decoding="async">
+        <img class="cover-slide" src="uploads/cover-02-opportunity.jpg" alt="Agent OZ opportunity draft — Salesforce fields prefilled from a Zoom call" decoding="async">
+        <img class="cover-slide" src="uploads/cover-03-agentic.jpg" alt="Agentic co-pilot title card with the monday logo" decoding="async">
+        <div class="cover-bars" role="tablist" aria-label="Project cover images">
+          <button type="button" class="cover-bar is-active" role="tab" aria-selected="true" aria-label="Cover image 1"><span></span></button>
+          <button type="button" class="cover-bar" role="tab" aria-selected="false" aria-label="Cover image 2"><span></span></button>
+          <button type="button" class="cover-bar" role="tab" aria-selected="false" aria-label="Cover image 3"><span></span></button>
+        </div>
       </div>
       <div style="padding: 32px 40px 36px; display: flex; justify-content: space-between; align-items: flex-end; gap: 32px;">
         <div style="align-self: stretch; flex-grow: 39; z-index: 85">
@@ -358,6 +380,50 @@ document.addEventListener('DOMContentLoaded', function() {
       el.style.transform = orig;
       el.style.boxShadow = '';
     });
+  });
+
+  // Auto-advancing cover carousel on the case study cards
+  document.querySelectorAll('.cover-carousel').forEach(function(root) {
+    var slides = root.querySelectorAll('.cover-slide');
+    var bars = root.querySelectorAll('.cover-bar');
+    if (slides.length < 2) return;
+    var DURATION = 4200;
+    var index = 0, timer = null, paused = false;
+
+    function show(next) {
+      index = (next + slides.length) % slides.length;
+      slides.forEach(function(s, i) { s.classList.toggle('is-active', i === index); });
+      bars.forEach(function(b, i) {
+        b.classList.remove('is-active', 'is-done');
+        b.setAttribute('aria-selected', i === index ? 'true' : 'false');
+        if (i < index) b.classList.add('is-done');
+      });
+      // Force a reflow so the fill animation restarts from zero
+      void bars[index].offsetWidth;
+      bars[index].classList.add('is-active');
+    }
+
+    function play() { clearTimeout(timer); if (!paused) timer = setTimeout(function() { show(index + 1); play(); }, DURATION); }
+    function stop() { clearTimeout(timer); }
+
+    bars.forEach(function(bar, i) {
+      bar.addEventListener('click', function() { show(i); play(); });
+    });
+    root.addEventListener('mouseenter', function() { paused = true; stop(); });
+    root.addEventListener('mouseleave', function() { paused = false; play(); });
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) stop(); else play();
+    });
+
+    // Only run while the card is on screen
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) { if (e.isIntersecting) play(); else stop(); });
+      }, { threshold: 0.25 }).observe(root);
+    } else {
+      play();
+    }
+    show(0);
   });
 });
 </script>
