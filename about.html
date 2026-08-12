@@ -110,6 +110,20 @@
     .hobbies-card { min-height: 300px; }
   }
 
+  @keyframes marquee-scroll {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0%); }
+  }
+
+  .tools-marquee { overflow: hidden; padding: 24px; }
+  .tools-marquee-track {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    width: max-content;
+    animation: marquee-scroll 22s linear infinite;
+  }
+
   @media (max-width: 768px) {
     .about-hero-title { font-size: 72px !important; }
     .about-bio-row > img { width: 240px !important; height: 240px !important; }
@@ -198,50 +212,24 @@
             <img src="uploads/about-divider.svg" alt="" style="position: absolute; top: -1.5px; left: 0; width: 100%; height: 3px;">
           </div>
 
-          <div style="padding: 24px;">
-            <div class="tool-icons-row" style="display: flex; gap: 16px; align-items: center;">
-              <!-- Figma -->
-              <div class="tool-icon">
-                <div class="tool-icon-inner" style="background: #313131;">
-                  <img src="uploads/about-tool-figma.svg" alt="Figma" style="width: 18px; height: 27px;">
-                </div>
-              </div>
-              <!-- Cursor -->
-              <div class="tool-icon">
-                <div class="tool-icon-inner">
-                  <img src="uploads/about-tool-cursor.png" alt="Cursor" style="width: 43px; height: 43px; border-radius: 9px;">
-                </div>
-              </div>
-              <!-- Framer -->
-              <div class="tool-icon">
-                <div class="tool-icon-inner">
-                  <img src="uploads/about-tool-framer.png" alt="Framer" style="width: 43px; height: 43px;">
-                </div>
-              </div>
-              <!-- Figma Slides -->
-              <div class="tool-icon">
-                <div class="tool-icon-inner" style="background: #531753;">
-                  <img src="uploads/about-tool-figma-slides-1.svg" alt="Figma Slides" style="width: 23px; height: 23px;">
-                </div>
-              </div>
-              <!-- Wispr Flow -->
-              <div class="tool-icon">
-                <div class="tool-icon-inner">
-                  <img src="uploads/about-tool-wispr.png" alt="Wispr Flow" style="width: 43px; height: 43px; border-radius: 9px; object-fit: contain;">
-                </div>
-              </div>
-              <!-- Slack -->
-              <div class="tool-icon">
-                <div class="tool-icon-inner" style="background: white;">
-                  <img src="uploads/about-tool-slack.svg" alt="Slack" style="width: 31px; height: 30px;">
-                </div>
-              </div>
-              <!-- Notion -->
-              <div class="tool-icon">
-                <div class="tool-icon-inner" style="background: white;">
-                  <img src="uploads/about-tool-notion.svg" alt="Notion" style="width: 25px; height: 26px;">
-                </div>
-              </div>
+          <div class="tools-marquee">
+            <div class="tools-marquee-track" aria-hidden="true">
+              <!-- set 1 -->
+              <div class="tool-icon"><div class="tool-icon-inner" style="background:#313131;"><img src="uploads/about-tool-figma.svg" alt="Figma" style="width:18px;height:27px;"></div></div>
+              <div class="tool-icon"><div class="tool-icon-inner"><img src="uploads/about-tool-cursor.png" alt="Cursor" style="width:43px;height:43px;border-radius:9px;"></div></div>
+              <div class="tool-icon"><div class="tool-icon-inner"><img src="uploads/about-tool-framer.png" alt="Framer" style="width:43px;height:43px;"></div></div>
+              <div class="tool-icon"><div class="tool-icon-inner" style="background:#531753;"><img src="uploads/about-tool-figma-slides-1.svg" alt="Figma Slides" style="width:23px;height:23px;"></div></div>
+              <div class="tool-icon"><div class="tool-icon-inner"><img src="uploads/about-tool-wispr.png" alt="Wispr Flow" style="width:43px;height:43px;border-radius:9px;object-fit:contain;"></div></div>
+              <div class="tool-icon"><div class="tool-icon-inner" style="background:white;"><img src="uploads/about-tool-slack.svg" alt="Slack" style="width:31px;height:30px;"></div></div>
+              <div class="tool-icon"><div class="tool-icon-inner" style="background:white;"><img src="uploads/about-tool-notion.svg" alt="Notion" style="width:25px;height:26px;"></div></div>
+              <!-- set 2 (duplicate for seamless loop) -->
+              <div class="tool-icon"><div class="tool-icon-inner" style="background:#313131;"><img src="uploads/about-tool-figma.svg" alt="" style="width:18px;height:27px;"></div></div>
+              <div class="tool-icon"><div class="tool-icon-inner"><img src="uploads/about-tool-cursor.png" alt="" style="width:43px;height:43px;border-radius:9px;"></div></div>
+              <div class="tool-icon"><div class="tool-icon-inner"><img src="uploads/about-tool-framer.png" alt="" style="width:43px;height:43px;"></div></div>
+              <div class="tool-icon"><div class="tool-icon-inner" style="background:#531753;"><img src="uploads/about-tool-figma-slides-1.svg" alt="" style="width:23px;height:23px;"></div></div>
+              <div class="tool-icon"><div class="tool-icon-inner"><img src="uploads/about-tool-wispr.png" alt="" style="width:43px;height:43px;border-radius:9px;object-fit:contain;"></div></div>
+              <div class="tool-icon"><div class="tool-icon-inner" style="background:white;"><img src="uploads/about-tool-slack.svg" alt="" style="width:31px;height:30px;"></div></div>
+              <div class="tool-icon"><div class="tool-icon-inner" style="background:white;"><img src="uploads/about-tool-notion.svg" alt="" style="width:25px;height:26px;"></div></div>
             </div>
           </div>
         </div>

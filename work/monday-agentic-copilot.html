@@ -181,6 +181,11 @@
   .jtbd-dot { width: 8px; height: 8px; display: flex; align-items: center; justify-content: center; padding: 0; border: 0; background: none; cursor: pointer; }
   .jtbd-dot::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #D0D4E4; transition: width 150ms ease, height 150ms ease, background 150ms ease; }
   .jtbd-dot.active::before { width: 8px; height: 8px; background: #0073EA; }
+  .jtbd-acc-chevron { transition: transform 300ms ease; flex-shrink: 0; display: block; }
+  .jtbd-acc.open .jtbd-acc-chevron { transform: rotate(180deg); }
+  .jtbd-acc.open .jtbd-acc-head p { color: #D12E8B; }
+  .jtbd-acc-body { max-height: 0; overflow: hidden; transition: max-height 350ms cubic-bezier(0.4,0,0.2,1); }
+  .jtbd-acc.open .jtbd-acc-body { max-height: 160px; }
 
   /* KEY UX DECISIONS — 3-slide horizontal carousel (Figma Frame 2147240454) */
   .kux-track { display: flex; gap: 50px; transition: transform 600ms cubic-bezier(0.4,0,0.2,1); will-change: transform; }
@@ -791,6 +796,30 @@
   </div>
 </section>
 
+<!-- PROJECT GLIMPSE (video) -->
+<section id="project-glimpse" style="background: linear-gradient(180deg, #F9FBFF 19.62%, #FFE8FD 100%); padding: 80px 120px;">
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 56px;">
+
+    <div style="display: flex; flex-direction: column; gap: 12px; align-items: center; text-align: center; width: 100%;">
+      <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; line-height: 28px; color: #611BF3;">Don't want to scroll through?</p>
+      <h2 style="font-family: 'Crimson Pro', Georgia, serif; font-weight: 300; font-style: italic; font-size: 50px; line-height: normal; color: #323338;">Project Glimpse</h2>
+    </div>
+
+    <div style="width: 1026px; max-width: 100%; border-radius: 20px; border: 4px solid #534D70; background: #EBE8FF; overflow: hidden; display: flex; flex-direction: column;">
+      <div class="glimpse-video-wrap" style="position: relative; width: 100%; aspect-ratio: 1034 / 552; overflow: hidden; cursor: pointer;" id="glimpse-player">
+        <video preload="metadata" playsinline muted style="width: 100%; height: 100%; object-fit: cover; display: block;" src="../uploads/Project-Glimpse.mp4"></video>
+        <div class="glimpse-play-btn" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(59,48,84,0.25); transition: opacity 300ms ease;">
+          <svg width="72" height="72" viewBox="0 0 72 72" fill="none" style="filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));"><circle cx="36" cy="36" r="36" fill="rgba(255,255,255,0.92)"/><path d="M29 24L50 36L29 48V24Z" fill="#534D70"/></svg>
+        </div>
+      </div>
+      <div style="height: 60px; background: #3D3654; display: flex; align-items: center; justify-content: center; padding: 0 24px;">
+        <p id="glimpse-play-label" style="font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 13px; color: #D5CDFF; white-space: nowrap;">Click to play</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- JOBS TO BE DONE -->
 <section id="jobs" style="background: #FFFFFF; padding: 80px 120px;">
   <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 56px;">
@@ -799,8 +828,8 @@
 
     <div style="display: flex; flex-direction: column; gap: 40px; width: 100%;">
 
-      <div style="display: flex; gap: 24px; align-items: center; width: 100%;">
-        <button type="button" class="jtbd-nav" data-dir="left" aria-label="Previous job" disabled><svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true" style="display: block; transform: rotate(90deg);"><path d="M18.8835 25.5206C19.5001 26.1597 20.4999 26.1597 21.1165 25.5206L29.5375 16.7934C30.1542 16.1543 30.1542 15.1182 29.5375 14.4792C28.9209 13.8402 27.9212 13.8402 27.3046 14.4792L20 22.0494L12.6954 14.4792C12.0788 13.8402 11.0791 13.8402 10.4625 14.4792C9.84585 15.1182 9.84585 16.1543 10.4625 16.7934L18.8835 25.5206Z" fill="currentColor"></path></svg></button>
+      <div style="display: flex; gap: 24px; align-items: flex-start; width: 100%;">
+        <button type="button" class="jtbd-nav" data-dir="left" aria-label="Previous job" disabled style="align-self: flex-start; margin-top: 161px;"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true" style="display: block; transform: rotate(90deg);"><path d="M18.8835 25.5206C19.5001 26.1597 20.4999 26.1597 21.1165 25.5206L29.5375 16.7934C30.1542 16.1543 30.1542 15.1182 29.5375 14.4792C28.9209 13.8402 27.9212 13.8402 27.3046 14.4792L20 22.0494L12.6954 14.4792C12.0788 13.8402 11.0791 13.8402 10.4625 14.4792C9.84585 15.1182 9.84585 16.1543 10.4625 16.7934L18.8835 25.5206Z" fill="currentColor"></path></svg></button>
         <div style="flex: 1 0 0; min-width: 0;">
 
           <div class="jtbd-slide active" data-slide="0">
@@ -819,26 +848,29 @@
 
             <div class="jtbd-list" style="flex: 1 0 0; min-width: 0; display: flex; flex-direction: column; gap: 40px; padding: 32px 16px; border-radius: 8px;">
               <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px; color: #D12E8B;">As a Sales rep, I’d like to...</p>
-              <div style="display: flex; flex-direction: column; gap: 40px;">
-                <div style="display: flex; flex-direction: column; gap: 24px;">
-                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+              <div style="display: flex; flex-direction: column; gap: 0;">
+                <div class="jtbd-acc">
+                  <div class="jtbd-acc-head" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; cursor: pointer;">
                     <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #676879;">Know exactly who to focus on right now</p>
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" style="display: block; flex-shrink: 0;"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
+                    <svg class="jtbd-acc-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
                   </div>
+                  <div class="jtbd-acc-body"><p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 28px; color: #9B9EAF; padding-bottom: 12px;">so that I can dive straight into selling instead of wasting time figuring out who to contact first.</p></div>
                   <div style="height: 1px; background: #D0D4E4;"></div>
                 </div>
-                <div style="display: flex; flex-direction: column; gap: 24px;">
-                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+                <div class="jtbd-acc">
+                  <div class="jtbd-acc-head" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; cursor: pointer;">
                     <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #676879;">Catch warning signs before accounts slip away</p>
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" style="display: block; flex-shrink: 0;"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
+                    <svg class="jtbd-acc-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
                   </div>
+                  <div class="jtbd-acc-body"><p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 28px; color: #9B9EAF; padding-bottom: 12px;">so that I can step in early and save the relationship before it falls through the cracks.</p></div>
                   <div style="height: 1px; background: #D0D4E4;"></div>
                 </div>
-                <div style="display: flex; flex-direction: column; gap: 24px;">
-                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+                <div class="jtbd-acc">
+                  <div class="jtbd-acc-head" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; cursor: pointer;">
                     <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #676879;">Stay in control across a massive portfolio</p>
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" style="display: block; flex-shrink: 0;"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
+                    <svg class="jtbd-acc-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
                   </div>
+                  <div class="jtbd-acc-body"><p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 28px; color: #9B9EAF; padding-bottom: 12px;">so that I can stay completely focused without having to manually check on hundreds of accounts.</p></div>
                   <div style="height: 1px; background: #D0D4E4;"></div>
                 </div>
               </div>
@@ -861,19 +893,21 @@
 
             <div class="jtbd-list" style="flex: 1 0 0; min-width: 0; display: flex; flex-direction: column; gap: 40px; padding: 32px 16px; border-radius: 8px;">
               <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px; color: #D12E8B;">As a Sales rep, I’d like to...</p>
-              <div style="display: flex; flex-direction: column; gap: 40px;">
-                <div style="display: flex; flex-direction: column; gap: 24px;">
-                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+              <div style="display: flex; flex-direction: column; gap: 0;">
+                <div class="jtbd-acc">
+                  <div class="jtbd-acc-head" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; cursor: pointer;">
                     <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #676879;">Automated Follow-ups &amp; Quotes</p>
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" style="display: block; flex-shrink: 0;"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
+                    <svg class="jtbd-acc-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
                   </div>
+                  <div class="jtbd-acc-body"><p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 28px; color: #9B9EAF; padding-bottom: 12px;">so that I can free up my time to focus on building relationships with my clients.</p></div>
                   <div style="height: 1px; background: #D0D4E4;"></div>
                 </div>
-                <div style="display: flex; flex-direction: column; gap: 24px;">
-                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+                <div class="jtbd-acc">
+                  <div class="jtbd-acc-head" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; cursor: pointer;">
                     <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #676879;">One-Click Salesforce Updates</p>
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" style="display: block; flex-shrink: 0;"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
+                    <svg class="jtbd-acc-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
                   </div>
+                  <div class="jtbd-acc-body"><p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 28px; color: #9B9EAF; padding-bottom: 12px;">so that I can quickly review, approve, and keep deal momentum going without getting bogged down in paperwork.</p></div>
                   <div style="height: 1px; background: #D0D4E4;"></div>
                 </div>
               </div>
@@ -896,19 +930,29 @@
 
             <div class="jtbd-list" style="flex: 1 0 0; min-width: 0; display: flex; flex-direction: column; gap: 40px; padding: 32px 16px; border-radius: 8px;">
               <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px; color: #D12E8B;">As a Sales rep, I’d like to...</p>
-              <div style="display: flex; flex-direction: column; gap: 40px;">
-                <div style="display: flex; flex-direction: column; gap: 24px;">
-                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+              <div style="display: flex; flex-direction: column; gap: 0;">
+                <div class="jtbd-acc">
+                  <div class="jtbd-acc-head" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; cursor: pointer;">
                     <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #676879;">Handle a larger portfolio without losing touch</p>
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" style="display: block; flex-shrink: 0;"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
+                    <svg class="jtbd-acc-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
                   </div>
+                  <div class="jtbd-acc-body"><p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 28px; color: #9B9EAF; padding-bottom: 12px;">so that I can grow our business while still making every single client feel valued.</p></div>
                   <div style="height: 1px; background: #D0D4E4;"></div>
                 </div>
-                <div style="display: flex; flex-direction: column; gap: 24px;">
-                  <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+                <div class="jtbd-acc">
+                  <div class="jtbd-acc-head" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; cursor: pointer;">
                     <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #676879;">Focus on human connections instead of admin</p>
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true" style="display: block; flex-shrink: 0;"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
+                    <svg class="jtbd-acc-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
                   </div>
+                  <div class="jtbd-acc-body"><p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 28px; color: #9B9EAF; padding-bottom: 12px;">so that I can build real trust and act as a true partner to my clients.</p></div>
+                  <div style="height: 1px; background: #D0D4E4;"></div>
+                </div>
+                <div class="jtbd-acc">
+                  <div class="jtbd-acc-head" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; cursor: pointer;">
+                    <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #676879;">Drive sustainable revenue growth</p>
+                    <svg class="jtbd-acc-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
+                  </div>
+                  <div class="jtbd-acc-body"><p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 28px; color: #9B9EAF; padding-bottom: 12px;">so that I can drive sustainable revenue growth through strong, meaningful interactions.</p></div>
                   <div style="height: 1px; background: #D0D4E4;"></div>
                 </div>
               </div>
@@ -916,7 +960,7 @@
           </div>
 
         </div>
-        <button type="button" class="jtbd-nav" data-dir="right" aria-label="Next job"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true" style="display: block; transform: rotate(-90deg);"><path d="M18.8835 25.5206C19.5001 26.1597 20.4999 26.1597 21.1165 25.5206L29.5375 16.7934C30.1542 16.1543 30.1542 15.1182 29.5375 14.4792C28.9209 13.8402 27.9212 13.8402 27.3046 14.4792L20 22.0494L12.6954 14.4792C12.0788 13.8402 11.0791 13.8402 10.4625 14.4792C9.84585 15.1182 9.84585 16.1543 10.4625 16.7934L18.8835 25.5206Z" fill="currentColor"></path></svg></button>
+        <button type="button" class="jtbd-nav" data-dir="right" aria-label="Next job" style="align-self: flex-start; margin-top: 161px;"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true" style="display: block; transform: rotate(-90deg);"><path d="M18.8835 25.5206C19.5001 26.1597 20.4999 26.1597 21.1165 25.5206L29.5375 16.7934C30.1542 16.1543 30.1542 15.1182 29.5375 14.4792C28.9209 13.8402 27.9212 13.8402 27.3046 14.4792L20 22.0494L12.6954 14.4792C12.0788 13.8402 11.0791 13.8402 10.4625 14.4792C9.84585 15.1182 9.84585 16.1543 10.4625 16.7934L18.8835 25.5206Z" fill="currentColor"></path></svg></button>
       </div>
 
       <div class="jtbd-callout-wrap" style="padding: 0 72px; width: 100%;">
@@ -1469,11 +1513,10 @@
         </div>
         <div style="padding: 24px; display: flex; flex-direction: column; gap: 16px; flex: 1;">
           <div style="flex: 1;">
-            <p style="font-family: 'Poppins', sans-serif; font-style: italic; font-weight: 400; font-size: 18px; line-height: 26px; color: #2F3036;">WalkMe System's Settings</p>
-            <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Streamlined the settings menu to <b>improve navigation</b>, enabling users to <b>find features faster</b>.</p>
+            <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #323338;">Streamlined <b>WalkMe</b>'s <b>Settings Architecture</b> to <b>Accelerate Navigation</b> and <b>Feature Discovery</b></p>
           </div>
           <div style="display: flex; align-items: center; justify-content: space-between;">
-            <a href="#" style="display: flex; align-items: center; gap: 6px; text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; color: #0049DB;">Let's see <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 9L7.5 6L4.5 3" stroke="#0049DB" stroke-width="2" stroke-linecap="round"/></svg></a>
+            <a href="walkme-system-settings.html" style="display: flex; align-items: center; gap: 6px; text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; color: #0049DB;">Let's see <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 9L7.5 6L4.5 3" stroke="#0049DB" stroke-width="2" stroke-linecap="round"/></svg></a>
             <img src="../uploads/other-walkme-logo.png" alt="WalkMe" style="height: 15px; width: auto;">
           </div>
         </div>
@@ -1487,11 +1530,10 @@
         </div>
         <div style="padding: 24px; display: flex; flex-direction: column; gap: 16px; flex: 1;">
           <div style="flex: 1;">
-            <p style="font-family: 'Poppins', sans-serif; font-style: italic; font-weight: 400; font-size: 18px; line-height: 26px; color: #2F3036;">A/B Testing platform by monday.com</p>
-            <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Used <b>behavioral UX</b> to boost A/B test launches, <b>driving 95% growth</b> and <b>30% faster decision-making</b>.</p>
+            <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #323338;">Drove <b>95% Growth</b> and <b>30% Faster Decisions</b> on <b>monday.com</b>'s A/B Testing Platform <b>Using Behavioral UX</b></p>
           </div>
           <div style="display: flex; align-items: center; justify-content: space-between;">
-            <a href="#" style="display: flex; align-items: center; gap: 6px; text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; color: #0049DB;">Let's see <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.5 9L7.5 6L4.5 3" stroke="#0049DB" stroke-width="2" stroke-linecap="round"/></svg></a>
+            <span style="display: inline-flex; align-items: center; padding: 8px 16px; background: #FAF9F6; border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 14px; line-height: 20px; color: #9D6103; white-space: nowrap;">Still under construction 🛠️</span>
             <svg width="21" height="13" viewBox="0 0 21 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2.35 12.13C1.5 12.13.71 11.64.29 10.86c-.41-.79-.39-1.75.07-2.51L4.6 1.24C5.03.47 5.84 0 6.69.03c.86.02 1.63.53 2.03 1.33.39.8.34 1.76-.13 2.51L4.35 10.97c-.43.72-1.19 1.16-2 1.16z" fill="#FB275D"/><path fill-rule="evenodd" clip-rule="evenodd" d="M9.66 12.13c-.86 0-1.65-.49-2.06-1.28-.42-.79-.39-1.75.07-2.5L11.9 1.24c.43-.79 1.24-1.26 2.1-1.24.86.02 1.65.54 2.04 1.34.39.81.33 1.78-.15 2.53l-4.24 7.1c-.43.73-1.18 1.16-1.99 1.16z" fill="#FFCB00"/><path fill-rule="evenodd" clip-rule="evenodd" d="M17.51 12.13c1.6 0 2.9-1.33 2.9-2.98 0-1.65-1.3-2.98-2.9-2.98-1.61 0-2.91 1.33-2.91 2.98 0 1.65 1.3 2.98 2.91 2.98z" fill="#00C875"/></svg>
           </div>
         </div>
@@ -1613,6 +1655,36 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   showKux(0);
   window.addEventListener('resize', function() { showKux(kuxIndex); });
+
+  // Horizontal scroll (trackpad two-finger swipe / shift+wheel) on the kux section.
+  // Accumulates deltaX so the continuous small events from a trackpad are counted correctly.
+  var kuxScrollCooldown = false;
+  var kuxAccumX = 0;
+  (kuxViewport || kuxTrack) && (kuxViewport || kuxTrack).closest('section').addEventListener('wheel', function(e) {
+    var absDX = Math.abs(e.deltaX), absDY = Math.abs(e.deltaY);
+    if (absDY > absDX * 2.5) return; // clearly vertical — let page scroll
+    e.preventDefault(); // claim the event before the browser navigates back/forward
+    if (kuxScrollCooldown) return;
+    kuxAccumX += e.deltaX;
+    if (Math.abs(kuxAccumX) > 40) {
+      kuxScrollCooldown = true;
+      showKux(kuxIndex + (kuxAccumX > 0 ? 1 : -1));
+      kuxAccumX = 0;
+      setTimeout(function() { kuxScrollCooldown = false; kuxAccumX = 0; }, 700);
+    }
+  }, { passive: false });
+
+  // Touch swipe support
+  var kuxTouchX = null;
+  (kuxViewport || kuxTrack) && (kuxViewport || kuxTrack).closest('section').addEventListener('touchstart', function(e) {
+    kuxTouchX = e.touches[0].clientX;
+  }, { passive: true });
+  (kuxViewport || kuxTrack) && (kuxViewport || kuxTrack).closest('section').addEventListener('touchend', function(e) {
+    if (kuxTouchX === null) return;
+    var dx = kuxTouchX - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 40) showKux(kuxIndex + (dx > 0 ? 1 : -1));
+    kuxTouchX = null;
+  }, { passive: true });
 
   // Slide 01 visual: six agent-generated cards orbiting a circle, one in focus
   // at the top. Ported from the Figma Make prototype.
@@ -1774,6 +1846,13 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   showJob(0);
 
+  // Accordion toggle for JTBD items
+  document.querySelectorAll('.jtbd-acc').forEach(function(acc) {
+    acc.querySelector('.jtbd-acc-head').addEventListener('click', function() {
+      acc.classList.toggle('open');
+    });
+  });
+
   // Lock the slides wrapper to the tallest slide so the nav arrows never jump.
   // Deferred to rAF so layout is fully computed before we measure.
   requestAnimationFrame(function() {
@@ -1837,6 +1916,37 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+  // Project Glimpse video player
+  (function() {
+    var player = document.getElementById('glimpse-player');
+    if (!player) return;
+    var video = player.querySelector('video');
+    var overlay = player.querySelector('.glimpse-play-btn');
+    var label = document.getElementById('glimpse-play-label');
+
+    player.addEventListener('click', function() {
+      if (video.paused) {
+        video.muted = false;
+        video.play();
+        overlay.style.opacity = '0';
+        overlay.style.pointerEvents = 'none';
+        label.textContent = 'Click to pause';
+      } else {
+        video.pause();
+        overlay.style.opacity = '1';
+        overlay.style.pointerEvents = 'auto';
+        label.textContent = 'Click to play';
+      }
+    });
+
+    video.addEventListener('ended', function() {
+      overlay.style.opacity = '1';
+      overlay.style.pointerEvents = 'auto';
+      label.textContent = 'Click to replay';
+      video.currentTime = 0;
+    });
+  })();
 </script>
 </body>
 </html>
