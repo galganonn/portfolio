@@ -90,8 +90,9 @@
   }
 
   /* THE CHALLENGE & SOLUTION + tabbed SOLUTION — ported from three Figma Make animations */
-  .chip { height: 48px; padding: 0 24px; border-radius: 8px; border: 1px solid #323338; background: #fff; font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 400; color: #323338; cursor: pointer; transition: background 150ms ease; white-space: nowrap; }
-  .chip.active { background: rgba(103,104,121,0.1); font-weight: 600; }
+  .chip { height: 48px; padding: 0 24px; border-radius: 8px; border: 1px solid #323338; background: #fff; font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 400; color: #323338; cursor: pointer; transition: background 150ms ease, color 150ms ease, transform 150ms ease; white-space: nowrap; }
+  .chip:not(.active):hover { background: #f0f0f2; transform: translateY(-2px); }
+  .chip.active { background: #323338; color: #fff; font-weight: 600; border-color: #323338; }
   .tab-panel { display: none; opacity: 0; transition: opacity 200ms ease; align-items: flex-start; justify-content: space-between; gap: 40px; width: 100%; }
   .tab-panel.active { display: flex; opacity: 1; }
 
@@ -386,7 +387,7 @@
               </div>
               <!-- pipeline (striped) -->
               <div style="position: relative; width: 343.04px; height: 44.13px; background: #E8E8EC; border: 1.337px solid #FFFFFF; border-radius: 8px; overflow: hidden;">
-                <div style="position: absolute; left: 0; top: 0; width: 321.64px; height: 100%; background: repeating-linear-gradient(45deg, #FFFFFF 0 2.675px, #E8E8EC 2.675px 9.36px);"></div>
+                <div style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: repeating-linear-gradient(45deg, #FFFFFF 0 2.675px, #E8E8EC 2.675px 9.36px);"></div>
                 <div style="position: absolute; left: 0; top: 5.35px; display: flex; flex-direction: column; width: 321.64px; padding: 0 10.7px;">
                   <span style="font-family: 'Poppins',sans-serif; font-weight: 600; font-size: 9.36px; line-height: 13.37px; color: #323338;">Pipeline</span>
                   <span style="font-family: 'Poppins',sans-serif; font-weight: 700; font-size: 16.05px; line-height: 20.06px; letter-spacing: -0.1px; color: #323338;">$61K</span>
@@ -1458,16 +1459,16 @@
     <div style="display: flex; gap: 56px; justify-content: center;">
 
       <!-- Card: WalkMe -->
-      <div style="width: 360px; border-radius: 12px; border: 1px solid #E2E4EB; overflow: hidden; background: #FFFFFF;">
-        <div style="height: 220px; overflow: hidden; background: #07071A; position: relative;">
+      <div style="width: 360px; border-radius: 12px; border: 1px solid #E2E4EB; overflow: hidden; background: #FFFFFF; display: flex; flex-direction: column;">
+        <div style="height: 220px; overflow: hidden; background: #07071A; position: relative; flex-shrink: 0;">
           <div style="position: absolute; left: -36px; top: -89px; width: 288px; height: 295px; filter: blur(3.2px); background: radial-gradient(circle at 50% 50%, rgba(58,52,200,1) 0%, rgba(42,32,160,1) 25%, rgba(31,23,125,1) 40%, rgba(19,14,90,1) 55%, rgba(19,14,90,0) 75%);"></div>
           <div style="position: absolute; left: 198px; top: -30px; width: 180px; height: 177px; filter: blur(6.4px); background: radial-gradient(circle at 50% 50%, rgba(30,24,128,1) 0%, rgba(30,24,128,0) 65%);"></div>
           <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(200,192,240,0) 30%, #C8C0F0 80%, #EDEAFC 100%); display: flex; align-items: flex-start; justify-content: center;">
             <img src="../uploads/other-walkme-thumb.png" alt="WalkMe settings screenshot" style="width: 357px; height: 204px; object-fit: cover; margin-top: 16px;">
           </div>
         </div>
-        <div style="padding: 24px; display: flex; flex-direction: column; gap: 40px;">
-          <div>
+        <div style="padding: 24px; display: flex; flex-direction: column; gap: 16px; flex: 1;">
+          <div style="flex: 1;">
             <p style="font-family: 'Poppins', sans-serif; font-style: italic; font-weight: 400; font-size: 18px; line-height: 26px; color: #2F3036;">WalkMe System's Settings</p>
             <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Streamlined the settings menu to <b>improve navigation</b>, enabling users to <b>find features faster</b>.</p>
           </div>
@@ -1479,13 +1480,13 @@
       </div>
 
       <!-- Card: A/B Testing -->
-      <div style="width: 360px; border-radius: 12px; border: 1px solid #E2E4EB; overflow: hidden; background: #FFFFFF;">
-        <div style="height: 220px; overflow: hidden; position: relative;">
+      <div style="width: 360px; border-radius: 12px; border: 1px solid #E2E4EB; overflow: hidden; background: #FFFFFF; display: flex; flex-direction: column;">
+        <div style="height: 220px; overflow: hidden; position: relative; flex-shrink: 0;">
           <img src="../uploads/other-ab-bg.png" alt="" style="position: absolute; inset: 0; width: 101.4%; height: 121.4%; object-fit: cover;">
           <img src="../uploads/other-ab-screen.png" alt="A/B Testing dashboard" style="position: absolute; left: 50%; top: 19px; transform: translateX(-50%); width: 311px; height: 252px; object-fit: cover; box-shadow: 0 4px 29px -2px rgba(0,0,0,0.25);">
         </div>
-        <div style="padding: 24px; display: flex; flex-direction: column; gap: 40px;">
-          <div>
+        <div style="padding: 24px; display: flex; flex-direction: column; gap: 16px; flex: 1;">
+          <div style="flex: 1;">
             <p style="font-family: 'Poppins', sans-serif; font-style: italic; font-weight: 400; font-size: 18px; line-height: 26px; color: #2F3036;">A/B Testing platform by monday.com</p>
             <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Used <b>behavioral UX</b> to boost A/B test launches, <b>driving 95% growth</b> and <b>30% faster decision-making</b>.</p>
           </div>
@@ -1772,6 +1773,27 @@ document.addEventListener('DOMContentLoaded', function() {
     d.addEventListener('click', function() { showJob(Number(d.dataset.slide)); });
   });
   showJob(0);
+
+  // Lock the slides wrapper to the tallest slide so the nav arrows never jump.
+  // Deferred to rAF so layout is fully computed before we measure.
+  requestAnimationFrame(function() {
+    var wrapper = jSlides[0] && jSlides[0].parentElement;
+    if (!wrapper) return;
+    var maxH = 0;
+    Array.prototype.forEach.call(jSlides, function(slide) {
+      var wasActive = slide.classList.contains('active');
+      if (!wasActive) {
+        slide.style.setProperty('display', 'flex', 'important');
+        slide.style.setProperty('visibility', 'hidden', 'important');
+      }
+      maxH = Math.max(maxH, slide.offsetHeight);
+      if (!wasActive) {
+        slide.style.removeProperty('display');
+        slide.style.removeProperty('visibility');
+      }
+    });
+    wrapper.style.minHeight = maxH + 'px';
+  });
 
   // Hover lift on the floating cards (keeps each card's own rotation)
   Array.prototype.forEach.call(document.querySelectorAll('.float-card'), function(card) {
