@@ -88,7 +88,11 @@
   .cs-overlap > * { position: absolute; }
   .cs-overlap .ov-a { left: 0; top: 0; width: 47.21%; }
   .cs-overlap .ov-b { left: 50.47%; top: 23.44%; width: 47.21%; }
-  .cs-overlap .ov-arrow { left: 37.04%; top: 71.3%; width: 19.09%; transform: rotate(-122deg); transform-origin: center; opacity: 0.85; }
+  /* The arrow SVG exports unrotated (160.669 x 150.624) — Figma places it at
+     its natural size turned -122deg, sweeping out of the middle of the tips
+     screen. left/top are the un-rotated layout box, solved back from where the
+     rotated tip and tail land in the design. z-index lifts it over both shots. */
+  .cs-overlap .ov-arrow { left: 32.38%; top: 34.76%; width: 13.79%; transform: rotate(-122deg); z-index: 2; }
 
   /* IA browser-style card */
   .cs-ia-card { background: #FFFFFF; border: 1px solid #E8EAED; border-radius: 20px; overflow: hidden; box-shadow: 0 1px 6px rgba(0,0,0,0.04), 0 4px 24px rgba(0,0,0,0.08); }
