@@ -197,11 +197,16 @@
   .jtbd-acc.open .jtbd-acc-body { max-height: 160px; }
 
   /* KEY UX DECISIONS — 3-slide horizontal carousel (Figma Frame 2147240454) */
-  .kux-track { display: flex; gap: 50px; transition: transform 600ms cubic-bezier(0.4,0,0.2,1); will-change: transform; }
-  .kux-slide { flex: 0 0 100%; }
+  .kux-track { display: flex; align-items: stretch; gap: 50px; transition: transform 600ms cubic-bezier(0.4,0,0.2,1); will-change: transform; }
+  .kux-slide { flex: 0 0 100%; display: flex; flex-direction: column; }
+  .kux-slide > div { flex: 1; display: flex; flex-direction: column; }
+  .kux-body { flex: 1; }
   .kux-dot { width: 8px; height: 8px; display: flex; align-items: center; justify-content: center; padding: 0; border: 0; background: none; cursor: pointer; }
   .kux-dot::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #D0D4E4; transition: width 150ms ease, height 150ms ease, background 150ms ease; }
   .kux-dot.active::before { width: 8px; height: 8px; background: #0073EA; }
+
+  /* allow kux images to shrink proportionally on intermediate widths — prevents text from being squished to 2 words/line */
+  img.kux-visual { flex-shrink: 1 !important; min-width: 0; }
 
   /* Slide 01 visual — circular card carousel, ported from the Figma Make prototype */
   #kc-slot { position: relative; width: 470px; height: 413px; flex-shrink: 0; overflow: hidden; background: radial-gradient(ellipse at 50% 46%, #F2F5FD 0%, rgba(255,255,255,0) 70%); }
@@ -289,6 +294,11 @@
   /* the tilted plate that peeks out from behind the screenshot */
   .ms-shot::before { content: ''; position: absolute; left: 35.3%; top: 4%; width: 71.2%; height: 92%; background: #F3F3F3; border-radius: 8px; transform: rotate(4.12deg); z-index: 0; }
   .ms-shot img { position: relative; z-index: 1; display: block; width: 100%; height: auto; border: 1px solid #E7E9EF; border-radius: 8px; }
+
+  @media (max-width: 1200px) and (min-width: 901px) {
+    #kc-slot { width: 340px !important; height: 300px !important; }
+    #kc-stage { transform: scale(0.49); }
+  }
 
   @media (max-width: 900px) {
     .nav-links-list { display: none !important; }
@@ -1188,11 +1198,11 @@
         <!-- 01 — Unlocking AI with Gen-UI -->
         <div class="kux-slide">
           <div style="border-radius: 8px; border-right: 5px solid #FFC3FB; border-bottom: 5px solid #FFC3FB;">
-            <div class="kux-body" style="background: #fff; border: 1px solid #0056F5; border-radius: 8px; padding: 40px; display: flex; align-items: flex-start; justify-content: space-between; gap: 48px; height: 493px;">
+            <div class="kux-body" style="background: #fff; border: 1px solid #0056F5; border-radius: 8px; padding: 40px; display: flex; align-items: center; justify-content: space-between; gap: 48px;">
               <div class="kux-text" style="flex: 1 1 auto; max-width: 607px; display: flex; flex-direction: column; gap: 16px;">
                 <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 36px; line-height: 40px; color: #323338;">01</p>
                 <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px; color: #323338;">Unlocking AI with Gen-UI</p>
-                <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #323338;">To harness the full brainpower of the agent, <strong style="font-weight: 700;">standard text responses weren't enough.</strong> I collaborated closely with engineering to implement <strong style="font-weight: 700;">Generative UI</strong> - rendering dynamic, context-specific components on the fly directly within the chat stream.</p>
+                <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #323338;">To harness the full brainpower of the agent, <strong style="font-weight: 700;">standard text responses weren't enough.</strong><br><br>I collaborated closely with engineering to implement <strong style="font-weight: 700;">Generative UI</strong> - rendering dynamic, context-specific components on the fly directly within the chat stream.</p>
               </div>
 
               <!-- circular carousel of agent-generated surfaces -->
@@ -1372,13 +1382,13 @@
         <!-- 02 — Chat on the right -->
         <div class="kux-slide">
           <div style="border-radius: 8px; border-right: 5px solid #FFC3FB; border-bottom: 5px solid #FFC3FB;">
-            <div class="kux-body" style="background: #fff; border: 1px solid #0056F5; border-radius: 8px; padding: 40px; display: flex; align-items: flex-start; justify-content: space-between; gap: 64px; height: 493px;">
+            <div class="kux-body" style="background: #fff; border: 1px solid #0056F5; border-radius: 8px; padding: 40px; display: flex; align-items: center; justify-content: space-between; gap: 64px;">
               <div class="kux-text" style="flex: 1 1 auto; max-width: 369px; display: flex; flex-direction: column; gap: 16px;">
                 <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 36px; line-height: 40px; color: #323338;">02</p>
                 <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px; color: #323338;">Chat on the right</p>
                 <p style=”font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #323338;”>We intentionally placed the chat <strong style=”font-weight: 700;”>on the right</strong>.<br><br>User <strong style=”font-weight: 700;”>mental models</strong> dictate that <strong style=”font-weight: 700;”>left</strong>-aligned panels act as “<strong style=”font-weight: 700;”>Builders</strong>” (structural changes), while <strong style=”font-weight: 700;”>right</strong>-aligned panels act as “<strong style=”font-weight: 700;”>Assistants</strong>” (support and contextual actions).</p>
               </div>
-              <img class="kux-visual" src="../uploads/cs-kux-chat-right.png" alt="The agent chat panel docked to the right-hand side of the workspace" style="flex-shrink: 0; width: 687px; max-width: 100%; height: auto; border-radius: 8px;">
+              <img class="kux-visual" src="../uploads/cs-kux-chat-right.png" alt="The agent chat panel docked to the right-hand side of the workspace" style="flex-shrink: 0; width: 687px; max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #DCD8D8;">
             </div>
           </div>
         </div>
@@ -1386,13 +1396,13 @@
         <!-- 03 — AI Drafts, Humans Approve -->
         <div class="kux-slide">
           <div style="border-radius: 8px; border-right: 5px solid #FFC3FB; border-bottom: 5px solid #FFC3FB;">
-            <div class="kux-body" style="background: #fff; border: 1px solid #0056F5; border-radius: 8px; padding: 40px; display: flex; align-items: flex-start; justify-content: space-between; gap: 64px; height: 493px;">
+            <div class="kux-body" style="background: #fff; border: 1px solid #0056F5; border-radius: 8px; padding: 40px; display: flex; align-items: center; justify-content: space-between; gap: 64px;">
               <div class="kux-text" style="flex: 1 1 auto; max-width: 369px; display: flex; flex-direction: column; gap: 16px;">
                 <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 36px; line-height: 40px; color: #323338;">03</p>
                 <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px; color: #323338;">AI Drafts, Humans Approve</p>
-                <p style=”font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #323338;”>Users aren't ready to <strong style=”font-weight: 700;”>let AI independently</strong> contact clients. The V1 strategy revolves around “<strong style=”font-weight: 700;”>Drafting</strong>” — the agent does the heavy lifting, but the <strong style=”font-weight: 700;”>human must ratify</strong> every action. Full automation is our North Star, to be unlocked <strong style=”font-weight: 700;”>only after trust</strong> is solidified.</p>
+                <p style=”font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #323338;”>Users aren't ready to <strong style=”font-weight: 700;”>let AI independently</strong> contact clients.<br><br>The V1 strategy revolves around “<strong style=”font-weight: 700;”>Drafting</strong>” — the agent does the heavy lifting, but the <strong style=”font-weight: 700;”>human must ratify</strong> every action. Full automation is our North Star, to be unlocked <strong style=”font-weight: 700;”>only after trust</strong> is solidified.</p>
               </div>
-              <img class="kux-visual" src="../uploads/cs-kux-drafts-approve.png" alt="An agent-drafted message awaiting the rep's approval before it is sent" style="flex-shrink: 0; width: 687px; max-width: 100%; height: auto; border-radius: 8px;">
+              <img class="kux-visual" src="../uploads/cs-kux-drafts-approve.png" alt="An agent-drafted message awaiting the rep's approval before it is sent" style="flex-shrink: 0; width: 687px; max-width: 100%; height: auto; border-radius: 8px; border: 1px solid #DCD8D8;">
             </div>
           </div>
         </div>
