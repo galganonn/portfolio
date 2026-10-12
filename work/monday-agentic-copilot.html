@@ -44,17 +44,16 @@
   #process-fit { position: relative; width: 100%; }
   .p-stage { width: 1160px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; transform-origin: top center; }
   .p-row { display: flex; align-items: stretch; }
-  .p-card { width: 260px; border-radius: 20px; background: #fff; border: 1px solid #E5E7EB; box-shadow: 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.05); overflow: hidden; display: flex; flex-direction: column; opacity: 0; }
-  .p-card-bar { height: 4px; background: var(--accent); flex-shrink: 0; }
-  .p-card-body { padding: 20px 20px 24px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
-  .p-num { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent); opacity: 0.7; }
-  .p-label { font-weight: 600; font-size: 17px; color: #323338; letter-spacing: -0.02em; line-height: 1.3; }
-  .p-icon { margin-top: 20px; width: 60px; height: 60px; border-radius: 16px; background: var(--accent-bg); color: var(--accent); display: flex; align-items: center; justify-content: center; }
+  .p-card { width: 260px; border-radius: 16px; background: #F9FAFB; border: 1px solid #E5E7EB; box-shadow: 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.05); overflow: hidden; display: flex; flex-direction: column; opacity: 0; }
+  .p-card-body { padding: 20px; display: flex; flex-direction: row; align-items: center; gap: 16px; flex: 1; }
+  .p-num { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); opacity: 0.8; }
+  .p-label { font-weight: 600; font-size: 15px; color: #323338; line-height: 1.2; margin-top: 3px; }
+  .p-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--accent-bg); color: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .p-arrow { position: relative; width: 40px; height: 20px; flex-shrink: 0; align-self: center; transform-origin: left center; opacity: 0; }
   .p-arrow-line { position: absolute; top: 50%; left: 0; width: calc(100% - 8px); height: 1.5px; background: var(--accent); opacity: var(--line-op); transform: translateY(-50%); }
   .p-arrow-head { position: absolute; right: 0; top: 50%; transform: translateY(-50%); color: var(--accent); opacity: var(--head-op); }
   .p-arrow-dot { position: absolute; top: 50%; left: 0; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 6px 2px var(--accent-glow); transform: translateY(-50%); opacity: 0; }
-  .p-loop { align-self: flex-end; width: 560px; margin-top: -4px; position: relative; height: 60px; }
+  .p-loop { align-self: flex-end; width: 560px; margin-top: -2px; position: relative; height: 68px; }
   .p-loop svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
   .p-arc { stroke-dasharray: 5 4; opacity: 0; }
   .p-arc-head { opacity: 0; }
@@ -476,18 +475,16 @@
 
       <div class="p-row">
         <!-- 01 Research -->
-        <div class="p-card" style="--accent: #5B8CFF; --accent-bg: #EFF4FF; --i: 0;">
-          <div class="p-card-bar"></div>
+        <div class="p-card" style="--accent: #4169E1; --accent-bg: #EEF2FF; --i: 0;">
           <div class="p-card-body">
-            <span class="p-num">01</span>
-            <span class="p-label">Research</span>
             <div class="p-icon">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                 <path d="m8 11 2 2 4-4"></path>
                 <circle cx="11" cy="11" r="8"></circle>
                 <path d="m21 21-4.3-4.3"></path>
               </svg>
             </div>
+            <div><span class="p-num">01</span><br><span class="p-label">Research</span></div>
           </div>
         </div>
 
@@ -499,22 +496,14 @@
 
         <!-- 02 Concepts -->
         <div class="p-card" style="--accent: #7C6FD4; --accent-bg: #F2F0FB; --i: 1;">
-          <div class="p-card-bar"></div>
           <div class="p-card-body">
-            <span class="p-num">02</span>
-            <span class="p-label">Concepts (Claude Design)</span>
             <div class="p-icon">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M10 3H8"></path>
-                <path d="m15.007 5.008 3.987 3.986"></path>
-                <path d="M20 15v4"></path>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21.174 6.813a2.82 2.82 0 0 0-3.986-3.987L3.842 16.175a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"></path>
-                <path d="M22 17h-4"></path>
-                <path d="M4 5v4"></path>
-                <path d="M6 7H2"></path>
-                <path d="M9 2v2"></path>
+                <path d="m15.007 5.008 3.987 3.986"></path>
               </svg>
             </div>
+            <div><span class="p-num">02</span><br><span class="p-label">Concepts</span></div>
           </div>
         </div>
 
@@ -524,20 +513,18 @@
           <div class="p-arrow-dot"></div>
         </div>
 
-        <!-- 03 User testing -->
+        <!-- 03 User Testing -->
         <div class="p-card" style="--accent: #9B6FD4; --accent-bg: #F5F0FB; --i: 2;">
-          <div class="p-card-bar"></div>
           <div class="p-card-body">
-            <span class="p-num">03</span>
-            <span class="p-label">User testing</span>
             <div class="p-icon">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
                 <path d="M16 3.128a4 4 0 0 1 0 7.744"></path>
                 <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
                 <circle cx="9" cy="7" r="4"></circle>
               </svg>
             </div>
+            <div><span class="p-num">03</span><br><span class="p-label">User Testing</span></div>
           </div>
         </div>
 
@@ -549,24 +536,22 @@
 
         <!-- 04 Iterations -->
         <div class="p-card" style="--accent: #D4508A; --accent-bg: #FDF0F5; --i: 3;">
-          <div class="p-card-bar"></div>
           <div class="p-card-body">
-            <span class="p-num">04</span>
-            <span class="p-label">Iterations</span>
             <div class="p-icon">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                 <path d="m11 10 3 3"></path>
                 <path d="M6.5 21A3.5 3.5 0 1 0 3 17.5a2.62 2.62 0 0 1-.708 1.792A1 1 0 0 0 3 21z"></path>
                 <path d="M9.969 17.031 21.378 5.624a1 1 0 0 0-3.002-3.002L6.967 14.031"></path>
               </svg>
             </div>
+            <div><span class="p-num">04</span><br><span class="p-label">Iterations</span></div>
           </div>
         </div>
       </div>
 
       <!-- loop arc: spans the last two cards, points back to User testing -->
       <div class="p-loop">
-        <svg viewBox="0 0 560 60" fill="none" preserveAspectRatio="none">
+        <svg viewBox="0 0 560 52" fill="none" preserveAspectRatio="none">
           <defs>
             <linearGradient id="p-arc-grad" x1="560" y1="0" x2="0" y2="0" gradientUnits="userSpaceOnUse">
               <stop stop-color="#D4508A"></stop>
@@ -574,7 +559,7 @@
               <stop offset="1" stop-color="#D4508A"></stop>
             </linearGradient>
           </defs>
-          <path class="p-arc" d="M 540 6 C 540 50 20 50 20 6" stroke="url(#p-arc-grad)" stroke-width="1.5" stroke-linecap="round" fill="none"></path>
+          <path class="p-arc" d="M 540 6 C 540 46 20 46 20 6" stroke="url(#p-arc-grad)" stroke-width="1.5" stroke-linecap="round" fill="none"></path>
           <path class="p-arc-head" d="M 20 6 L 14 13 M 20 6 L 27 13" stroke="#D4508A" stroke-width="1.6" stroke-linecap="round"></path>
         </svg>
         <div class="p-arc-dot"></div>
