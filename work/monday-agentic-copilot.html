@@ -266,14 +266,13 @@
 
   /* INFORMATION ARCHITECTURE — schematic pillar diagram */
   #ia-fit { position: relative; width: 100%; }
-  .ia-stage { width: 1200px; margin: 0 auto; transform-origin: top center; }
-  .ia-conn { width: 0; height: 16px; border-left: 1.5px solid var(--c, #94A3B8); position: relative; }
-  .ia-conn::after { content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 6px; height: 6px; border-radius: 50%; background: var(--c, #94A3B8); }
-  .ia-conn-sm { height: 13px; }
-  .ia-col { flex: 1 0 0; min-width: 0; display: flex; flex-direction: column; align-items: center; padding: 0 14px 20px; border-radius: 14px; }
-  .ia-header { width: 100%; background: #fff; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; }
-  .ia-card { width: 100%; background: #fff; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 3px 7px rgba(15,23,42,0.04); }
-  .ia-card-title-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; }
+  .ia-stage { display: flex; flex-direction: column; align-items: center; gap: 0; width: 100%; }
+  .ia-col { flex: 1; border-radius: 12px; background: #F9FAFB; border: 1px solid #E5E7EB; display: flex; flex-direction: column; align-items: stretch; overflow: hidden; }
+  .ia-header { padding: 16px 20px 14px; display: flex; flex-direction: column; gap: 2px; border-bottom: 1px solid #E5E7EB; }
+  .ia-conn { width: 1.5px; background: #D1D5DB; margin: 0 auto; height: 12px; }
+  .ia-conn-sm { height: 6px; }
+  .ia-card { margin: 0 12px; border-radius: 8px; border: 1px solid #E5E7EB; background: #fff; padding: 10px 14px; }
+  .ia-card:last-child { margin-bottom: 12px; }
 
   /* Main screens: vertical tab list + screenshot panel */
   .ms-item { position: relative; overflow: hidden; width: 100%; text-align: left; padding: 18px 24px; border: none; background: none; cursor: pointer; font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879; border-radius: 8px; transition: background 150ms ease, color 150ms ease; }
@@ -864,133 +863,76 @@
     <h2 style="font-family: 'Crimson Pro', Georgia, serif; font-weight: 300; font-style: italic; font-size: 50px; line-height: normal; color: #323338; text-align: center;">Information Architecture</h2>
 
     <div id="ia-fit">
-      <div id="ia-stage" class="ia-stage">
+      <div class="ia-stage">
 
-        <div style="display: flex; flex-direction: column; align-items: center;">
-          <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338; white-space: nowrap;">OZ INTERFACE</p>
-          <div class="ia-conn" style="--c: #94A3B8; height: 14px;"></div>
-        </div>
-        <div style="width: 76%; height: 1.5px; background: #94A3B8; margin: 0 auto;"></div>
+        <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #9CA3AF; text-align: center; margin-bottom: 16px;">Agent Interface</p>
 
-        <div style="display: flex; gap: 24px; align-items: stretch; width: 100%;">
+        <div style="display: flex; gap: 16px; align-items: stretch; width: 100%;">
 
           <!-- A: Onboarding -->
-          <div class="ia-col" style="background: #F1F5F9; border: 1px solid #E2E8F0;">
-            <div class="ia-conn" style="--c: #94A3B8;"></div>
-            <div class="ia-header" style="border: 1.5px solid #E2E8F0;">
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">A</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">ONBOARDING</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">(Trust Building)</p>
+          <div class="ia-col">
+            <div class="ia-header">
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #9CA3AF;">A</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; color: #323338;">Onboarding</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 12px; color: #9CA3AF;">Trust building</p>
             </div>
-            <div class="ia-conn" style="--c: #94A3B8;"></div>
-
-            <div class="ia-card">
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Welcome &amp; AI Value</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">How the agent works, first time</p>
-            </div>
-            <div class="ia-conn ia-conn-sm" style="--c: #94A3B8;"></div>
-            <div class="ia-card">
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">CRM Integration Setup</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Connect Salesforce and email</p>
-            </div>
-            <div class="ia-conn ia-conn-sm" style="--c: #94A3B8;"></div>
-            <div class="ia-card">
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Human-in-the-Loop Intro</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Set approval preferences</p>
-            </div>
+            <div class="ia-conn"></div>
+            <div class="ia-card"><p style="font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 13px; color: #323338;">Welcome &amp; AI Value</p></div>
+            <div class="ia-conn ia-conn-sm"></div>
+            <div class="ia-card"><p style="font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 13px; color: #323338;">CRM Integration Setup</p></div>
+            <div class="ia-conn ia-conn-sm"></div>
+            <div class="ia-card"><p style="font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 13px; color: #323338;">Human-in-the-Loop Intro</p></div>
           </div>
 
           <!-- B: Catch-up -->
-          <div class="ia-col" style="background: #F1F5F9; border: 1px solid #E2E8F0;">
-            <div class="ia-conn" style="--c: #94A3B8;"></div>
-            <div class="ia-header" style="border: 1.5px solid #E2E8F0;">
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">B</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">CATCH-UP</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">(Daily Operations)</p>
+          <div class="ia-col">
+            <div class="ia-header">
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #9CA3AF;">B</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; color: #323338;">Catch-up</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 12px; color: #9CA3AF;">Daily operations</p>
             </div>
-            <div class="ia-conn" style="--c: #94A3B8;"></div>
-
-            <div class="ia-card">
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Daily Prioritization</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">What needs attention today</p>
-            </div>
-            <div class="ia-conn ia-conn-sm" style="--c: #94A3B8;"></div>
-            <div class="ia-card">
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">At-Risk Alerts</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Accounts showing warning signs</p>
-            </div>
-            <div class="ia-conn ia-conn-sm" style="--c: #94A3B8;"></div>
-            <div class="ia-card">
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Create / Update Opportunity</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Agent-drafted CRM updates</p>
-            </div>
-            <div class="ia-conn ia-conn-sm" style="--c: #94A3B8;"></div>
-            <div class="ia-card">
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Pending Approvals</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Review before anything goes out</p>
-            </div>
+            <div class="ia-conn"></div>
+            <div class="ia-card"><p style="font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 13px; color: #323338;">Daily Prioritization</p></div>
+            <div class="ia-conn ia-conn-sm"></div>
+            <div class="ia-card"><p style="font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 13px; color: #323338;">At-Risk Alerts</p></div>
+            <div class="ia-conn ia-conn-sm"></div>
+            <div class="ia-card"><p style="font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 13px; color: #323338;">Create / Update Opportunity</p></div>
+            <div class="ia-conn ia-conn-sm"></div>
+            <div class="ia-card"><p style="font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 13px; color: #323338;">Pending Approvals</p></div>
           </div>
 
           <!-- C: Portfolio -->
-          <div class="ia-col" style="background: #F1F5F9; border: 1px solid #E2E8F0;">
-            <div class="ia-conn" style="--c: #94A3B8;"></div>
-            <div class="ia-header" style="border: 1.5px solid #E2E8F0;">
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">C</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">PORTFOLIO</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">(Strategic View)</p>
+          <div class="ia-col">
+            <div class="ia-header">
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #9CA3AF;">C</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; color: #323338;">Portfolio</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 12px; color: #9CA3AF;">Strategic view</p>
             </div>
-            <div class="ia-conn" style="--c: #94A3B8;"></div>
-
-            <div class="ia-card">
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">All Accounts Dash</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">All accounts, health at a glance</p>
-            </div>
-            <div class="ia-conn ia-conn-sm" style="--c: #94A3B8;"></div>
-            <div class="ia-card">
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Progress to Goal</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Quota tracking and forecast</p>
-            </div>
-            <div class="ia-conn ia-conn-sm" style="--c: #94A3B8;"></div>
-            <div class="ia-card">
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Account Plan View</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Per-account plan and history</p>
-            </div>
-            <div class="ia-conn ia-conn-sm" style="--c: #94A3B8;"></div>
-            <div class="ia-card">
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Strategic Insights</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">AI-surfaced next steps per account</p>
-            </div>
+            <div class="ia-conn"></div>
+            <div class="ia-card"><p style="font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 13px; color: #323338;">All Accounts Dash</p></div>
+            <div class="ia-conn ia-conn-sm"></div>
+            <div class="ia-card"><p style="font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 13px; color: #323338;">Progress to Goal</p></div>
+            <div class="ia-conn ia-conn-sm"></div>
+            <div class="ia-card"><p style="font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 13px; color: #323338;">Account Plan View</p></div>
+            <div class="ia-conn ia-conn-sm"></div>
+            <div class="ia-card"><p style="font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 13px; color: #323338;">Strategic Insights</p></div>
           </div>
 
           <!-- D: Chat -->
-          <div class="ia-col" style="background: #F1F5F9; border: 1px solid #E2E8F0;">
-            <div class="ia-conn" style="--c: #94A3B8;"></div>
-            <div class="ia-header" style="border: 1.5px solid #E2E8F0;">
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">D</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">CHAT</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">(Global Pillar / Panel)</p>
+          <div class="ia-col">
+            <div class="ia-header">
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #9CA3AF;">D</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 15px; color: #323338;">Chat</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 12px; color: #9CA3AF;">Global panel</p>
             </div>
-            <div class="ia-conn" style="--c: #94A3B8;"></div>
-
-            <div class="ia-card">
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Contextual Chat</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Always-on assistant panel</p>
-            </div>
-            <div class="ia-conn ia-conn-sm" style="--c: #94A3B8;"></div>
-            <div class="ia-card">
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Gen-UI: Create Opp</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">CRM form, auto-filled from the call</p>
-            </div>
-            <div class="ia-conn ia-conn-sm" style="--c: #94A3B8;"></div>
-            <div class="ia-card">
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Gen-UI: Draft Msg</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Email draft, ready to send</p>
-            </div>
-            <div class="ia-conn ia-conn-sm" style="--c: #94A3B8;"></div>
-            <div class="ia-card">
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Action Ratification</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">One click to approve or edit</p>
-            </div>
+            <div class="ia-conn"></div>
+            <div class="ia-card"><p style="font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 13px; color: #323338;">Contextual Chat</p></div>
+            <div class="ia-conn ia-conn-sm"></div>
+            <div class="ia-card"><p style="font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 13px; color: #323338;">Gen-UI: Create Opp</p></div>
+            <div class="ia-conn ia-conn-sm"></div>
+            <div class="ia-card"><p style="font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 13px; color: #323338;">Gen-UI: Draft Msg</p></div>
+            <div class="ia-conn ia-conn-sm"></div>
+            <div class="ia-card"><p style="font-family: 'Poppins', sans-serif; font-weight: 500; font-size: 13px; color: #323338;">Action Ratification</p></div>
           </div>
 
         </div>
@@ -1302,34 +1244,41 @@
 
 <!-- KEY TAKEAWAYS -->
 <section id="takeaways" style="background: #FFFFFF; padding: 80px 0 0 120px; position: relative; overflow: hidden;">
-  <div style="background: rgba(255,255,255,0.6); border-radius: 32px; padding: 60px 0 0; display: flex; flex-direction: column; align-items: center; gap: 60px; position: relative;">
+  <div style="max-width: 1440px; display: flex; flex-direction: column; gap: 56px; position: relative;">
 
-    <div style="position: absolute; top: 208px; left: 50%; transform: translateX(-50%); width: 1200px; height: 285px; pointer-events: none;">
+    <div style="position: absolute; top: 160px; left: 40%; width: 900px; height: 285px; pointer-events: none; z-index: 0;">
       <img src="../uploads/takeaway-glow.svg" alt="" style="position: absolute; inset: -179% -42%; width: 185%; height: 458%; display: block;">
     </div>
 
     <h2 style="font-family: 'Crimson Pro', Georgia, serif; font-weight: 300; font-style: italic; font-size: 50px; line-height: normal; color: #323338; position: relative; z-index: 1;">Key Takeaways from the Process</h2>
 
-    <div style="display: flex; gap: 60px; align-items: flex-start; justify-content: center; width: 100%; position: relative; z-index: 1;">
+    <div style="display: flex; gap: 40px; align-items: flex-end; position: relative; z-index: 1;">
 
-      <div style="display: flex; flex-direction: column; gap: 24px; flex: 1; max-width: 520px; padding-left: 60px;">
-        <div style="background: rgba(255,255,255,0.6); border: 1.5px solid #D12E8B; border-radius: 16px; padding: 24px; box-shadow: 0 12px 24px rgba(209,46,139,0.1);">
-          <span style="display: inline-block; background: #FDF2FA; border: 1px solid #D12E8B; border-radius: 100px; padding: 6px 16px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; line-height: 28px; color: #D12E8B; text-transform: uppercase; margin-bottom: 16px;">Trust is earned per action</span>
-          <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #323338;">Every dismiss was a signal, not churn. I stopped reading them as failure and started reading them as the most honest feedback the agent could give — <b>where its model of the world was wrong</b>.</p>
-        </div>
-        <div style="background: rgba(255,255,255,0.6); border: 1.5px solid #D12E8B; border-radius: 16px; padding: 24px; box-shadow: 0 12px 24px rgba(209,46,139,0.1);">
-          <span style="display: inline-block; background: #FDF2FA; border: 1px solid #D12E8B; border-radius: 100px; padding: 6px 16px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; line-height: 28px; color: #D12E8B; text-transform: uppercase; margin-bottom: 16px;">Uncertainty is a feature</span>
-          <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #323338;">"Oz is less certain about this" earned more trust than any confident claim. <b>Designing for a squishy AI</b> means giving uncertainty a visible, dignified place in the UI — not hiding it.</p>
-        </div>
-        <div style="background: rgba(255,255,255,0.6); border: 1.5px solid #D12E8B; border-radius: 16px; padding: 24px; box-shadow: 0 12px 24px rgba(209,46,139,0.1);">
-          <span style="display: inline-block; background: #FDF2FA; border: 1px solid #D12E8B; border-radius: 100px; padding: 6px 16px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; line-height: 28px; color: #D12E8B; text-transform: uppercase; margin-bottom: 16px;">Propose, don't automate</span>
-          <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #323338;">Reps didn't want the agent to <b>do</b> — they wanted it to <b>propose</b>. Keeping the human as the final gate isn't a limitation of V1. It's the product.</p>
+      <div style="display: flex; flex-direction: column; gap: 20px; flex: 1; min-width: 0; padding-bottom: 80px;">
+        <div style="display: flex; gap: 20px; align-items: stretch;">
+
+          <div style="flex: 1; background: rgba(255,255,255,0.6); border: 1.5px solid #D12E8B; border-radius: 16px; padding: 24px; box-shadow: 0 12px 24px rgba(209,46,139,0.1); display: flex; flex-direction: column; gap: 16px;">
+            <span style="display: inline-block; background: #FDF2FA; border: 1px solid #D12E8B; border-radius: 100px; padding: 6px 16px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; color: #D12E8B; text-transform: uppercase; white-space: nowrap;">Trust is earned per action</span>
+            <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 15px; line-height: 26px; color: #323338;">Every dismiss was a signal, not churn. I stopped reading them as failure and started reading them as the most honest feedback the agent could give — <b>where its model of the world was wrong</b>.</p>
+          </div>
+
+          <div style="flex: 1; background: rgba(255,255,255,0.6); border: 1.5px solid #D12E8B; border-radius: 16px; padding: 24px; box-shadow: 0 12px 24px rgba(209,46,139,0.1); display: flex; flex-direction: column; gap: 16px;">
+            <span style="display: inline-block; background: #FDF2FA; border: 1px solid #D12E8B; border-radius: 100px; padding: 6px 16px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; color: #D12E8B; text-transform: uppercase; white-space: nowrap;">Uncertainty is a feature</span>
+            <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 15px; line-height: 26px; color: #323338;">"Oz is less certain about this" earned more trust than any confident claim. <b>Designing for a squishy AI</b> means giving uncertainty a visible, dignified place in the UI — not hiding it.</p>
+          </div>
+
+          <div style="flex: 1; background: rgba(255,255,255,0.6); border: 1.5px solid #D12E8B; border-radius: 16px; padding: 24px; box-shadow: 0 12px 24px rgba(209,46,139,0.1); display: flex; flex-direction: column; gap: 16px;">
+            <span style="display: inline-block; background: #FDF2FA; border: 1px solid #D12E8B; border-radius: 100px; padding: 6px 16px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 13px; color: #D12E8B; text-transform: uppercase; white-space: nowrap;">Propose, don't automate</span>
+            <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 15px; line-height: 26px; color: #323338;">Reps didn't want the agent to <b>do</b> — they wanted it to <b>propose</b>. Keeping the human as the final gate isn't a limitation of V1. It's the product.</p>
+          </div>
+
         </div>
       </div>
 
-      <div style="flex-shrink: 0; width: 653px; height: 512px; align-self: flex-end;">
-        <img src="../uploads/takeaway-character.png" alt="3D character illustration" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+      <div style="flex-shrink: 0; width: 480px; align-self: flex-end;">
+        <img src="../uploads/takeaway-character.png" alt="3D character illustration" style="width: 100%; display: block; object-fit: contain;">
       </div>
+
     </div>
   </div>
 </section>
