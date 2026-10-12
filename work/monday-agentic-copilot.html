@@ -294,7 +294,11 @@
   .ms-shot { position: relative; width: 100%; max-width: 860px; }
   /* the tilted plate that peeks out from behind the screenshot */
   .ms-shot::before { content: ''; position: absolute; left: 35.3%; top: 4%; width: 71.2%; height: 92%; background: #F3F3F3; border-radius: 8px; transform: rotate(4.12deg); z-index: 0; }
-  .ms-shot img { position: relative; z-index: 1; display: block; width: 100%; height: auto; border: 1px solid #E7E9EF; border-radius: 8px; }
+  .ms-shot img { position: relative; z-index: 1; display: block; width: 100%; height: auto; border: 1px solid #E7E9EF; border-radius: 8px; cursor: zoom-in; transition: opacity 150ms ease; }
+  .ms-shot img:hover { opacity: 0.92; }
+  #ms-lightbox { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; padding: 40px; cursor: zoom-out; }
+  #ms-lightbox.open { display: flex; }
+  #ms-lightbox img { max-width: 100%; max-height: 100%; border-radius: 8px; box-shadow: 0 32px 80px rgba(0,0,0,0.5); object-fit: contain; }
 
   @media (max-width: 1200px) and (min-width: 901px) {
     #kc-slot { width: 340px !important; height: 300px !important; }
@@ -854,187 +858,6 @@
   </div>
 </section>
 
-<!-- JOBS TO BE DONE -->
-<section id="jobs" style="background: #FFFFFF; padding: 80px 120px;">
-  <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 56px;">
-
-    <h2 style="font-family: 'Crimson Pro', Georgia, serif; font-weight: 300; font-style: italic; font-size: 50px; line-height: normal; color: #323338; text-align: center; width: 100%;">Jobs to be done</h2>
-
-    <div style="display: flex; flex-direction: column; gap: 40px; width: 100%;">
-
-      <div style="display: flex; gap: 24px; align-items: flex-start; width: 100%;">
-        <button type="button" class="jtbd-nav" data-dir="left" aria-label="Previous job" disabled style="align-self: flex-start; margin-top: 161px;"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true" style="display: block; transform: rotate(90deg);"><path d="M18.8835 25.5206C19.5001 26.1597 20.4999 26.1597 21.1165 25.5206L29.5375 16.7934C30.1542 16.1543 30.1542 15.1182 29.5375 14.4792C28.9209 13.8402 27.9212 13.8402 27.3046 14.4792L20 22.0494L12.6954 14.4792C12.0788 13.8402 11.0791 13.8402 10.4625 14.4792C9.84585 15.1182 9.84585 16.1543 10.4625 16.7934L18.8835 25.5206Z" fill="currentColor"></path></svg></button>
-        <div style="flex: 1 0 0; min-width: 0;">
-
-          <div class="jtbd-slide active" data-slide="0">
-            <div class="jtbd-card-wrap" style="position: relative; width: 374px; flex-shrink: 0; padding-top: 26px;">
-              <div style="position: relative; height: 317px; background: #fff; border: 1.619px solid #D12E8B; border-radius: 8.634px; box-shadow: 0 12.951px 25.902px rgba(209,46,139,0.1); display: flex; align-items: center; justify-content: center; padding: 34.536px 30.219px;">
-                <div style="background: #FDF2FA; border: 1.079px solid #D12E8B; border-radius: 107.925px; padding: 6.475px 17.268px;">
-                  <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px; color: #D12E8B; white-space: nowrap;">Smart Prioritization</p>
-                </div>
-                <svg width="12.9509" height="24.301" viewBox="0 0 12.9509 24.301" fill="none" aria-hidden="true" style="position: absolute; left: calc(100% + 1.619px); top: 50%; transform: translateY(-50%); display: block;"><path d="M0 0L12.9509 12.1505L0 24.301Z" fill="#D12E8B"></path></svg>
-              </div>
-              <div style="position: absolute; left: 160.81px; top: 0; width: 53.336px; height: 51.798px;">
-                <img src="../uploads/jtbd-starburst.svg" alt="" style="display: block; width: 100%; height: 100%;">
-                <span style="position: absolute; left: 25.85px; top: 26.61px; transform: translate(-50%,-50%); font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 15.109px; line-height: normal; color: #fff;">01</span>
-              </div>
-            </div>
-
-            <div class="jtbd-list" style="flex: 1 0 0; min-width: 0; display: flex; flex-direction: column; gap: 40px; padding: 32px 16px; border-radius: 8px;">
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px; color: #D12E8B;">As a Sales rep, I’d like to...</p>
-              <div style="display: flex; flex-direction: column; gap: 0;">
-                <div class="jtbd-acc">
-                  <div class="jtbd-acc-head" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; cursor: pointer;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">Know exactly who to focus on right now</p>
-                    <svg class="jtbd-acc-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
-                  </div>
-                  <div class="jtbd-acc-body"><p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 28px; color: #323338; padding-bottom: 12px;">so that I can dive straight into selling instead of wasting time figuring out who to contact first.</p></div>
-                  <div style="height: 1px; background: #D0D4E4;"></div>
-                </div>
-                <div class="jtbd-acc">
-                  <div class="jtbd-acc-head" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; cursor: pointer;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">Catch warning signs before accounts slip away</p>
-                    <svg class="jtbd-acc-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
-                  </div>
-                  <div class="jtbd-acc-body"><p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 28px; color: #323338; padding-bottom: 12px;">so that I can step in early and save the relationship before it falls through the cracks.</p></div>
-                  <div style="height: 1px; background: #D0D4E4;"></div>
-                </div>
-                <div class="jtbd-acc">
-                  <div class="jtbd-acc-head" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; cursor: pointer;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">Stay in control across a massive portfolio</p>
-                    <svg class="jtbd-acc-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
-                  </div>
-                  <div class="jtbd-acc-body"><p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 28px; color: #323338; padding-bottom: 12px;">so that I can stay completely focused without having to manually check on hundreds of accounts.</p></div>
-                  <div style="height: 1px; background: #D0D4E4;"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="jtbd-slide" data-slide="1">
-            <div class="jtbd-card-wrap" style="position: relative; width: 374px; flex-shrink: 0; padding-top: 26px;">
-              <div style="position: relative; height: 233px; background: #fff; border: 1.619px solid #D12E8B; border-radius: 8.634px; box-shadow: 0 12.951px 25.902px rgba(209,46,139,0.1); display: flex; align-items: center; justify-content: center; padding: 34.536px 30.219px;">
-                <div style="background: #FDF2FA; border: 1.079px solid #D12E8B; border-radius: 107.925px; padding: 6.475px 17.268px;">
-                  <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px; color: #D12E8B; white-space: nowrap;">Automating Admin</p>
-                </div>
-                <svg width="12.9509" height="24.301" viewBox="0 0 12.9509 24.301" fill="none" aria-hidden="true" style="position: absolute; left: calc(100% + 1.619px); top: 50%; transform: translateY(-50%); display: block;"><path d="M0 0L12.9509 12.1505L0 24.301Z" fill="#D12E8B"></path></svg>
-              </div>
-              <div style="position: absolute; left: 160.81px; top: 0; width: 53.336px; height: 51.798px;">
-                <img src="../uploads/jtbd-starburst.svg" alt="" style="display: block; width: 100%; height: 100%;">
-                <span style="position: absolute; left: 25.85px; top: 26.61px; transform: translate(-50%,-50%); font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 15.109px; line-height: normal; color: #fff;">02</span>
-              </div>
-            </div>
-
-            <div class="jtbd-list" style="flex: 1 0 0; min-width: 0; display: flex; flex-direction: column; gap: 40px; padding: 32px 16px; border-radius: 8px;">
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px; color: #D12E8B;">As a Sales rep, I’d like to...</p>
-              <div style="display: flex; flex-direction: column; gap: 0;">
-                <div class="jtbd-acc">
-                  <div class="jtbd-acc-head" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; cursor: pointer;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">Automated Follow-ups &amp; Quotes</p>
-                    <svg class="jtbd-acc-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
-                  </div>
-                  <div class="jtbd-acc-body"><p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 28px; color: #323338; padding-bottom: 12px;">so that I can free up my time to focus on building relationships with my clients.</p></div>
-                  <div style="height: 1px; background: #D0D4E4;"></div>
-                </div>
-                <div class="jtbd-acc">
-                  <div class="jtbd-acc-head" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; cursor: pointer;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">One-Click Salesforce Updates</p>
-                    <svg class="jtbd-acc-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
-                  </div>
-                  <div class="jtbd-acc-body"><p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 28px; color: #323338; padding-bottom: 12px;">so that I can quickly review, approve, and keep deal momentum going without getting bogged down in paperwork.</p></div>
-                  <div style="height: 1px; background: #D0D4E4;"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="jtbd-slide" data-slide="2">
-            <div class="jtbd-card-wrap" style="position: relative; width: 374px; flex-shrink: 0; padding-top: 26px;">
-              <div style="position: relative; height: 233px; background: #fff; border: 1.619px solid #D12E8B; border-radius: 8.634px; box-shadow: 0 12.951px 25.902px rgba(209,46,139,0.1); display: flex; align-items: center; justify-content: center; padding: 34.536px 30.219px;">
-                <div style="background: #FDF2FA; border: 1.079px solid #D12E8B; border-radius: 107.925px; padding: 6.475px 17.268px;">
-                  <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px; color: #D12E8B; white-space: nowrap;">Scaling Relationships</p>
-                </div>
-                <svg width="12.9509" height="24.301" viewBox="0 0 12.9509 24.301" fill="none" aria-hidden="true" style="position: absolute; left: calc(100% + 1.619px); top: 50%; transform: translateY(-50%); display: block;"><path d="M0 0L12.9509 12.1505L0 24.301Z" fill="#D12E8B"></path></svg>
-              </div>
-              <div style="position: absolute; left: 160.81px; top: 0; width: 53.336px; height: 51.798px;">
-                <img src="../uploads/jtbd-starburst.svg" alt="" style="display: block; width: 100%; height: 100%;">
-                <span style="position: absolute; left: 25.85px; top: 26.61px; transform: translate(-50%,-50%); font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 15.109px; line-height: normal; color: #fff;">03</span>
-              </div>
-            </div>
-
-            <div class="jtbd-list" style="flex: 1 0 0; min-width: 0; display: flex; flex-direction: column; gap: 40px; padding: 32px 16px; border-radius: 8px;">
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 24px; line-height: 38px; color: #D12E8B;">As a Sales rep, I’d like to...</p>
-              <div style="display: flex; flex-direction: column; gap: 0;">
-                <div class="jtbd-acc">
-                  <div class="jtbd-acc-head" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; cursor: pointer;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">Handle a larger portfolio without losing touch</p>
-                    <svg class="jtbd-acc-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
-                  </div>
-                  <div class="jtbd-acc-body"><p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 28px; color: #323338; padding-bottom: 12px;">so that I can grow our business while still making every single client feel valued.</p></div>
-                  <div style="height: 1px; background: #D0D4E4;"></div>
-                </div>
-                <div class="jtbd-acc">
-                  <div class="jtbd-acc-head" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; cursor: pointer;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">Focus on human connections instead of admin</p>
-                    <svg class="jtbd-acc-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
-                  </div>
-                  <div class="jtbd-acc-body"><p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 28px; color: #323338; padding-bottom: 12px;">so that I can build real trust and act as a true partner to my clients.</p></div>
-                  <div style="height: 1px; background: #D0D4E4;"></div>
-                </div>
-                <div class="jtbd-acc">
-                  <div class="jtbd-acc-head" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; cursor: pointer;">
-                    <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">Drive sustainable revenue growth</p>
-                    <svg class="jtbd-acc-chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><g transform="translate(5,7)"><path d="M4.44176 5.76036C4.75007 6.07988 5.24993 6.07988 5.55824 5.76036L9.76877 1.39672C10.0771 1.0772 10.0771 0.55916 9.76877 0.23964C9.46046 -0.07988 8.96059 -0.07988 8.65228 0.23964L5 4.02473L1.34772 0.23964C1.03941 -0.07988 0.53954 -0.07988 0.231231 0.23964C-0.0770772 0.55916 -0.0770772 1.0772 0.231231 1.39672L4.44176 5.76036Z" fill="#676879"></path></g></svg>
-                  </div>
-                  <div class="jtbd-acc-body"><p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 28px; color: #323338; padding-bottom: 12px;">so that I can drive sustainable revenue growth through strong, meaningful interactions.</p></div>
-                  <div style="height: 1px; background: #D0D4E4;"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        <button type="button" class="jtbd-nav" data-dir="right" aria-label="Next job" style="align-self: flex-start; margin-top: 161px;"><svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true" style="display: block; transform: rotate(-90deg);"><path d="M18.8835 25.5206C19.5001 26.1597 20.4999 26.1597 21.1165 25.5206L29.5375 16.7934C30.1542 16.1543 30.1542 15.1182 29.5375 14.4792C28.9209 13.8402 27.9212 13.8402 27.3046 14.4792L20 22.0494L12.6954 14.4792C12.0788 13.8402 11.0791 13.8402 10.4625 14.4792C9.84585 15.1182 9.84585 16.1543 10.4625 16.7934L18.8835 25.5206Z" fill="currentColor"></path></svg></button>
-      </div>
-
-      <div class="jtbd-callout-wrap" style="padding: 0 72px; width: 100%;">
-        <div class="jtbd-callout active" data-slide="0">
-          <div style="border-radius: 8px; border-right: 5px solid #FFC3FB; border-bottom: 5px solid #FFC3FB;">
-            <div style="background: #F3F8FF; border: 1px solid #0056F5; border-radius: 8px; padding: 16px; display: flex; align-items: center; gap: 16px;">
-              <div style="background: #2B1A98; border-radius: 8px; padding: 8px 12px; flex-shrink: 0;"><p style="font-family: 'Figtree', 'Poppins', sans-serif; font-weight: 400; font-size: 14px; line-height: normal; color: #fff; white-space: nowrap;">Productivity</p></div>
-              <p style="flex: 1 0 0; min-width: 0; font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #323338;">Help reps know what to do when, to drive more sales</p>
-            </div>
-          </div>
-        </div>
-        <div class="jtbd-callout" data-slide="1">
-          <div style="border-radius: 8px; border-right: 5px solid #FFC3FB; border-bottom: 5px solid #FFC3FB;">
-            <div style="background: #F3F8FF; border: 1px solid #0056F5; border-radius: 8px; padding: 16px; display: flex; align-items: center; gap: 16px;">
-              <div style="background: #2B1A98; border-radius: 8px; padding: 8px 12px; flex-shrink: 0;"><p style="font-family: 'Figtree', 'Poppins', sans-serif; font-weight: 400; font-size: 14px; line-height: normal; color: #fff; white-space: nowrap;">Efficiency</p></div>
-              <p style="flex: 1 0 0; min-width: 0; font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #323338;">Increase the time percentage Reps are on actual sales calls</p>
-            </div>
-          </div>
-        </div>
-        <div class="jtbd-callout" data-slide="2">
-          <div style="border-radius: 8px; border-right: 5px solid #FFC3FB; border-bottom: 5px solid #FFC3FB;">
-            <div style="background: #F3F8FF; border: 1px solid #0056F5; border-radius: 8px; padding: 16px; display: flex; align-items: center; gap: 16px;">
-              <div style="background: #2B1A98; border-radius: 8px; padding: 8px 12px; flex-shrink: 0;"><p style="font-family: 'Figtree', 'Poppins', sans-serif; font-weight: 400; font-size: 14px; line-height: normal; color: #fff; white-space: nowrap;">Growth</p></div>
-              <p style="flex: 1 0 0; min-width: 0; font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #323338;">Increase the time percentage Reps spend on actual sales calls</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div style="display: flex; align-items: center; gap: 8px;" role="tablist" aria-label="Job slides">
-      <button type="button" class="jtbd-dot active" data-slide="0" role="tab" aria-selected="true" aria-label="Smart Prioritization"></button>
-      <button type="button" class="jtbd-dot" data-slide="1" role="tab" aria-selected="false" aria-label="Automating Admin"></button>
-      <button type="button" class="jtbd-dot" data-slide="2" role="tab" aria-selected="false" aria-label="Scaling Relationships"></button>
-    </div>
-
-  </div>
-</section>
-
 <!-- INFORMATION ARCHITECTURE -->
 <section id="architecture" style="background: #FFFFFF; padding: 40px 120px 96px;">
   <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 56px;">
@@ -1063,17 +886,17 @@
 
             <div class="ia-card">
               <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Welcome &amp; AI Value</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Immediate value-prop discovery</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">How the agent works, first time</p>
             </div>
             <div class="ia-conn ia-conn-sm" style="--c: #94A3B8;"></div>
             <div class="ia-card">
               <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">CRM Integration Setup</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Seamless environment ingestion</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Connect Salesforce and email</p>
             </div>
             <div class="ia-conn ia-conn-sm" style="--c: #94A3B8;"></div>
             <div class="ia-card">
               <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Human-in-the-Loop Intro</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Building system-level trust boundaries</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Set approval preferences</p>
             </div>
           </div>
 
@@ -1081,10 +904,7 @@
           <div class="ia-col" style="background: #F1F5F9; border: 1px solid #E2E8F0;">
             <div class="ia-conn" style="--c: #94A3B8;"></div>
             <div class="ia-header" style="border: 1.5px solid #E2E8F0;">
-              <div style="display: flex; align-items: center; gap: 6px;">
-                <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">B</p>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5A623" stroke="none" style="display: block;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
-              </div>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">B</p>
               <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">CATCH-UP</p>
               <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">(Daily Operations)</p>
             </div>
@@ -1092,102 +912,84 @@
 
             <div class="ia-card">
               <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Daily Prioritization</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Urgent action queues</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">What needs attention today</p>
             </div>
             <div class="ia-conn ia-conn-sm" style="--c: #94A3B8;"></div>
             <div class="ia-card">
               <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">At-Risk Alerts</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Predictive hazard reporting</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Accounts showing warning signs</p>
             </div>
             <div class="ia-conn ia-conn-sm" style="--c: #94A3B8;"></div>
             <div class="ia-card">
               <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Create / Update Opportunity</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Real-time pipeline modification</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Agent-drafted CRM updates</p>
             </div>
             <div class="ia-conn ia-conn-sm" style="--c: #94A3B8;"></div>
             <div class="ia-card">
               <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Pending Approvals</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Stakeholder ratification flows</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Review before anything goes out</p>
             </div>
           </div>
 
           <!-- C: Portfolio -->
-          <div class="ia-col" style="background: #F1F5F9; border: 1px solid #D12E8B;">
-            <div class="ia-conn" style="--c: #D12E8B;"></div>
-            <div class="ia-header" style="border: 1.5px solid #D12E8B;">
-              <div style="display: flex; align-items: center; gap: 6px;">
-                <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #D12E8B;">C</p>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5A623" stroke="none" style="display: block;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
-              </div>
+          <div class="ia-col" style="background: #F1F5F9; border: 1px solid #E2E8F0;">
+            <div class="ia-conn" style="--c: #94A3B8;"></div>
+            <div class="ia-header" style="border: 1.5px solid #E2E8F0;">
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">C</p>
               <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">PORTFOLIO</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #D12E8B;">(Strategic View)</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">(Strategic View)</p>
             </div>
-            <div class="ia-conn" style="--c: #D12E8B;"></div>
+            <div class="ia-conn" style="--c: #94A3B8;"></div>
 
-            <div class="ia-card" style="border: 1px solid #F5D3E7;">
+            <div class="ia-card">
               <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">All Accounts Dash</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Bird's eye operational insight</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">All accounts, health at a glance</p>
             </div>
-            <div class="ia-conn ia-conn-sm" style="--c: #D12E8B;"></div>
-            <div class="ia-card" style="border: 1px solid #F5D3E7;">
+            <div class="ia-conn ia-conn-sm" style="--c: #94A3B8;"></div>
+            <div class="ia-card">
               <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Progress to Goal</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Predictive &amp; trailing indicators</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Quota tracking and forecast</p>
             </div>
-            <div class="ia-conn ia-conn-sm" style="--c: #D12E8B;"></div>
-            <div class="ia-card" style="border: 1px solid #F5D3E7;">
+            <div class="ia-conn ia-conn-sm" style="--c: #94A3B8;"></div>
+            <div class="ia-card">
               <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Account Plan View</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Deep strategy configuration blueprint</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Per-account plan and history</p>
             </div>
-            <div class="ia-conn ia-conn-sm" style="--c: #D12E8B;"></div>
-            <div class="ia-card" style="border: 1px solid #F5D3E7;">
+            <div class="ia-conn ia-conn-sm" style="--c: #94A3B8;"></div>
+            <div class="ia-card">
               <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Strategic Insights</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Generative accounts suggestions</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">AI-surfaced next steps per account</p>
             </div>
           </div>
 
           <!-- D: Chat -->
-          <div class="ia-col" style="background: linear-gradient(180deg, #F9FBFF 0%, #F3D9E4 100%); border: 1.5px solid #D12E8B;">
-            <div class="ia-conn" style="--c: #D12E8B;"></div>
-            <div class="ia-header" style="border: 1.5px solid #D12E8B;">
-              <div style="display: flex; align-items: center; gap: 6px;">
-                <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #D12E8B;">D</p>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="#F5A623" stroke="none" style="display: block;"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path></svg>
-              </div>
+          <div class="ia-col" style="background: #F1F5F9; border: 1px solid #E2E8F0;">
+            <div class="ia-conn" style="--c: #94A3B8;"></div>
+            <div class="ia-header" style="border: 1.5px solid #E2E8F0;">
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">D</p>
               <p style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 18px; line-height: 28px; color: #323338;">CHAT</p>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #D12E8B;">(Global Pillar / Panel)</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">(Global Pillar / Panel)</p>
             </div>
-            <div class="ia-conn" style="--c: #D12E8B;"></div>
+            <div class="ia-conn" style="--c: #94A3B8;"></div>
 
-            <div class="ia-card" style="border: 1px solid #F5D3E7;">
-              <div class="ia-card-title-row">
-                <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Contextual Chat</p>
-                <svg style="display:block;width:16px;height:16px;stroke:#D12E8B;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path d="M4 17v2"></path><path d="M5 18H3"></path></svg>
-              </div>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Adaptive ambient panel companion</p>
+            <div class="ia-card">
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Contextual Chat</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Always-on assistant panel</p>
             </div>
-            <div class="ia-conn ia-conn-sm" style="--c: #D12E8B;"></div>
-            <div class="ia-card" style="border: 1px solid #F5D3E7;">
-              <div class="ia-card-title-row">
-                <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Gen-UI: Create Opp</p>
-                <svg style="display:block;width:16px;height:16px;stroke:#D12E8B;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path d="M4 17v2"></path><path d="M5 18H3"></path></svg>
-              </div>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Fluid structured output canvas</p>
+            <div class="ia-conn ia-conn-sm" style="--c: #94A3B8;"></div>
+            <div class="ia-card">
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Gen-UI: Create Opp</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">CRM form, auto-filled from the call</p>
             </div>
-            <div class="ia-conn ia-conn-sm" style="--c: #D12E8B;"></div>
-            <div class="ia-card" style="border: 1px solid #F5D3E7;">
-              <div class="ia-card-title-row">
-                <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Gen-UI: Draft Msg</p>
-                <svg style="display:block;width:16px;height:16px;stroke:#D12E8B;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path d="M4 17v2"></path><path d="M5 18H3"></path></svg>
-              </div>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Highly personalized outreach draft</p>
+            <div class="ia-conn ia-conn-sm" style="--c: #94A3B8;"></div>
+            <div class="ia-card">
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Gen-UI: Draft Msg</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Email draft, ready to send</p>
             </div>
-            <div class="ia-conn ia-conn-sm" style="--c: #D12E8B;"></div>
-            <div class="ia-card" style="border: 1px solid #F5D3E7;">
-              <div class="ia-card-title-row">
-                <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Action Ratification</p>
-                <svg style="display:block;width:16px;height:16px;stroke:#D12E8B;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"></path><path d="M20 3v4"></path><path d="M22 5h-4"></path><path d="M4 17v2"></path><path d="M5 18H3"></path></svg>
-              </div>
-              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">Sovereign human sign-off portal</p>
+            <div class="ia-conn ia-conn-sm" style="--c: #94A3B8;"></div>
+            <div class="ia-card">
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 16px; line-height: 28px; color: #323338;">Action Ratification</p>
+              <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 16px; line-height: 28px; color: #676879;">One click to approve or edit</p>
             </div>
           </div>
 
@@ -1512,12 +1314,16 @@
 
       <div style="display: flex; flex-direction: column; gap: 24px; flex: 1; max-width: 520px; padding-left: 60px;">
         <div style="background: rgba(255,255,255,0.6); border: 1.5px solid #D12E8B; border-radius: 16px; padding: 24px; box-shadow: 0 12px 24px rgba(209,46,139,0.1);">
-          <span style="display: inline-block; background: #FDF2FA; border: 1px solid #D12E8B; border-radius: 100px; padding: 6px 16px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; line-height: 28px; color: #D12E8B; text-transform: uppercase; margin-bottom: 16px;">Velocity</span>
-          <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #323338;">Leveraging <b>Claude</b> for <b>rapid prototyping</b> enabled me to build and test multiple concepts with real users in <b>half the usual time</b>.</p>
+          <span style="display: inline-block; background: #FDF2FA; border: 1px solid #D12E8B; border-radius: 100px; padding: 6px 16px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; line-height: 28px; color: #D12E8B; text-transform: uppercase; margin-bottom: 16px;">Trust is earned per action</span>
+          <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #323338;">Every dismiss was a signal, not churn. I stopped reading them as failure and started reading them as the most honest feedback the agent could give — <b>where its model of the world was wrong</b>.</p>
         </div>
         <div style="background: rgba(255,255,255,0.6); border: 1.5px solid #D12E8B; border-radius: 16px; padding: 24px; box-shadow: 0 12px 24px rgba(209,46,139,0.1);">
-          <span style="display: inline-block; background: #FDF2FA; border: 1px solid #D12E8B; border-radius: 100px; padding: 6px 16px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; line-height: 28px; color: #D12E8B; text-transform: uppercase; margin-bottom: 16px;">Agility</span>
-          <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #323338;">Operating in '<b>startup mode</b>' required a <b>highly flexible approach</b>—<b>moving fast</b>, <b>embracing trial and error</b>, and continuously <b>iterating on the fly</b>.</p>
+          <span style="display: inline-block; background: #FDF2FA; border: 1px solid #D12E8B; border-radius: 100px; padding: 6px 16px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; line-height: 28px; color: #D12E8B; text-transform: uppercase; margin-bottom: 16px;">Uncertainty is a feature</span>
+          <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #323338;">"Oz is less certain about this" earned more trust than any confident claim. <b>Designing for a squishy AI</b> means giving uncertainty a visible, dignified place in the UI — not hiding it.</p>
+        </div>
+        <div style="background: rgba(255,255,255,0.6); border: 1.5px solid #D12E8B; border-radius: 16px; padding: 24px; box-shadow: 0 12px 24px rgba(209,46,139,0.1);">
+          <span style="display: inline-block; background: #FDF2FA; border: 1px solid #D12E8B; border-radius: 100px; padding: 6px 16px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; line-height: 28px; color: #D12E8B; text-transform: uppercase; margin-bottom: 16px;">Propose, don't automate</span>
+          <p style="font-family: 'Poppins', sans-serif; font-weight: 400; font-size: 18px; line-height: 32px; color: #323338;">Reps didn't want the agent to <b>do</b> — they wanted it to <b>propose</b>. Keeping the human as the final gate isn't a limitation of V1. It's the product.</p>
         </div>
       </div>
 
@@ -1527,6 +1333,11 @@
     </div>
   </div>
 </section>
+
+<!-- LIGHTBOX -->
+<div id="ms-lightbox" role="dialog" aria-modal="true" aria-label="Screen preview">
+  <img id="ms-lightbox-img" src="" alt="">
+</div>
 
 <!-- OTHER PROJECTS -->
 <section id="other-projects" style="background: #FFFFFF; padding: 80px 60px;">
@@ -1950,6 +1761,28 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+  // Main Screens lightbox
+  (function() {
+    var lb = document.getElementById('ms-lightbox');
+    var lbImg = document.getElementById('ms-lightbox-img');
+    if (!lb || !lbImg) return;
+    document.querySelectorAll('.ms-shot img').forEach(function(img) {
+      img.addEventListener('click', function() {
+        lbImg.src = img.src;
+        lbImg.alt = img.alt;
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    lb.addEventListener('click', function() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') { lb.classList.remove('open'); document.body.style.overflow = ''; }
+    });
+  })();
 
   // Project Glimpse video player
   (function() {
