@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "work/cygon-review.html"
+        ],
+        "createdAt": "2026-11-04T19:39:53.846Z",
+        "reason": "intentional Cygon product design system palette — prototype, not production accessibility target"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "work/cygon-review.html"
+        ],
+        "createdAt": "2026-11-04T19:40:32.839Z",
+        "reason": "intentional status-indicator left border in Cygon product design system"
+      }
+    ]
+  }
+}
