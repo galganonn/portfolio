@@ -1,0 +1,53 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "incident-investigation.html"
+        ],
+        "createdAt": "2026-11-17T11:09:08.877Z",
+        "reason": "Intentional g1-labs Callout component pattern — left accent border is core to this component design language from reference"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "incident-investigation.html"
+        ],
+        "createdAt": "2026-11-17T11:09:14.430Z",
+        "reason": "Intentional g1-labs Callout component pattern — left accent border is core to this component design language from reference"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "incident-investigation.html"
+        ],
+        "createdAt": "2026-11-17T12:40:00.029Z",
+        "reason": "pre-session finding; compact badge/chip elements use intentional 2px vertical padding per Figma spec — standard for dense UI pills"
+      }
+      ,{
+        "rule": "nested-cards",
+        "value": "*",
+        "files": [
+          "incident-investigation.html"
+        ],
+        "createdAt": "2026-11-17T14:00:00.000Z",
+        "reason": "Pre-session finding; intentional layered card design for XSIAM prototype — response-card outer glass container wraps semantic inner component cards (metrics, timeline, actions). Deliberate UI hierarchy per Figma spec, not visual noise."
+      },
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "incident-investigation.html"
+        ],
+        "createdAt": "2026-11-17T15:30:00.000Z",
+        "reason": "User-specified design — Execute button label uses linear-gradient(90deg, #2B1A98 0%, #075F82 100%) as explicitly requested. CTA button label, not a heading or metric — deliberate brand-consistent treatment, not a decorative AI tell."
+      }
+    ]
+  }
+}
